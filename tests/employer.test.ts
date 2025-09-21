@@ -11,7 +11,7 @@ describe('Employer API', () => {
             manager: { id: 'm1', email: 'manager@example.com' },
         })
 
-        const token = process.env.HH_TOKEN!
+        const token = process.env.HH_TOKEN ?? 'dummy_token'
         const result = await getEmployerMe(token)
         expect(result.id).toBeDefined()
     })

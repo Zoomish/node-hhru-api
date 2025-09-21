@@ -49,6 +49,7 @@
     "typescript": "^5.4.0"
   },
   "dependencies": {
+    "cross-fetch": "^4.1.0",
     "node-fetch": "^3.3.2",
     "ts-node": "^10.9.2"
   }

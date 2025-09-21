@@ -13,7 +13,7 @@ describe('Applicant API', () => {
             per_page: 20,
         })
 
-        const token = process.env.HH_TOKEN!
+        const token = process.env.HH_TOKEN ?? 'dummy_token'
         const result = await getResumes(token)
         expect(result.items).toBeDefined()
     })

@@ -14,12 +14,18 @@ describe('Common API', () => {
 
         const clientId = process.env.HH_CLIENT_ID!
         const clientSecret = process.env.HH_CLIENT_SECRET!
-        const token = await authorize(
-            clientId,
-            clientSecret,
-            'dummy_code',
-            'http://localhost'
-        )
+        let token
+
+        if (process.env.HH_TOKEN) {
+            token = { access_token: process.env.HH_TOKEN }
+        } else {
+            token = await authorize(
+                clientId,
+                clientSecret,
+                'dummy_code',
+                'http://localhost'
+            )
+        }
 
         expect(token.access_token).toBeDefined()
     })

@@ -1,5 +1,7 @@
 import { jest } from '@jest/globals';
+import dotenv from 'dotenv';
 import fetch, { Response } from 'node-fetch';
+dotenv.config()
 
 export function mockFetch(data: any) {
     if (!process.env.HH_TOKEN) {

@@ -1,5 +1,5 @@
 import { request } from '../http.ts'
-import { AuthResponse } from './types.ts'
+import { AppTokenResponse, AuthResponse } from './types.ts'
 
 export async function authorize(
     clientId: string,
@@ -17,5 +17,20 @@ export async function authorize(
             code,
             redirect_uri: redirectUri,
         },
+    })
+}
+
+export async function getAppToken(
+    clientId: string,
+    clientSecret: string
+): Promise<AppTokenResponse> {
+    return request<AppTokenResponse>('/oauth/token', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+            grant_type: 'client_credentials',
+            client_id: clientId,
+            client_secret: clientSecret,
+        }),
     })
 }
