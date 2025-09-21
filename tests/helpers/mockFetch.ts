@@ -1,13 +1,13 @@
-import { jest } from '@jest/globals';
-import dotenv from 'dotenv';
-import fetch, { Response } from 'node-fetch';
-dotenv.config()
+import { Response } from 'node-fetch'
+import { vi } from 'vitest'
 
 export function mockFetch(data: any) {
     if (!process.env.HH_TOKEN) {
-        jest.mock('node-fetch')
-        ;(fetch as jest.MockedFunction<typeof fetch>).mockResolvedValue(
-            new Response(JSON.stringify(data))
+        vi.stubGlobal(
+            'fetch',
+            vi.fn().mockImplementation(() => {
+                return Promise.resolve(new Response(JSON.stringify(data)))
+            })
         )
     }
 }

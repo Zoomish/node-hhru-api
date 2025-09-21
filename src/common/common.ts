@@ -24,7 +24,7 @@ export async function getAppToken(
     clientId: string,
     clientSecret: string
 ): Promise<AppTokenResponse> {
-    return request<AppTokenResponse>('/oauth/token', {
+    return request<AppTokenResponse>('https://hh.ru/oauth/token', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams({
@@ -32,5 +32,6 @@ export async function getAppToken(
             client_id: clientId,
             client_secret: clientSecret,
         }),
+        rawBody: true,
     })
 }
