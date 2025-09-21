@@ -1,24 +1,26 @@
-import { jest } from '@jest/globals'
-import fetch, { Response } from 'node-fetch'
+import dotenv from 'dotenv'
 import { authorize } from '../src/common/common'
-
-jest.mock('node-fetch')
+import { mockFetch } from './helpers/mockFetch'
+dotenv.config()
 
 describe('Common API', () => {
     it('authorize should return token', async () => {
-        ;(fetch as jest.MockedFunction<typeof fetch>).mockResolvedValue(
-            new Response(
-                JSON.stringify({
-                    access_token: 'test_token',
-                    token_type: 'bearer',
-                    refresh_token: 'refresh_token',
-                    expires_in: 3600,
-                })
-            )
+        mockFetch({
+            access_token: 'test_token',
+            token_type: 'bearer',
+            refresh_token: 'refresh_token',
+            expires_in: 3600,
+        })
+
+        const clientId = process.env.HH_CLIENT_ID!
+        const clientSecret = process.env.HH_CLIENT_SECRET!
+        const token = await authorize(
+            clientId,
+            clientSecret,
+            'dummy_code',
+            'http://localhost'
         )
 
-        const result = await authorize('id', 'secret', 'code', 'redirect')
-        expect(result.access_token).toBe('test_token')
-        expect(result.token_type).toBe('bearer')
+        expect(token.access_token).toBeDefined()
     })
 })

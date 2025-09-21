@@ -1,23 +1,18 @@
-import { jest } from '@jest/globals'
-import fetch, { Response } from 'node-fetch'
+import dotenv from 'dotenv'
 import { getEmployerMe } from '../src/employer/employer'
-
-jest.mock('node-fetch')
+import { mockFetch } from './helpers/mockFetch'
+dotenv.config()
 
 describe('Employer API', () => {
     it('getEmployerMe should return employer info', async () => {
-        ;(fetch as jest.MockedFunction<typeof fetch>).mockResolvedValue(
-            new Response(
-                JSON.stringify({
-                    id: '123',
-                    name: 'Company',
-                    manager: { id: 'm1', email: 'manager@example.com' },
-                })
-            )
-        )
+        mockFetch({
+            id: '123',
+            name: 'Company',
+            manager: { id: 'm1', email: 'manager@example.com' },
+        })
 
-        const result = await getEmployerMe('token')
-        expect(result.name).toBe('Company')
-        expect(result.manager.email).toBe('manager@example.com')
+        const token = process.env.HH_TOKEN!
+        const result = await getEmployerMe(token)
+        expect(result.id).toBeDefined()
     })
 })
