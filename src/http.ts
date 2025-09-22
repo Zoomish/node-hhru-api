@@ -1,16 +1,16 @@
 import fetch, { Response } from 'node-fetch'
 
-export interface RequestOptions {
-    method?: string
-    headers?: Record<string, string>
-    body?: any
-    token?: string
-    rawBody?: boolean // если true — не сериализовать в JSON
+interface RequestOptions {
+    method: string
+    headers: Record<string, string>
+    body: any
+    token: string
+    rawBody: boolean
 }
 
 export async function request<T>(
     url: string,
-    options: RequestOptions = {}
+    options: Partial<RequestOptions> = {}
 ): Promise<T> {
     const {
         method = 'GET',
