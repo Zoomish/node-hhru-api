@@ -4,6 +4,8 @@ import {
     ensureUserToken,
     refreshUserAuth,
 } from './helpers/auth.ts'
+import { setupTests } from './helpers/setup.ts'
+setupTests()
 
 describe('Common API', () => {
     it('should return app token (or use existing HH_TOKEN)', async () => {

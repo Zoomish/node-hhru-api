@@ -8,6 +8,20 @@ interface RequestOptions {
     rawBody: boolean
 }
 
+interface HttpConfig {
+    locale?: string
+    host?: string
+    userAgent: string
+}
+
+let globalConfig: HttpConfig = {
+    userAgent: 'NodeHH-API/1.0 (zoomish39@gmail.com)',
+}
+
+export function setHttpConfig(config: Partial<HttpConfig>) {
+    globalConfig = { ...globalConfig, ...config }
+}
+
 export async function request<T>(
     url: string,
     options: Partial<RequestOptions> = {}
@@ -27,10 +41,12 @@ export async function request<T>(
                 ? 'application/x-www-form-urlencoded'
                 : 'application/json',
             ...(token ? { Authorization: `Bearer ${token}` } : {}),
+            'HH-User-Agent': globalConfig.userAgent,
             ...headers,
         },
         body: rawBody ? body : JSON.stringify(body),
     })
+    console.log(response.headers)
 
     if (!response.ok) {
         throw new Error(

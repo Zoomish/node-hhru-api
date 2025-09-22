@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import { getCurrentUser } from '../src/employer/employer.ts'
 import { ensureUserToken } from './helpers/auth.ts'
+import { setupTests } from './helpers/setup.ts'
+setupTests()
 
 describe('Employer API', () => {
     it('should return current user', async () => {
