@@ -20,22 +20,21 @@ export async function request<T>(
         rawBody = false,
     } = options
 
-    const response: Response = await fetch(
-        url.startsWith('http') ? url : `https://api.hh.ru${url}`,
-        {
-            method,
-            headers: {
-                ...(rawBody ? {} : { 'Content-Type': 'application/json' }),
-                ...(token ? { Authorization: `Bearer ${token}` } : {}),
-                ...headers,
-            },
-            body: body ? (rawBody ? body : JSON.stringify(body)) : undefined,
-        }
-    )
+    const response: Response = await fetch(`https://api.hh.ru${url}`, {
+        method,
+        headers: {
+            'Content-Type': rawBody
+                ? 'application/x-www-form-urlencoded'
+                : 'application/json',
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+            ...headers,
+        },
+        body: rawBody ? body : JSON.stringify(body),
+    })
 
     if (!response.ok) {
         throw new Error(
-            `HH API Error: ${response.status} ${response.statusText}\n` +
+            `HH API Error: ${response.status} ${response.statusText} fetching from ${url}\n` +
                 (await response.text())
         )
     }

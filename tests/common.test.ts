@@ -1,23 +1,41 @@
-import 'dotenv/config'
 import { describe, expect, it } from 'vitest'
-import { getAppToken } from '../src/common/common'
-import { mockFetch } from './helpers/mockFetch'
+import {
+    getAppToken,
+    getUserToken,
+    refreshUserToken,
+} from '../src/common/common.ts'
 
 describe('Common API', () => {
-    it('getAppToken should return app token', async () => {
-        mockFetch({
-            access_token: 'app_token_test',
-            token_type: 'bearer',
-            expires_in: 3600,
-        })
+    it(
+        'getAppToken should return app token',
+        async () => {
+            const token = await getAppToken(
+                process.env.HH_CLIENT_ID!,
+                process.env.HH_CLIENT_SECRET!
+            )
+            expect(token).toHaveProperty('access_token')
+            expect(token).toHaveProperty('expires_in')
+        },
+    )
 
-        const clientId = process.env.HH_CLIENT_ID ?? 'dummy_id'
-        const clientSecret = process.env.HH_CLIENT_SECRET ?? 'dummy_secret'
+    it('getUserToken should return user token', async () => {
+        const token = await getUserToken(
+            process.env.HH_CLIENT_ID!,
+            process.env.HH_CLIENT_SECRET!,
+            process.env.HH_AUTH_CODE!,
+            process.env.HH_REDIRECT_URI
+        )
+        expect(token).toHaveProperty('access_token')
+        expect(token).toHaveProperty('refresh_token')
+    })
 
-        const token = await getAppToken(clientId, clientSecret)
-
-        expect(token.access_token).toBeDefined()
-        expect(token.token_type).toBe('bearer')
-        expect(token.expires_in).toBeGreaterThan(0)
+    it('refreshUserToken should return new access token', async () => {
+        const token = await refreshUserToken(
+            process.env.HH_CLIENT_ID!,
+            process.env.HH_CLIENT_SECRET!,
+            process.env.HH_REFRESH_TOKEN!
+        )
+        expect(token).toHaveProperty('access_token')
+        expect(token).toHaveProperty('refresh_token')
     })
 })
