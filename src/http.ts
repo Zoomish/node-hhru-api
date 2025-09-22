@@ -35,7 +35,8 @@ export async function request<T>(
 
     if (!response.ok) {
         throw new Error(
-            `HH API Error: ${response.status} ${response.statusText}`
+            `HH API Error: ${response.status} ${response.statusText}\n` +
+                (await response.text())
         )
     }
 
