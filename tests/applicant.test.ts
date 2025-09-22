@@ -1,0 +1,15 @@
+import { describe, expect, it } from 'vitest'
+import { getResumes } from '../src/applicant/applicant.ts'
+import { ensureUserToken } from './helpers/auth.ts'
+
+describe('Applicant API', () => {
+    it('should return user resumes', async () => {
+        const token = await ensureUserToken()
+        const resumes = await getResumes(token)
+        expect(Array.isArray(resumes.items)).toBe(true)
+        if (resumes.items.length > 0) {
+            expect(resumes.items[0]).toHaveProperty('id')
+            expect(resumes.items[0]).toHaveProperty('title')
+        }
+    })
+})

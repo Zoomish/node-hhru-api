@@ -1,8 +1,8 @@
 import { request } from '../http.ts'
-import { EmployerMeResponse } from './types.ts'
+import { CurrentUser } from './types.ts'
 
-export async function getEmployerMe(
-    token: string
-): Promise<EmployerMeResponse> {
-    return request<EmployerMeResponse>('/employers/me', { token })
+export async function getCurrentUser(token: string): Promise<CurrentUser> {
+    return request<CurrentUser>('/me', {
+        token,
+    })
 }
