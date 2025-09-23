@@ -12,7 +12,10 @@ import {
     SimilarVacanciesResponse,
     SuitableResumeItemsResponse,
 } from './responses.types.ts'
-import { ResumeItem, SimilarVacancySearchParams } from './types.ts'
+import {
+    ResumeItemFull,
+    SimilarVacancySearchParams
+} from './types.ts'
 
 function objectToUrlSearchParams(obj?: object): string {
     if (!obj) return ''
@@ -150,8 +153,8 @@ export async function getResume(
         with_creds?: boolean
         with_job_search_status?: boolean
     }
-): Promise<ResumeItem> {
-    return request<ResumeItem>(
+): Promise<ResumeItemFull> {
+    return request<ResumeItemFull>(
         `/resumes/${resumeId}?${objectToUrlSearchParams(queryParams)}`,
         {
             method: 'GET',

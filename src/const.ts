@@ -1573,3 +1573,31 @@ export type Dictionary = {
         },
     ]
 }
+
+export type Locales = [
+    {
+        id: 'EN'
+        name: 'English'
+        current: false
+    },
+    {
+        id: 'KG'
+        name: 'Кыргызча'
+        current: false
+    },
+    {
+        id: 'KZ'
+        name: 'Қазақша'
+        current: false
+    },
+    {
+        id: 'RU'
+        name: 'Русский'
+        current: true
+    },
+    {
+        id: 'UZ'
+        name: "О'zbek"
+        current: false
+    },
+]

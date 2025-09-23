@@ -1,4 +1,4 @@
-import { Dictionary } from '../const.ts'
+import { Dictionary, Locales } from '../const.ts'
 export interface IdName {
     id: string
     name: string
@@ -143,6 +143,24 @@ export interface SimilarVacancies {
     }
     url: string
 }
+export interface BusinessTripReadiness {
+    id: Dictionary['business_trip_readiness'][number]['id']
+    name: Dictionary['business_trip_readiness'][number]['name']
+}
+
+export interface Employments {
+    id: Dictionary['employment'][number]['id']
+    name: Dictionary['employment'][number]['name']
+}
+
+export interface Language extends IdName {
+    level: LanguageLevel
+}
+
+export interface LanguageLevel {
+    id: Dictionary['language_level'][number]['id']
+    name: Dictionary['language_level'][number]['name']
+}
 
 export interface ResumeItem {
     id: string
@@ -177,7 +195,7 @@ export interface ResumeItem {
     can_view_full_info: boolean | null
 }
 
-export interface ResumeItemFull extends ResumeItem {
+export interface ResumeItemMiddle extends ResumeItem {
     new_views: number
     next_publish_at: string | null
     real_id: string
@@ -188,7 +206,25 @@ export interface ResumeItemFull extends ResumeItem {
     views_url: string
     contact: ContactInfo[]
     similar_vacancies: SimilarVacancies
-    tags: string[]
+    tags: {
+        id: string
+    }[]
+}
+export interface ResumeItemFull extends ResumeItemMiddle {
+    business_trip_readiness: BusinessTripReadiness
+    citizenship: IdUrlName[]
+    driver_license_types: Dictionary['driver_license_types'][number]['id'][]
+    employments: Employments
+    has_vehicle: boolean
+    language: Language[]
+    metro: MetroStationResume
+    recommendation: Recommendation[]
+    relocation: Relocation
+    resume_locale: ResumeLocale
+    schedules: Schedule[]
+    site: ResumeSite[]
+    skill_set: string[]
+    skills: string[]
 }
 
 export interface ResumeItemShort {
@@ -202,6 +238,44 @@ export interface ResumeItemProgress {
     mandatory: IdName[]
     recommended: IdName[]
     percentage: number
+}
+
+export interface ResumeSite {
+    type: ResumeContactsSiteType
+    url: string
+}
+
+export interface ResumeContactsSiteType {
+    id: Dictionary['resume_contacts_site_type'][number]['id']
+    name: Dictionary['resume_contacts_site_type'][number]['name']
+}
+
+export interface ResumeLocale {
+    id: Locales[number]['id']
+    name: Locales[number]['name']
+}
+
+export interface Schedule {
+    id: Dictionary['schedule'][number]['id']
+    name: Dictionary['schedule'][number]['name']
+}
+
+export interface Relocation {
+    area: IdUrlName
+    district: IdName
+    type: RelocationType
+}
+
+export interface RelocationType {
+    id: Dictionary['relocation_type'][number]['id']
+    name: Dictionary['relocation_type'][number]['name']
+}
+
+export interface Recommendation {
+    contact: string
+    name: string
+    organization: string
+    position: string
 }
 
 export interface ModerationNote {
@@ -288,6 +362,19 @@ export interface MetroStation {
     station_name: string
 }
 
+export interface MetroStationResume {
+    lat: number
+    lng: number
+    id: string
+    name: string
+    order: number
+    line: MetroLine
+}
+
+export interface MetroLine extends IdName {
+    hex_color: string
+}
+
 export interface Employer {
     id: string
     name: string
@@ -295,6 +382,7 @@ export interface Employer {
     alternate_url: string
     url: string
     logo_urls?: Record<string, string> | null
+    vacancies_url: string
     accredited_it_employer?: boolean
     employer_rating?: any
 }

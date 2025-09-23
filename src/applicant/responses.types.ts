@@ -3,11 +3,10 @@ import {
     FieldCondition,
     FieldsCondition,
     IdName,
-    IdUrlName,
     ListFieldCondition,
     ModerationNote,
     ResumeItem,
-    ResumeItemFull,
+    ResumeItemMiddle,
     ResumeItemProgress,
     ResumeItemShort,
     Vacancy
@@ -68,7 +67,7 @@ export interface MyResumeItemsResponse {
     page: number
     pages: number
     per_page: number
-    items: ResumeItemFull[]
+    items: ResumeItemMiddle[]
 }
 
 export interface ResumeItemOverall {
@@ -82,7 +81,7 @@ export interface SuitableResumeItemsResponse {
     page: number
     pages: number
     per_page: number
-    items: ResumeItemFull[]
+    items: ResumeItemMiddle[]
     overall: ResumeItemOverall
 }
 
@@ -97,7 +96,7 @@ export interface ResumeItemViewsResponse {
 
 export interface ResumeItemViewItem {
     created_at: string
-    employer: Employer | { name: string }
+    employer: Employer
     viewed: boolean
     ResumeItem: ResumeItemShort
 }
