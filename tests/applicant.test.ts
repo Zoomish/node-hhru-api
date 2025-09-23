@@ -4,7 +4,8 @@ import {
     confirmPhone,
     deleteResume,
     getPhoneInfo,
-    getResumes,
+    getMyResumes,
+    getResumeStatus,
     publishResume,
     sendPhoneConfirmationCode,
 } from '../src/applicant/applicant.ts'
@@ -135,11 +136,58 @@ describe('Check Resume Creation API', () => {
 describe('Publish Resume API', () => {
     it('should publish the first available resume', async () => {
         const token = await ensureUserToken()
-        const resumes = await getResumes(token)
+        const resumes = await getMyResumes(token)
         if (resumes.items.length === 0) {
             throw new Error('No resumes found for the user')
         }
         const resumeId = resumes.items[0].id
         await expect(publishResume(resumeId, token)).resolves.toBeUndefined()
+    })
+})
+
+describe('Resume Status API', () => {
+    it('should return status and moderation info for a resume', async () => {
+        const token = await ensureUserToken()
+        const resumes = await getMyResumes(token)
+        if (resumes.items.length === 0) {
+            throw new Error('No resumes found for the user')
+        }
+        const resumeId = resumes.items[0].id
+        const status = await getResumeStatus(resumeId, token)
+
+        expect(status).toHaveProperty('blocked')
+        expect(status).toHaveProperty('can_publish_or_update')
+        expect(status).toHaveProperty('finished')
+        expect(status).toHaveProperty('status')
+        expect(status.status).toHaveProperty('id')
+        expect(status.status).toHaveProperty('name')
+        expect(status).toHaveProperty('moderation_note')
+        expect(Array.isArray(status.moderation_note)).toBe(true)
+        expect(status).toHaveProperty('progress')
+        expect(status.progress).toHaveProperty('mandatory')
+        expect(status.progress).toHaveProperty('recommended')
+        expect(status.progress).toHaveProperty('percentage')
+        expect(status).toHaveProperty('publish_url')
+    })
+})
+
+describe('My Resumes API', () => {
+    it('should return a list of user resumes', async () => {
+        const token = await ensureUserToken()
+        const resumes = await getMyResumes(token)
+
+        expect(resumes).toHaveProperty('found')
+        expect(resumes).toHaveProperty('page')
+        expect(resumes).toHaveProperty('pages')
+        expect(resumes).toHaveProperty('per_page')
+        expect(resumes).toHaveProperty('items')
+        expect(Array.isArray(resumes.items)).toBe(true)
+
+        if (resumes.items.length > 0) {
+            const resume = resumes.items[0]
+            expect(resume).toHaveProperty('id')
+            expect(resume).toHaveProperty('title')
+            expect(resume).toHaveProperty('created_at')
+        }
     })
 })

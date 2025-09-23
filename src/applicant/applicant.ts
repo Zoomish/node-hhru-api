@@ -1,10 +1,13 @@
 import { request } from '../http.ts'
 import {
+    MyResumesResponse,
     PhoneConfirmationBody,
     PhoneInfoResponse,
     PhoneSendCodeResponse,
+    ResumeByStatusResponse,
     ResumeCreationAvailability,
-    ResumeListResponse,
+    ResumeStatusResponse,
+    SuitableResumesResponse,
 } from './types.ts'
 
 export async function confirmPhone(token: string, body: PhoneConfirmationBody) {
@@ -46,20 +49,67 @@ export async function deleteResume(token: string, resumeId: string) {
     })
 }
 
-export async function checkResumeCreation(token: string): Promise<ResumeCreationAvailability> {
-    return request<ResumeCreationAvailability>('/resumes/creation_availability', {
-        method: 'GET',
-        token,
-    })
+export async function checkResumeCreation(
+    token: string
+): Promise<ResumeCreationAvailability> {
+    return request<ResumeCreationAvailability>(
+        '/resumes/creation_availability',
+        {
+            method: 'GET',
+            token,
+        }
+    )
 }
 
-export async function publishResume(resumeId: string, token: string): Promise<void> {
+export async function publishResume(
+    resumeId: string,
+    token: string
+): Promise<void> {
     await request<void>(`/resumes/${resumeId}/publish`, {
         method: 'POST',
         token,
     })
 }
 
-export async function getResumes(token: string): Promise<ResumeListResponse> {
-    return request<ResumeListResponse>('/resumes/mine', { token })
+export async function getResumesByStatus(
+    token: string,
+    vacancy_id: string
+): Promise<ResumeByStatusResponse> {
+    return request<ResumeByStatusResponse>(
+        `/vacancies/${vacancy_id}/resumes_by_status`,
+        {
+            method: 'GET',
+            token,
+        }
+    )
+}
+
+export async function getResumeStatus(
+    resumeId: string,
+    token: string
+): Promise<ResumeStatusResponse> {
+    return request<ResumeStatusResponse>(`/resumes/${resumeId}/status`, {
+        method: 'GET',
+        token,
+    })
+}
+
+export async function getMyResumes(token: string): Promise<MyResumesResponse> {
+    return request<MyResumesResponse>('/resumes/mine', {
+        method: 'GET',
+        token,
+    })
+}
+
+export async function getSuitableResumes(
+    vacancyId: string,
+    token: string
+): Promise<SuitableResumesResponse> {
+    return request<SuitableResumesResponse>(
+        `/vacancies/${vacancyId}/suitable_resumes`,
+        {
+            method: 'GET',
+            token,
+        }
+    )
 }
