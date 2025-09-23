@@ -13,13 +13,13 @@ describe('Common API', () => {
         expect(token).toBeTypeOf('string')
     })
 
-    it('should return user token', async () => {
-        const token = await ensureUserToken()
+    it('should refresh user token', async () => {
+        const token = await refreshUserAuth()
         expect(token).toBeTypeOf('string')
     })
 
-    it('should refresh user token', async () => {
-        const token = await refreshUserAuth()
+    it('should return user token', async () => {
+        const token = await ensureUserToken()
         expect(token).toBeTypeOf('string')
     })
 })
