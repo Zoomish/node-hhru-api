@@ -2,9 +2,12 @@
   "name": "node-hhru-api",
   "version": "0.0.1",
   "type": "module",
+  "description": "HeadHunter API wrapper for Node.js",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "keywords": ["hh", "headhunter", "api", "typescript"],
+  "license": "MIT",
   "author": {
     "name": "Zoomish",
     "url": "https://github.com/Zoomish"
@@ -12,6 +15,9 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "prepublishOnly": "npm run build",
