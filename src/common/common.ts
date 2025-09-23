@@ -13,6 +13,7 @@ export async function getAppToken(
             client_secret: clientSecret,
         }),
         rawBody: true,
+        oldAddress: true,
     })
 }
 
@@ -32,6 +33,7 @@ export async function getUserToken(
             redirect_uri: redirectUri ?? '',
         }).toString(),
         rawBody: true,
+        oldAddress: true,
     })
 }
 
@@ -49,5 +51,6 @@ export async function refreshUserToken(
             refresh_token: refreshToken,
         }).toString(),
         rawBody: true,
+        oldAddress: true,
     })
 }

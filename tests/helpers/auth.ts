@@ -50,9 +50,8 @@ export async function refreshUserAuth(): Promise<string> {
     if (process.env.HH_EXPIRES_IN) {
         const now = Date.now()
         const expires = new Date(
-            Date.now() + process.env.HH_EXPIRES_IN
+            Date.now() + +process.env.HH_EXPIRES_IN * 1000
         ).getTime()
-        console.log(expires > now)
 
         if (expires > now) {
             userToken = process.env.HH_ACCESS_TOKEN!

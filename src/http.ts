@@ -6,6 +6,7 @@ interface RequestOptions {
     body: any
     token: string
     rawBody: boolean
+    oldAddress: boolean
 }
 
 interface HttpConfig {
@@ -32,20 +33,24 @@ export async function request<T>(
         body,
         token,
         rawBody = false,
+        oldAddress = false,
     } = options
 
-    const response: Response = await fetch(`https://hh.ru${url}`, {
-        method,
-        headers: {
-            'Content-Type': rawBody
-                ? 'application/x-www-form-urlencoded'
-                : 'application/json',
-            ...(token ? { Authorization: `Bearer ${token}` } : {}),
-            'HH-User-Agent': globalConfig.userAgent,
-            ...headers,
-        },
-        body: rawBody ? body : JSON.stringify(body),
-    })
+    const response: Response = await fetch(
+        `https://${oldAddress ? 'hh.ru' : 'api.hh.ru'}${url}`,
+        {
+            method,
+            headers: {
+                'Content-Type': rawBody
+                    ? 'application/x-www-form-urlencoded'
+                    : 'application/json',
+                ...(token ? { Authorization: `Bearer ${token}` } : {}),
+                'HH-User-Agent': globalConfig.userAgent,
+                ...headers,
+            },
+            body: rawBody ? body : JSON.stringify(body),
+        }
+    )
 
     if (!response.ok) {
         throw new Error(
