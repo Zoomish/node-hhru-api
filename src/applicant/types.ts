@@ -1,12 +1,11 @@
 import { Dictionary } from '../const.ts'
-
-export interface Id {
+export interface IdName {
     id: string
-}
-export interface IdName extends Id {
     name: string
 }
-export interface IdUrlName extends IdName {
+export interface IdUrlName {
+    id: string
+    name: string
     url: string
 }
 
@@ -87,6 +86,16 @@ export interface HigherEducation extends BaseEducation {
     education_level: IdUrlName
 }
 
+export interface ResumeGender {
+    id: Dictionary['gender'][number]['id']
+    name: Dictionary['gender'][number]['name']
+}
+
+export interface ResumeHiddenFields {
+    id: Dictionary['resume_hidden_fields'][number]['id']
+    name: Dictionary['resume_hidden_fields'][number]['name']
+}
+
 export interface ResumeItem {
     id: string
     alternate_url: string
@@ -99,16 +108,16 @@ export interface ResumeItem {
     first_name: string | null
     last_name: string | null
     middle_name: string | null
-    gender: IdUrlName
+    gender: ResumeGender
     photo: Photo | null
-    platform: Id & { real_id: string }
+    platform: string & { real_id: string }
     salary: Salary | null
     total_experience: TotalExperience | null
     employment_form: IdName[]
     work_format: IdName[]
     access: AccessType
     status: IdName
-    hidden_fields: IdName[]
+    hidden_fields: ResumeHiddenFields[]
     actions: Download
     download: Download
     education: Education
@@ -119,7 +128,8 @@ export interface ResumeItem {
     can_view_full_info: boolean | null
 }
 
-export interface ResumeItemShort extends Id {
+export interface ResumeItemShort {
+    id: string
     title: string | null
     url: string
     alternate_url: string
