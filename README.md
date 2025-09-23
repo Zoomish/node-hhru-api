@@ -1,7 +1,3 @@
-Понял 👍 Тебе нужен `README.md`, где **везде только прямые импорты**, без `Common`, `Applicant`, `Employer` namespace. Вот переписанный вариант:
-
----
-
 # HeadHunter API SDK for Node.js
 
 A lightweight **TypeScript/JavaScript SDK** for [HeadHunter API](https://api.hh.ru).
