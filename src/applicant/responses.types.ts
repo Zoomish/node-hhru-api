@@ -1,6 +1,5 @@
 import {
     Employer,
-    ExperienceItem,
     FieldCondition,
     FieldsCondition,
     IdName,
@@ -8,9 +7,10 @@ import {
     ListFieldCondition,
     ModerationNote,
     ResumeItem,
+    ResumeItemFull,
     ResumeItemProgress,
     ResumeItemShort,
-    Vacancy,
+    Vacancy
 } from './types.ts'
 
 export interface PhoneConfirmationBody {
@@ -68,7 +68,7 @@ export interface MyResumeItemsResponse {
     page: number
     pages: number
     per_page: number
-    items: ResumeItem[]
+    items: ResumeItemFull[]
 }
 
 export interface ResumeItemOverall {
@@ -77,20 +77,12 @@ export interface ResumeItemOverall {
     unavailable: number
 }
 
-export interface SuitableResumeItem
-    extends Omit<ResumeItem, 'total_experience' | 'auto_hide_time'> {
-    area: IdUrlName
-    auto_hide_time: IdName
-    real_id: string
-    total_experience: ExperienceItem | null
-}
-
 export interface SuitableResumeItemsResponse {
     found: number
     page: number
     pages: number
     per_page: number
-    items: SuitableResumeItem[]
+    items: ResumeItemFull[]
     overall: ResumeItemOverall
 }
 

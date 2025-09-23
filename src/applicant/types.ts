@@ -25,15 +25,19 @@ export interface Photo {
 
 export interface Salary {
     amount: number | null
-    currency: string | null
+    currency: Dictionary['currency'][number]['code'] | null
     title?: string | null
 }
 
 export interface TotalExperience {
     months: number | null
 }
+export interface ResumeAccessType {
+    id: Dictionary['resume_access_type'][number]['id']
+    name: Dictionary['resume_access_type'][number]['name']
+}
 export interface AccessType {
-    type: IdName
+    type: ResumeAccessType
 }
 export interface LogoUrls {
     90?: string
@@ -51,10 +55,10 @@ export interface Certificate {
 
 export interface ExperienceItem {
     area: IdUrlName
-    company: string | null
-    company_id: string | null
-    company_url: string | null
-    employer: Employer | null
+    company?: string | null
+    company_id?: string | null
+    company_url?: string | null
+    employer?: Employer | null
     end: string | null
     industries: IdName[]
     industry: IdUrlName
@@ -67,7 +71,14 @@ export interface Education {
     attestation?: BaseEducation[] | null
     elementary?: ElementaryEducation[] | null
     primary?: HigherEducation[] | null
+    level: IdName
 }
+
+export interface EducationLevel {
+    id: Dictionary['education_level'][number]['id']
+    name: Dictionary['education_level'][number]['name']
+}
+
 export interface BaseEducation {
     id: string | null
     name: string
@@ -91,9 +102,46 @@ export interface ResumeGender {
     name: Dictionary['gender'][number]['name']
 }
 
+export interface ResumeWorkFormat {
+    id: Dictionary['work_format'][number]['id']
+    name: Dictionary['work_format'][number]['name']
+}
+
 export interface ResumeHiddenFields {
     id: Dictionary['resume_hidden_fields'][number]['id']
     name: Dictionary['resume_hidden_fields'][number]['name']
+}
+
+export interface ResumeEmploymentForm {
+    id: Dictionary['employment_form'][number]['id']
+    name: Dictionary['employment_form'][number]['name']
+}
+
+export interface PaidServices extends IdName {
+    active?: boolean
+    expires?: string
+}
+
+export interface ContactInfo {
+    comment?: string | null
+    contact_value: string | null
+    kind: string
+    links: {
+        android: string
+        ios: string
+        web: string
+    } | null
+    need_verification: boolean | null
+    preferred: boolean
+    type: IdName
+    verified: boolean
+}
+
+export interface SimilarVacancies {
+    counters: {
+        total: number
+    }
+    url: string
 }
 
 export interface ResumeItem {
@@ -110,11 +158,12 @@ export interface ResumeItem {
     middle_name: string | null
     gender: ResumeGender
     photo: Photo | null
-    platform: string & { real_id: string }
+    platform: string
     salary: Salary | null
     total_experience: TotalExperience | null
-    employment_form: IdName[]
-    work_format: IdName[]
+    area: IdUrlName
+    employment_form: ResumeEmploymentForm[]
+    work_format: ResumeWorkFormat[]
     access: AccessType
     status: IdName
     hidden_fields: ResumeHiddenFields[]
@@ -126,6 +175,20 @@ export interface ResumeItem {
     url: string
     auto_hide_time: IdUrlName | null
     can_view_full_info: boolean | null
+}
+
+export interface ResumeItemFull extends ResumeItem {
+    new_views: number
+    next_publish_at: string | null
+    real_id: string
+    blocked: boolean
+    can_publish_or_update: boolean | null
+    paid_services: PaidServices[]
+    total_views: number
+    views_url: string
+    contact: ContactInfo[]
+    similar_vacancies: SimilarVacancies
+    tags: string[]
 }
 
 export interface ResumeItemShort {
@@ -141,7 +204,9 @@ export interface ResumeItemProgress {
     percentage: number
 }
 
-export interface ModerationNote extends IdName {
+export interface ModerationNote {
+    id: Dictionary['resume_moderation_note'][number]['id']
+    name: Dictionary['resume_moderation_note'][number]['name']
     field?: string
     pointer?: string
 }
@@ -224,11 +289,11 @@ export interface MetroStation {
 }
 
 export interface Employer {
-    id?: string | null
+    id: string
     name: string
     trusted: boolean
-    url?: string | null
-    alternate_url?: string | null
+    alternate_url: string
+    url: string
     logo_urls?: Record<string, string> | null
     accredited_it_employer?: boolean
     employer_rating?: any
