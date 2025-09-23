@@ -10,6 +10,7 @@ import {
     ResumeItem,
     ResumeItemProgress,
     ResumeItemShort,
+    Vacancy,
 } from './types.ts'
 
 export interface PhoneConfirmationBody {
@@ -143,4 +144,16 @@ export interface ResumeConditions {
     travel_time?: FieldCondition | null
     work_ticket?: ListFieldCondition | null
     work_formats?: ListFieldCondition | null
+}
+
+export interface SimilarVacanciesResponse {
+    found: number
+    page: number
+    pages: number
+    per_page: number
+    items: Vacancy[]
+    clusters?: any[] | null
+    arguments?: any[] | null
+    fixes?: any | null
+    suggests?: any | null
 }

@@ -4,24 +4,31 @@ import {
     PhoneConfirmationBody,
     PhoneInfoResponse,
     PhoneSendCodeResponse,
+    ResumeConditions,
     ResumeItemByStatusResponse,
     ResumeItemCreationAvailability,
     ResumeItemStatusResponse,
     ResumeItemViewsResponse,
+    SimilarVacanciesResponse,
     SuitableResumeItemsResponse,
-    ResumeConditions,
 } from './responses.types.ts'
-import { ResumeItem } from './types.ts'
+import { ResumeItem, SimilarVacancySearchParams } from './types.ts'
+
+function objectToUrlSearchParams(obj?: object): string {
+    if (!obj) return ''
+    return new URLSearchParams(
+        Object.entries(obj ?? {}).flatMap(([key, value]) => {
+            if (value === undefined || value === null) return []
+            if (Array.isArray(value)) return value.map((v) => [key, String(v)])
+            return [[key, String(value)]]
+        })
+    ).toString()
+}
 
 export async function confirmPhone(token: string, body: PhoneConfirmationBody) {
-    const formBody = new URLSearchParams({
-        phone: body.phone,
-        confirmation_code: body.confirmation_code,
-    }).toString()
-
     return request('/resume_phone_confirm', {
         method: 'POST',
-        body: formBody,
+        body: objectToUrlSearchParams(body),
         token,
         rawBody: true,
     })
@@ -143,18 +150,13 @@ export async function getResume(
         with_job_search_status?: boolean
     }
 ): Promise<ResumeItem> {
-    const query = new URLSearchParams()
-    if (queryParams?.with_negotiations_history)
-        query.append('with_negotiations_history', 'true')
-    if (queryParams?.with_creds) query.append('with_creds', 'true')
-    if (queryParams?.with_job_search_status)
-        query.append('with_job_search_status', 'true')
-
-    const queryString = query.toString() ? `?${query.toString()}` : ''
-    return request<ResumeItem>(`/resumes/${resumeId}${queryString}`, {
-        method: 'GET',
-        token,
-    })
+    return request<ResumeItem>(
+        `/resumes/${resumeId}?${objectToUrlSearchParams(queryParams)}`,
+        {
+            method: 'GET',
+            token,
+        }
+    )
 }
 
 export async function getResumeConditions(
@@ -164,4 +166,28 @@ export async function getResumeConditions(
         method: 'GET',
         token,
     })
+}
+
+export async function getResumeConditionsById(
+    token: string,
+    resumeId: string
+): Promise<ResumeConditions> {
+    return request<ResumeConditions>(`/resumes/${resumeId}/conditions`, {
+        method: 'GET',
+        token,
+    })
+}
+
+export async function getSimilarVacancies(
+    token: string,
+    resumeId: string,
+    params?: SimilarVacancySearchParams
+): Promise<SimilarVacanciesResponse> {
+    return request<SimilarVacanciesResponse>(
+        `/resumes/${resumeId}/similar_vacancies?${objectToUrlSearchParams(params)}`,
+        {
+            method: 'GET',
+            token,
+        }
+    )
 }

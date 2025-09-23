@@ -9,6 +9,7 @@ import {
     getResumeConditions,
     getResumeStatus,
     getResumeViews,
+    getSimilarVacancies,
     getSuitableResumes,
     publishResume,
     sendPhoneConfirmationCode,
@@ -256,5 +257,27 @@ describe('Resume Conditions API', () => {
         expect(response).toHaveProperty('title.min_length')
         expect(response).toHaveProperty('skill_set.max_count')
         expect(response).toHaveProperty('citizenship.max_count', 3)
+    })
+})
+
+describe('Similar Vacancies API', () => {
+    it('should return a list of vacancies similar to a resume', async () => {
+        const token = await ensureUserToken()
+        const resumes = await getMyResumes(token)
+
+        const response = await getSimilarVacancies(token, resumes.items[0].id, {
+            per_page: 5,
+        })
+
+        expect(response).toHaveProperty('found')
+        expect(response).toHaveProperty('items')
+        expect(Array.isArray(response.items)).toBe(true)
+
+        if (response.items.length > 0) {
+            const vacancy = response.items[0]
+            expect(vacancy).toHaveProperty('id')
+            expect(vacancy).toHaveProperty('name')
+            expect(vacancy).toHaveProperty('alternate_url')
+        }
     })
 })

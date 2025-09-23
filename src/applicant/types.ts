@@ -1,3 +1,5 @@
+import { Dictionary } from '../const.ts'
+
 export interface Id {
     id: string
 }
@@ -59,14 +61,6 @@ export interface ExperienceItem {
     industry: IdUrlName
     position: string
     start: string
-}
-
-export interface Employer extends Id {
-    name: string
-    url: string
-    alternate_url: string
-    vacancies_url: string
-    logo_urls?: LogoUrls | null
 }
 
 export interface Education {
@@ -160,4 +154,163 @@ export interface ListFieldCondition extends FieldCondition {
 
 export interface FieldsCondition extends FieldCondition {
     fields?: Record<string, FieldCondition | FieldsCondition | null> | null
+}
+
+export interface SimilarVacancySearchParams {
+    page?: number
+    per_page?: number
+    text?: string
+    search_field?: string | string[]
+    experience?: string | string[]
+    employment?: string | string[]
+    schedule?: string | string[]
+    area?: string | string[]
+    metro?: string | string[]
+    professional_role?: string
+    industry?: string | string[]
+    employer_id?: string | string[]
+    excluded_employer_id?: string | string[]
+    currency?: string
+    salary?: number
+    label?: string | string[]
+    only_with_salary?: boolean
+    period?: number
+    date_from?: string
+    date_to?: string
+    top_lat?: number
+    bottom_lat?: number
+    left_lng?: number
+    right_lng?: number
+    order_by?: string
+    sort_point_lat?: number
+    sort_point_lng?: number
+    clusters?: boolean
+    describe_arguments?: boolean
+    no_magic?: boolean
+    premium?: boolean
+    responses_count_enabled?: boolean
+    part_time?: string | string[]
+    locale?: string
+    host?: string
+}
+export interface Address {
+    building?: string | null
+    city?: string | null
+    lat?: number | null
+    lng?: number | null
+    metro?: MetroStation | null
+    raw?: string | null
+    street?: string | null
+    id?: string | null
+}
+
+export interface MetroStation {
+    lat: number | null
+    line_id: string
+    line_name: string
+    lng: number | null
+    station_id: string
+    station_name: string
+}
+
+export interface Employer {
+    id?: string | null
+    name: string
+    trusted: boolean
+    url?: string | null
+    alternate_url?: string | null
+    logo_urls?: Record<string, string> | null
+    accredited_it_employer?: boolean
+    employer_rating?: any
+}
+
+export interface Department {
+    id?: string
+    name: string
+}
+
+export interface ProfessionalRole {
+    id: string
+    name: string
+}
+
+export interface SalaryRange {
+    from?: number | null
+    to?: number | null
+    currency: string
+    gross: boolean
+    frequency?: { id: string; name: string } | null
+    mode?: { id: string; name: string }
+}
+
+export interface WorkFormat {
+    id: string
+    name: string
+}
+
+export interface WorkSchedule {
+    id: Dictionary['schedule'][number]['id']
+    name: Dictionary['schedule'][number]['name']
+}
+
+export interface VacancySnippet {
+    show_logo_in_search?: boolean
+    video?: any
+    snippet_picture_url?: string | null
+    snippet_video_url?: string | null
+}
+
+export interface VacancyCounters {
+    responses: number
+    total_responses: number
+}
+
+export interface Vacancy {
+    id: string
+    name: string
+    alternate_url: string
+    apply_alternate_url: string
+    description?: string | null
+    archived?: boolean | null
+    accept_incomplete_resumes: boolean
+    accept_temporary?: boolean | null
+    address?: Address | null
+    metro_stations?: MetroStation[]
+    created_at?: string
+    department?: Department | null
+    employer?: Employer
+    fly_in_fly_out_duration?: { id: string; name: string }[] | null
+    has_test: boolean
+    insider_interview?: { id: string; url: string } | null
+    internship?: boolean | null
+    night_shifts?: boolean | null
+    premium?: boolean | null
+    professional_roles: ProfessionalRole[]
+    published_at?: string
+    relations?: Array<
+        | 'favorited'
+        | 'got_response'
+        | 'got_invitation'
+        | 'got_rejection'
+        | 'blacklisted'
+        | null
+    >
+    response_letter_required: boolean
+    response_url?: string | null
+    salary?: SalaryRange | null
+    salary_range?: SalaryRange | null
+    schedule?: WorkSchedule | null
+    show_contacts?: boolean | null
+    sort_point_distance?: number | null
+    type: { id: string; name: string }
+    url: string
+    work_format?: WorkFormat[] | null
+    work_schedule_by_days?: WorkSchedule[] | null
+    working_days?: any[] | null
+    working_hours?: WorkSchedule[] | null
+    working_time_intervals?: any[] | null
+    working_time_modes?: any[] | null
+    counters?: VacancyCounters
+    snippet?: VacancySnippet
+    accept_only_for_part_time?: string[]
 }
