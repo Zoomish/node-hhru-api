@@ -1,7 +1,11 @@
 import { describe, expect, it } from 'vitest'
 import {
+    checkResumeCreation,
     confirmPhone,
+    deleteResume,
     getPhoneInfo,
+    getResumes,
+    publishResume,
     sendPhoneConfirmationCode,
 } from '../src/applicant/applicant.ts'
 import { ensureUserToken } from './helpers/auth.ts'
@@ -92,4 +96,50 @@ describe('Phone Confirmation Code API', () => {
     })
 })
 
+describe('Delete Resume API', () => {
+    it('should delete resume successfully', async () => {
+        const token = await ensureUserToken()
+        const resumeId = 'test-resume-id'
 
+        try {
+            const response = await deleteResume(token, resumeId)
+            expect(response).toBeUndefined()
+        } catch (err: any) {
+            expect(err.message).toContain('HH API Error')
+        }
+    })
+
+    it('should return error for non-existent resume', async () => {
+        const token = await ensureUserToken()
+        const resumeId = 'nonexistent-id'
+
+        try {
+            await deleteResume(token, resumeId)
+        } catch (err: any) {
+            expect(err.message).toContain('HH API Error')
+        }
+    })
+})
+
+describe('Check Resume Creation API', () => {
+    it('should return resume creation availability', async () => {
+        const token = await ensureUserToken()
+        const availability = await checkResumeCreation(token)
+        expect(availability).toHaveProperty('created')
+        expect(availability).toHaveProperty('is_creation_available')
+        expect(availability).toHaveProperty('max')
+        expect(availability).toHaveProperty('remaining')
+    })
+})
+
+describe('Publish Resume API', () => {
+    it('should publish the first available resume', async () => {
+        const token = await ensureUserToken()
+        const resumes = await getResumes(token)
+        if (resumes.items.length === 0) {
+            throw new Error('No resumes found for the user')
+        }
+        const resumeId = resumes.items[0].id
+        await expect(publishResume(resumeId, token)).resolves.toBeUndefined()
+    })
+})

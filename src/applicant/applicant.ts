@@ -3,6 +3,7 @@ import {
     PhoneConfirmationBody,
     PhoneInfoResponse,
     PhoneSendCodeResponse,
+    ResumeCreationAvailability,
     ResumeListResponse,
 } from './types.ts'
 
@@ -34,6 +35,27 @@ export async function sendPhoneConfirmationCode(token: string, phone: string) {
         method: 'POST',
         body,
         rawBody: true,
+        token,
+    })
+}
+
+export async function deleteResume(token: string, resumeId: string) {
+    return request<void>(`/resumes/${resumeId}`, {
+        method: 'DELETE',
+        token,
+    })
+}
+
+export async function checkResumeCreation(token: string): Promise<ResumeCreationAvailability> {
+    return request<ResumeCreationAvailability>('/resumes/creation_availability', {
+        method: 'GET',
+        token,
+    })
+}
+
+export async function publishResume(resumeId: string, token: string): Promise<void> {
+    await request<void>(`/resumes/${resumeId}/publish`, {
+        method: 'POST',
         token,
     })
 }

@@ -21,16 +21,23 @@ export interface PhoneSendCodeResponse {
     notification_type: string
 }
 
+export interface ResumeCreationAvailability {
+    created: number
+    is_creation_available: boolean
+    max: number
+    remaining: number
+}
+
 export interface Resume {
-  id: string;
-  title: string;
-  created_at: string;
+    id: string
+    title: string
+    created_at: string
 }
 
 export interface ResumeListResponse {
-  items: Resume[];
-  found: number;
-  page: number;
-  pages: number;
-  per_page: number;
+    items: Resume[]
+    found: number
+    page: number
+    pages: number
+    per_page: number
 }
