@@ -5,6 +5,8 @@ import {
     deleteResume,
     getMyResumes,
     getPhoneInfo,
+    getResume,
+    getResumeConditions,
     getResumeStatus,
     getResumeViews,
     getSuitableResumes,
@@ -221,5 +223,38 @@ describe('Resume Views API', () => {
             expect(view).toHaveProperty('viewed')
             expect(view).toHaveProperty('resume')
         }
+    })
+})
+
+describe('Resume View API', () => {
+    it('should return resume details', async () => {
+        const token = await ensureUserToken()
+        const resumeId = process.env.HH_TEST_RESUME_ID!
+        const response = await getResume(resumeId, token, {
+            with_creds: true,
+            with_job_search_status: true,
+        })
+
+        expect(response).toHaveProperty('id', resumeId)
+        expect(response).toHaveProperty('title')
+        expect(response).toHaveProperty('first_name')
+        expect(response).toHaveProperty('last_name')
+        expect(response).toHaveProperty('status')
+        expect(response).toHaveProperty('progress')
+        expect(response).toHaveProperty('alternate_url')
+        expect(response).toHaveProperty('views_url')
+    })
+})
+
+describe('Resume Conditions API', () => {
+    it('should return field constraints for resume creation', async () => {
+        const token = await ensureUserToken()
+        const response = await getResumeConditions(token)
+
+        expect(response).toHaveProperty('first_name.required', true)
+        expect(response).toHaveProperty('last_name.required', true)
+        expect(response).toHaveProperty('title.min_length')
+        expect(response).toHaveProperty('skill_set.max_count')
+        expect(response).toHaveProperty('citizenship.max_count', 3)
     })
 })

@@ -141,3 +141,23 @@ export interface ModerationNote extends IdName {
     field?: string
     pointer?: string
 }
+
+export interface FieldCondition {
+    required?: boolean | null
+    min_length?: number | null
+    max_length?: number | null
+    min_value?: number | null
+    max_value?: number | null
+    min_date?: string | null
+    max_date?: string | null
+    regexp?: string | null
+}
+
+export interface ListFieldCondition extends FieldCondition {
+    min_count?: number | null
+    max_count?: number | null
+}
+
+export interface FieldsCondition extends FieldCondition {
+    fields?: Record<string, FieldCondition | FieldsCondition | null> | null
+}

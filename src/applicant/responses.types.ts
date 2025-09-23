@@ -1,8 +1,11 @@
 import {
     Employer,
     ExperienceItem,
+    FieldCondition,
+    FieldsCondition,
     IdName,
     IdUrlName,
+    ListFieldCondition,
     ModerationNote,
     ResumeItem,
     ResumeItemProgress,
@@ -104,4 +107,40 @@ export interface ResumeItemViewItem {
     employer: Employer | { name: string }
     viewed: boolean
     ResumeItem: ResumeItemShort
+}
+
+export interface ResumeConditions {
+    access?: FieldsCondition | null
+    area?: FieldCondition | null
+    auto_hide_time?: FieldCondition | null
+    birth_date?: FieldCondition | null
+    business_trip_readiness?: FieldCondition | null
+    citizenship?: ListFieldCondition | null
+    contact?: FieldsCondition | null
+    district?: FieldCondition | null
+    driver_license_types?: ListFieldCondition | null
+    education?: FieldsCondition | null
+    employments?: ListFieldCondition | null
+    experience?: FieldsCondition | null
+    first_name?: FieldCondition | null
+    gender?: FieldCondition | null
+    has_vehicle?: FieldCondition | null
+    hidden_fields?: ListFieldCondition | null
+    language?: FieldsCondition | null
+    last_name?: FieldCondition | null
+    middle_name?: FieldCondition | null
+    metro?: FieldCondition | null
+    nationality?: ListFieldCondition | null
+    position?: FieldCondition | null
+    preferred_contact?: ListFieldCondition | null
+    relocation?: FieldsCondition | null
+    salary?: FieldsCondition | null
+    schedules?: ListFieldCondition | null
+    site?: ListFieldCondition | null
+    skills?: FieldCondition | null
+    summary?: FieldCondition | null
+    title?: FieldCondition | null
+    travel_time?: FieldCondition | null
+    work_ticket?: ListFieldCondition | null
+    work_formats?: ListFieldCondition | null
 }

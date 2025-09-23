@@ -9,6 +9,7 @@ import {
     ResumeItemStatusResponse,
     ResumeItemViewsResponse,
     SuitableResumeItemsResponse,
+    ResumeConditions,
 } from './responses.types.ts'
 import { ResumeItem } from './types.ts'
 
@@ -151,6 +152,15 @@ export async function getResume(
 
     const queryString = query.toString() ? `?${query.toString()}` : ''
     return request<ResumeItem>(`/resumes/${resumeId}${queryString}`, {
+        method: 'GET',
+        token,
+    })
+}
+
+export async function getResumeConditions(
+    token: string
+): Promise<ResumeConditions> {
+    return request<ResumeConditions>('/resume_conditions', {
         method: 'GET',
         token,
     })
