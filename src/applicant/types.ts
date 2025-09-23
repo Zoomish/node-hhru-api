@@ -97,12 +97,12 @@ export interface HigherEducation extends BaseEducation {
     education_level: IdUrlName
 }
 
-export interface ResumeGender {
+export interface Gender {
     id: Dictionary['gender'][number]['id']
     name: Dictionary['gender'][number]['name']
 }
 
-export interface ResumeWorkFormat {
+export interface WorkFormat {
     id: Dictionary['work_format'][number]['id']
     name: Dictionary['work_format'][number]['name']
 }
@@ -112,7 +112,7 @@ export interface ResumeHiddenFields {
     name: Dictionary['resume_hidden_fields'][number]['name']
 }
 
-export interface ResumeEmploymentForm {
+export interface EmploymentForm {
     id: Dictionary['employment_form'][number]['id']
     name: Dictionary['employment_form'][number]['name']
 }
@@ -138,9 +138,7 @@ export interface ContactInfo {
 }
 
 export interface SimilarVacancies {
-    counters: {
-        total: number
-    }
+    counters: Counters
     url: string
 }
 export interface BusinessTripReadiness {
@@ -174,14 +172,14 @@ export interface ResumeItem {
     first_name: string | null
     last_name: string | null
     middle_name: string | null
-    gender: ResumeGender
+    gender: Gender
     photo: Photo | null
     platform: string
     salary: Salary | null
     total_experience: TotalExperience | null
     area: IdUrlName
-    employment_form: ResumeEmploymentForm[]
-    work_format: ResumeWorkFormat[]
+    employment_form: EmploymentForm[]
+    work_format: WorkFormat[]
     access: AccessType
     status: IdName
     hidden_fields: ResumeHiddenFields[]
@@ -220,11 +218,20 @@ export interface ResumeItemFull extends ResumeItemMiddle {
     metro: MetroStationResume
     recommendation: Recommendation[]
     relocation: Relocation
-    resume_locale: ResumeLocale
+    resume_locale: Locale
     schedules: Schedule[]
     site: ResumeSite[]
     skill_set: string[]
     skills: string[]
+    travel_time: TravelTime
+    work_ticket: IdUrlName
+    contacts_open_until_date: string | null
+    favorited: boolean
+    job_search_status: JobSearchStatus
+    negotiations_history: NegotiationsHistory
+    owner: Owner
+    portfolio: Portfolio
+    view_without_contacts_reason: string | null
 }
 
 export interface ResumeItemShort {
@@ -234,6 +241,48 @@ export interface ResumeItemShort {
     alternate_url: string
 }
 
+export interface Portfolio {
+    description: string
+    medium: string
+    small: string
+}
+export interface Owner {
+    id: string
+    comments: Comments
+}
+export interface Comments {
+    url: string
+    counters: Counters
+}
+export interface Counters {
+    total: number
+}
+export interface NegotiationsHistory {
+    url: string
+    vacancies: VacanciesNegotiationsHistory
+}
+
+export interface VacanciesNegotiationsHistory {
+    archived: boolean
+    can_edit: boolean
+    id: string
+    messages_url: string
+    name: string
+    negotiations_url: string
+    url: string
+    items: NegotiationsHistoryItem[]
+}
+export interface NegotiationsHistoryItem {
+    created_at: string
+    with_message: boolean
+    employer_state: IdName
+}
+export interface JobSearchStatus {
+    id: Dictionary['job_search_statuses_employer'][number]['id']
+    name: Dictionary['job_search_statuses_employer'][number]['name']
+    last_change_time: string
+}
+
 export interface ResumeItemProgress {
     mandatory: IdName[]
     recommended: IdName[]
@@ -241,16 +290,20 @@ export interface ResumeItemProgress {
 }
 
 export interface ResumeSite {
-    type: ResumeContactsSiteType
+    type: ContactsSiteType
     url: string
 }
 
-export interface ResumeContactsSiteType {
+export interface ContactsSiteType {
     id: Dictionary['resume_contacts_site_type'][number]['id']
     name: Dictionary['resume_contacts_site_type'][number]['name']
 }
+export interface TravelTime {
+    id: Dictionary['travel_time'][number]['id']
+    name: Dictionary['travel_time'][number]['name']
+}
 
-export interface ResumeLocale {
+export interface Locale {
     id: Locales[number]['id']
     name: Locales[number]['name']
 }
@@ -404,11 +457,6 @@ export interface SalaryRange {
     gross: boolean
     frequency?: { id: string; name: string } | null
     mode?: { id: string; name: string }
-}
-
-export interface WorkFormat {
-    id: string
-    name: string
 }
 
 export interface WorkSchedule {
