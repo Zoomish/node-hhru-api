@@ -1,6 +1,11 @@
+Понял 👍 Тебе нужен `README.md`, где **везде только прямые импорты**, без `Common`, `Applicant`, `Employer` namespace. Вот переписанный вариант:
+
+---
+
 # HeadHunter API SDK for Node.js
 
 A lightweight **TypeScript/JavaScript SDK** for [HeadHunter API](https://api.hh.ru).
+Provides helpers for working with **application tokens**, **user tokens**, applicants’ **resumes**, and employer data.
 
 ---
 
@@ -21,16 +26,15 @@ yarn add node-hhru-api
 ## ⚡ Quick Start
 
 ```ts
-import { Common, Applicant, Employer } from "node-hhru-api"
+import { getAppToken } from "node-hhru-api/common"
+import { getCurrentUser } from "node-hhru-api/employer"
 
-// Get an application token
-const appToken = await Common.getAppToken(
+const appToken = await getAppToken(
   process.env.HH_CLIENT_ID!,
   process.env.HH_CLIENT_SECRET!
 )
 
-// Get current user profile (requires user token)
-const me = await Employer.getCurrentUser("<user_access_token>")
+const me = await getCurrentUser("<user_access_token>")
 console.log(me.email)
 ```
 
@@ -40,27 +44,15 @@ console.log(me.email)
 
 You can import methods in two ways:
 
-1. **Grouped namespaces** (`Common`, `Applicant`, `Employer`)
-2. **Direct imports** (tree-shaking friendly)
+1. **Direct imports** (tree-shaking friendly)
+2. **Grouped namespaces** (`Common`, `Applicant`, `Employer`)
 
-### 1. Using Namespaces
-
-```ts
-import { Common, Applicant, Employer } from "node-hhru-api"
-
-// Application token (client_credentials flow)
-const appToken = await Common.getAppToken(clientId, clientSecret)
-
-// User token (authorization_code flow)
-const userToken = await Common.getUserToken(clientId, clientSecret, code, redirectUri)
-```
-
-### 2. Direct Imports
+### 1. Direct Imports
 
 ```ts
-import { getAppToken, getUserToken, refreshUserToken } from "node-hhru-api/common/common"
-import { getResumes } from "node-hhru-api/applicant/applicant"
-import { getCurrentUser } from "node-hhru-api/employer/employer"
+import { getAppToken, getUserToken, refreshUserToken } from "hh-api-sdk/common/common"
+import { getResumes } from "hh-api-sdk/applicant/applicant"
+import { getCurrentUser } from "hh-api-sdk/employer/employer"
 
 // Same usage as above
 const appToken = await getAppToken(clientId, clientSecret)
@@ -69,23 +61,36 @@ const resumes = await getResumes(userToken)
 
 ---
 
+
+### 2. Using Namespaces
+
+```ts
+import { Common, Applicant, Employer } from "hh-api-sdk"
+
+// Application token (client_credentials flow)
+const appToken = await Common.getAppToken(clientId, clientSecret)
+
+// User token (authorization_code flow)
+const userToken = await Common.getUserToken(clientId, clientSecret, code, redirectUri)
+```
+
 ## 🔑 Authentication Flows
 
 ### Application Token (Client Credentials)
 
-Use when your app needs **general API access** (not on behalf of a user):
-
 ```ts
-const appTokenResponse = await Common.getAppToken(clientId, clientSecret)
+import { getAppToken } from "node-hhru-api/common"
+
+const appTokenResponse = await getAppToken(clientId, clientSecret)
 console.log(appTokenResponse.access_token)
 ```
 
 ### User Token (Authorization Code)
 
-Use when you need to act **on behalf of a user**:
-
 ```ts
-const userTokenResponse = await Common.getUserToken(
+import { getUserToken } from "node-hhru-api/common"
+
+const userTokenResponse = await getUserToken(
   clientId,
   clientSecret,
   code,         // received from OAuth redirect
@@ -99,40 +104,17 @@ console.log(userTokenResponse.refresh_token)
 ### Refresh User Token
 
 ```ts
-const refreshed = await Common.refreshUserToken(clientId, clientSecret, refreshToken)
+import { refreshUserToken } from "node-hhru-api/common"
+
+const refreshed = await refreshUserToken(clientId, clientSecret, refreshToken)
 console.log(refreshed.access_token)
-```
-
----
-
-## 👤 Applicant API
-
-Get applicant resumes:
-
-```ts
-const resumes = await Applicant.getResumes(userToken)
-
-resumes.items.forEach(r => {
-  console.log(`${r.id}: ${r.title}`)
-})
-```
-
----
-
-## 🏢 Employer API
-
-Get current employer profile:
-
-```ts
-const me = await Employer.getCurrentUser(userToken)
-console.log(me.first_name, me.last_name, me.email)
 ```
 
 ---
 
 ## ⚙️ Configuration
 
-Customize HTTP client (headers, locale, etc.):
+You can customize HTTP client (headers, locale, etc.):
 
 ```ts
 import { setHttpConfig } from "node-hhru-api/http"
@@ -155,11 +137,9 @@ It should be in the format:
 All response objects are fully typed:
 
 ```ts
-import { ApplicantTypes, EmployerTypes, CommonTypes } from "node-hhru-api"
-
-type Resume = ApplicantTypes.Resume
-type CurrentUser = EmployerTypes.CurrentUser
-type AppTokenResponse = CommonTypes.AppTokenResponse
+import { Resume } from "node-hhru-api/applicant/types"
+import { CurrentUser } from "node-hhru-api/employer/types"
+import { AppTokenResponse, UserTokenResponse } from "node-hhru-api/common/types"
 ```
 
 ---
@@ -185,4 +165,4 @@ export HH_REDIRECT_URI=your_redirect_uri
 
 ## 📜 License
 
-MIT © 2025 Your Name
+MIT © 2025 Zoomish
