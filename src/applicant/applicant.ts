@@ -2,6 +2,7 @@ import { request } from '../http.ts'
 import {
     PhoneConfirmationBody,
     PhoneInfoResponse,
+    PhoneSendCodeResponse,
     ResumeListResponse,
 } from './types.ts'
 
@@ -23,6 +24,16 @@ export async function getPhoneInfo(token: string, phone: string) {
     const query = new URLSearchParams({ phone }).toString()
     return request<PhoneInfoResponse>(`/resume_should_send_sms?${query}`, {
         method: 'GET',
+        token,
+    })
+}
+
+export async function sendPhoneConfirmationCode(token: string, phone: string) {
+    const body = new URLSearchParams({ phone }).toString()
+    return request<PhoneSendCodeResponse>('/resume_phone_generate_code', {
+        method: 'POST',
+        body,
+        rawBody: true,
         token,
     })
 }

@@ -15,6 +15,12 @@ export interface PhoneInfoResponse {
     }
 }
 
+export interface PhoneSendCodeResponse {
+    can_request_code_again_in: number
+    code_length: number
+    notification_type: string
+}
+
 export interface Resume {
   id: string;
   title: string;

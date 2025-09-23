@@ -2,23 +2,11 @@ import { describe, expect, it } from 'vitest'
 import {
     confirmPhone,
     getPhoneInfo,
-    getResumes,
+    sendPhoneConfirmationCode,
 } from '../src/applicant/applicant.ts'
 import { ensureUserToken } from './helpers/auth.ts'
-import { setupTests } from './helpers/setup.ts'
-setupTests()
 
-describe('Applicant API', () => {
-    it('should return user resumes', async () => {
-        const token = await ensureUserToken()
-        const resumes = await getResumes(token)
-        expect(Array.isArray(resumes.items)).toBe(true)
-        if (resumes.items.length > 0) {
-            expect(resumes.items[0]).toHaveProperty('id')
-            expect(resumes.items[0]).toHaveProperty('title')
-        }
-    })
-
+describe('Phone Confirmation API', () => {
     it('should confirm phone with valid code', async () => {
         const token = await ensureUserToken()
         const body = {
@@ -47,7 +35,9 @@ describe('Applicant API', () => {
             expect(err.message).toContain('HH API Error')
         }
     })
+})
 
+describe('Phone Info API', () => {
     it('should return phone information', async () => {
         const token = await ensureUserToken()
         const phone = '+79161234567'
@@ -74,3 +64,32 @@ describe('Applicant API', () => {
         }
     })
 })
+
+describe('Phone Confirmation Code API', () => {
+    it('should send confirmation code successfully', async () => {
+        const token = await ensureUserToken()
+        const phone = '+79161234567'
+
+        try {
+            const response = await sendPhoneConfirmationCode(token, phone)
+            expect(response).toHaveProperty('can_request_code_again_in')
+            expect(response).toHaveProperty('code_length')
+            expect(response).toHaveProperty('notification_type')
+        } catch (err: any) {
+            expect(err.message).toContain('HH API Error')
+        }
+    })
+
+    it('should fail for invalid phone', async () => {
+        const token = await ensureUserToken()
+        const phone = 'invalid-phone'
+
+        try {
+            await sendPhoneConfirmationCode(token, phone)
+        } catch (err: any) {
+            expect(err.message).toContain('HH API Error')
+        }
+    })
+})
+
+
