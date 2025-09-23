@@ -44,9 +44,6 @@ export async function ensureUserToken(): Promise<string> {
 }
 
 export async function refreshUserAuth(): Promise<string> {
-    if (!refreshToken) {
-        throw new Error('No refresh_token')
-    }
     if (process.env.HH_EXPIRES_IN) {
         const now = Date.now()
         const expires = new Date(
@@ -58,6 +55,9 @@ export async function refreshUserAuth(): Promise<string> {
             refreshToken = process.env.HH_REFRESH_TOKEN!
             return userToken
         }
+    }
+    if (!refreshToken) {
+        throw new Error('No refresh_token')
     }
     const tokenData = await refreshUserToken(
         process.env.HH_CLIENT_ID!,
