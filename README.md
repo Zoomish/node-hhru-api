@@ -1,7 +1,6 @@
 # HeadHunter API SDK for Node.js
 
 A lightweight **TypeScript/JavaScript SDK** for [HeadHunter API](https://api.hh.ru).
-Provides helpers for working with **application tokens**, **user tokens**, applicants’ **resumes**, and employer data.
 
 ---
 
