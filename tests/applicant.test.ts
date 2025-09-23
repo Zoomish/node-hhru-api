@@ -3,9 +3,10 @@ import {
     checkResumeCreation,
     confirmPhone,
     deleteResume,
-    getPhoneInfo,
     getMyResumes,
+    getPhoneInfo,
     getResumeStatus,
+    getSuitableResumes,
     publishResume,
     sendPhoneConfirmationCode,
 } from '../src/applicant/applicant.ts'
@@ -171,22 +172,27 @@ describe('Resume Status API', () => {
     })
 })
 
-describe('My Resumes API', () => {
-    it('should return a list of user resumes', async () => {
+describe('Suitable Resumes API', () => {
+    it('should return a list of suitable resumes for a vacancy', async () => {
         const token = await ensureUserToken()
-        const resumes = await getMyResumes(token)
+        const vacancyId = process.env.HH_TEST_VACANCY_ID!
+        const response = await getSuitableResumes(vacancyId, token)
 
-        expect(resumes).toHaveProperty('found')
-        expect(resumes).toHaveProperty('page')
-        expect(resumes).toHaveProperty('pages')
-        expect(resumes).toHaveProperty('per_page')
-        expect(resumes).toHaveProperty('items')
-        expect(Array.isArray(resumes.items)).toBe(true)
+        expect(response).toHaveProperty('found')
+        expect(response).toHaveProperty('page')
+        expect(response).toHaveProperty('pages')
+        expect(response).toHaveProperty('per_page')
+        expect(response).toHaveProperty('items')
+        expect(response).toHaveProperty('overall')
+        expect(Array.isArray(response.items)).toBe(true)
 
-        if (resumes.items.length > 0) {
-            const resume = resumes.items[0]
+        if (response.items.length > 0) {
+            const resume = response.items[0]
             expect(resume).toHaveProperty('id')
-            expect(resume).toHaveProperty('title')
+            expect(resume).toHaveProperty('status')
+            expect(resume.status).toHaveProperty('id')
+            expect(resume.status).toHaveProperty('name')
+            expect(resume).toHaveProperty('alternate_url')
             expect(resume).toHaveProperty('created_at')
         }
     })
