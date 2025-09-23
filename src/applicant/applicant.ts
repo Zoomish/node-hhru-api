@@ -1,14 +1,16 @@
 import { request } from '../http.ts'
 import {
-    MyResumesResponse,
+    MyResumeItemsResponse,
     PhoneConfirmationBody,
     PhoneInfoResponse,
     PhoneSendCodeResponse,
-    ResumeByStatusResponse,
-    ResumeCreationAvailability,
-    ResumeStatusResponse,
-    SuitableResumesResponse,
-} from './types.ts'
+    ResumeItemByStatusResponse,
+    ResumeItemCreationAvailability,
+    ResumeItemStatusResponse,
+    ResumeItemViewsResponse,
+    SuitableResumeItemsResponse,
+} from './responses.types.ts'
+import { ResumeItem } from './types.ts'
 
 export async function confirmPhone(token: string, body: PhoneConfirmationBody) {
     const formBody = new URLSearchParams({
@@ -51,8 +53,8 @@ export async function deleteResume(token: string, resumeId: string) {
 
 export async function checkResumeCreation(
     token: string
-): Promise<ResumeCreationAvailability> {
-    return request<ResumeCreationAvailability>(
+): Promise<ResumeItemCreationAvailability> {
+    return request<ResumeItemCreationAvailability>(
         '/resumes/creation_availability',
         {
             method: 'GET',
@@ -74,8 +76,8 @@ export async function publishResume(
 export async function getResumesByStatus(
     token: string,
     vacancy_id: string
-): Promise<ResumeByStatusResponse> {
-    return request<ResumeByStatusResponse>(
+): Promise<ResumeItemByStatusResponse> {
+    return request<ResumeItemByStatusResponse>(
         `/vacancies/${vacancy_id}/resumes_by_status`,
         {
             method: 'GET',
@@ -87,15 +89,17 @@ export async function getResumesByStatus(
 export async function getResumeStatus(
     resumeId: string,
     token: string
-): Promise<ResumeStatusResponse> {
-    return request<ResumeStatusResponse>(`/resumes/${resumeId}/status`, {
+): Promise<ResumeItemStatusResponse> {
+    return request<ResumeItemStatusResponse>(`/resumes/${resumeId}/status`, {
         method: 'GET',
         token,
     })
 }
 
-export async function getMyResumes(token: string): Promise<MyResumesResponse> {
-    return request<MyResumesResponse>('/resumes/mine', {
+export async function getMyResumes(
+    token: string
+): Promise<MyResumeItemsResponse> {
+    return request<MyResumeItemsResponse>('/resumes/mine', {
         method: 'GET',
         token,
     })
@@ -104,12 +108,50 @@ export async function getMyResumes(token: string): Promise<MyResumesResponse> {
 export async function getSuitableResumes(
     vacancyId: string,
     token: string
-): Promise<SuitableResumesResponse> {
-    return request<SuitableResumesResponse>(
+): Promise<SuitableResumeItemsResponse> {
+    return request<SuitableResumeItemsResponse>(
         `/vacancies/${vacancyId}/suitable_resumes`,
         {
             method: 'GET',
             token,
         }
     )
+}
+
+export async function getResumeViews(
+    resumeId: string,
+    token: string,
+    withEmployerLogo?: boolean
+): Promise<ResumeItemViewsResponse> {
+    const query = withEmployerLogo ? '?with_employer_logo=true' : ''
+    return request<ResumeItemViewsResponse>(
+        `/resumes/${resumeId}/views${query}`,
+        {
+            method: 'GET',
+            token,
+        }
+    )
+}
+
+export async function getResume(
+    resumeId: string,
+    token: string,
+    queryParams?: {
+        with_negotiations_history?: boolean
+        with_creds?: boolean
+        with_job_search_status?: boolean
+    }
+): Promise<ResumeItem> {
+    const query = new URLSearchParams()
+    if (queryParams?.with_negotiations_history)
+        query.append('with_negotiations_history', 'true')
+    if (queryParams?.with_creds) query.append('with_creds', 'true')
+    if (queryParams?.with_job_search_status)
+        query.append('with_job_search_status', 'true')
+
+    const queryString = query.toString() ? `?${query.toString()}` : ''
+    return request<ResumeItem>(`/resumes/${resumeId}${queryString}`, {
+        method: 'GET',
+        token,
+    })
 }

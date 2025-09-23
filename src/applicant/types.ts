@@ -1,46 +1,96 @@
-export interface PhoneConfirmationBody {
-    phone: string
-    confirmation_code: string
+export interface Id {
+    id: string
+}
+export interface IdName extends Id {
+    name: string
+}
+export interface IdUrlName extends IdName {
+    url: string
 }
 
-export interface PhoneInfoResponse {
-    phone: {
-        city: string
-        country: string
-        formatted: string
-        need_verification: boolean
-        number: string
-        restricted_country: boolean
-        verified: boolean
-    }
+export interface FileUrl {
+    url: string
+}
+export interface Download {
+    pdf: FileUrl
+    rtf: FileUrl
 }
 
-export interface PhoneSendCodeResponse {
-    can_request_code_again_in: number
-    code_length: number
-    notification_type: string
+export interface Photo {
+    id?: string
+    medium: string
+    small: string
 }
 
-export interface ResumeCreationAvailability {
-    created: number
-    is_creation_available: boolean
-    max: number
-    remaining: number
+export interface Salary {
+    amount: number | null
+    currency: string | null
+    title?: string | null
 }
 
-export interface ResumeByStatusResponse {
-    already_applied: ResumeItem[]
-    not_published: ResumeItem[]
-    suitable: ResumeItem[]
-    unavailable: ResumeItem[]
-    counters: Counters
+export interface TotalExperience {
+    months: number | null
+}
+export interface AccessType {
+    type: IdName
+}
+export interface LogoUrls {
+    90?: string
+    240?: string
+    original: string
 }
 
-export interface Counters {
-    already_applied: number
-    not_published: number
-    suitable: number
-    unavailable: number
+export interface Certificate {
+    achieved_at: string
+    owner: string | null
+    title: string
+    type: 'custom' | 'microsoft'
+    url: string | null
+}
+
+export interface ExperienceItem {
+    area: IdUrlName
+    company: string | null
+    company_id: string | null
+    company_url: string | null
+    employer: Employer | null
+    end: string | null
+    industries: IdName[]
+    industry: IdUrlName
+    position: string
+    start: string
+}
+
+export interface Employer extends Id {
+    name: string
+    url: string
+    alternate_url: string
+    vacancies_url: string
+    logo_urls?: LogoUrls | null
+}
+
+export interface Education {
+    additional?: BaseEducation[] | null
+    attestation?: BaseEducation[] | null
+    elementary?: ElementaryEducation[] | null
+    primary?: HigherEducation[] | null
+}
+export interface BaseEducation {
+    id: string | null
+    name: string
+    organization?: string
+    result?: string | null
+    year: number
+}
+export interface ElementaryEducation extends BaseEducation {
+    level: IdUrlName
+}
+export interface HigherEducation extends BaseEducation {
+    name_id?: string | null
+    organization_id?: string | null
+    result_id?: string | null
+    university_acronym?: string | null
+    education_level: IdUrlName
 }
 
 export interface ResumeItem {
@@ -57,7 +107,7 @@ export interface ResumeItem {
     middle_name: string | null
     gender: IdUrlName
     photo: Photo | null
-    platform: Platform
+    platform: Id & { real_id: string }
     salary: Salary | null
     total_experience: TotalExperience | null
     employment_form: IdName[]
@@ -65,8 +115,8 @@ export interface ResumeItem {
     access: AccessType
     status: IdName
     hidden_fields: IdName[]
-    actions: ResumeDownload
-    download: ResumeDownload
+    actions: Download
+    download: Download
     education: Education
     experience: ExperienceItem[]
     certificate: Certificate[]
@@ -75,206 +125,19 @@ export interface ResumeItem {
     can_view_full_info: boolean | null
 }
 
-export interface ResumeDownload {
-    pdf: FileUrl
-    rtf: FileUrl
-}
-
-export interface FileUrl {
-    url: string
-}
-
-export interface IdName {
-    id: string
-    name: string
-}
-
-export interface Photo {
-    id: string
-    medium: string
-    small: string
-}
-
-export interface Platform {
-    id: string
-    real_id: string
-}
-
-export interface Salary {
-    amount: number | null
-    currency: string | null
+export interface ResumeItemShort extends Id {
     title: string | null
-}
-
-export interface TotalExperience {
-    months: number | null
-}
-
-export interface AccessType {
-    type: IdName
-}
-
-export interface Certificate {
-    achieved_at: string
-    owner: string | null
-    title: string
-    type: 'custom' | 'microsoft'
-    url: string | null
-}
-
-export interface Education {
-    additional: AdditionalEducation[] | null
-    attestation: Attestation[] | null
-    elementary: ElementaryEducation[] | null
-    primary: HigherEducation[] | null
-}
-
-export interface AdditionalEducation {
-    id: string | null
-    name: string
-    organization: string
-    result: string | null
-    year: number
-}
-
-export interface Attestation {
-    id: string | null
-    name: string
-    organization: string
-    result: string | null
-    year: number
-}
-
-export interface ElementaryEducation {
-    id: string | null
-    name: string
-    year: number
-    level: IdUrlName
-}
-
-export interface HigherEducation {
-    id: string | null
-    name: string
-    name_id: string | null
-    organization: string | null
-    organization_id: string | null
-    result: string | null
-    result_id: string | null
-    university_acronym: string | null
-    year: number
-    education_level: IdUrlName
-}
-
-export interface ExperienceItem {
-    area: IdUrlName
-    company: string | null
-    company_id: string | null
-    company_url: string | null
-    employer: Employer | null
-    end: string | null
-    industries: IdName[]
-    industry: IdUrlName
-    position: string
-    start: string
-}
-
-export interface Employer {
+    url: string
     alternate_url: string
-    id: string
-    logo_urls: LogoUrls | null
-    name: string
-    url: string
 }
 
-export interface LogoUrls {
-    original: string
-}
-
-export interface IdUrlName {
-    id: string
-    name: string
-    url: string
-}
-export interface Id {
-    id: string
-}
-
-export interface ResumeStatusResponse {
-    blocked: boolean
-    can_publish_or_update: boolean | null
-    finished: boolean
-    status: IdName
-    moderation_note: ModerationNote[]
-    progress: ResumeProgress
-    publish_url: string
-}
-
-export interface ModerationNote {
-    field?: string
-    id: string
-    name: string
-    pointer?: string
-}
-
-export interface ResumeProgress {
+export interface ResumeItemProgress {
     mandatory: IdName[]
     recommended: IdName[]
     percentage: number
 }
 
-export interface MyResumesResponse {
-    found: number
-    page: number
-    pages: number
-    per_page: number
-    items: ResumeItem[]
-}
-
-export interface ResumeOverall {
-    already_applied: number
-    not_published: number
-    unavailable: number
-}
-
-export interface SuitableResumeItem {
-    actions: ResumeDownload
-    age: number | null
-    alternate_url: string
-    area: IdUrlName
-    auto_hide_time: IdName
-    can_view_full_info: boolean | null
-    certificate: Certificate[]
-    created_at: string
-    download: ResumeDownload
-    education: Education
-    experience: ExperienceItem[]
-    first_name: string | null
-    gender: IdName | null
-    hidden_fields: IdName[]
-    id: string
-    last_name: string | null
-    marked: boolean
-    middle_name: string | null
-    photo: object | null
-    platform: Id
-    real_id: string
-    salary: Salary | null
-    total_experience: ExperienceItem | null
-    updated_at: string
-    url: string
-    employment_form: object[]
-    work_format: object[]
-    access: object
-    finished: boolean
-    requires_completion: boolean
-    status: IdName
-}
-
-export interface SuitableResumesResponse {
-    found: number
-    page: number
-    pages: number
-    per_page: number
-    items: SuitableResumeItem[]
-    overall: ResumeOverall
+export interface ModerationNote extends IdName {
+    field?: string
+    pointer?: string
 }

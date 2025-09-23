@@ -6,6 +6,7 @@ import {
     getMyResumes,
     getPhoneInfo,
     getResumeStatus,
+    getResumeViews,
     getSuitableResumes,
     publishResume,
     sendPhoneConfirmationCode,
@@ -194,6 +195,31 @@ describe('Suitable Resumes API', () => {
             expect(resume.status).toHaveProperty('name')
             expect(resume).toHaveProperty('alternate_url')
             expect(resume).toHaveProperty('created_at')
+        }
+    })
+})
+
+describe('Resume Views API', () => {
+    it('should return resume views history', async () => {
+        const token = await ensureUserToken()
+        const resumeId = process.env.HH_TEST_RESUME_ID!
+        const response = await getResumeViews(resumeId, token, true)
+
+        expect(response).toHaveProperty('found')
+        expect(response).toHaveProperty('page')
+        expect(response).toHaveProperty('pages')
+        expect(response).toHaveProperty('per_page')
+        expect(response).toHaveProperty('items')
+        expect(response).toHaveProperty('resume')
+
+        expect(Array.isArray(response.items)).toBe(true)
+
+        if (response.items.length > 0) {
+            const view = response.items[0]
+            expect(view).toHaveProperty('created_at')
+            expect(view).toHaveProperty('employer')
+            expect(view).toHaveProperty('viewed')
+            expect(view).toHaveProperty('resume')
         }
     })
 })
