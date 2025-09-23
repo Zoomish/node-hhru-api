@@ -34,7 +34,7 @@ export async function request<T>(
         rawBody = false,
     } = options
 
-    const response: Response = await fetch(`https://api.hh.ru${url}`, {
+    const response: Response = await fetch(`https://hh.ru${url}`, {
         method,
         headers: {
             'Content-Type': rawBody
@@ -46,7 +46,6 @@ export async function request<T>(
         },
         body: rawBody ? body : JSON.stringify(body),
     })
-    console.log(response.headers)
 
     if (!response.ok) {
         throw new Error(
