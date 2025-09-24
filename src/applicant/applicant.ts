@@ -11,6 +11,7 @@ import {
     ResumeItemFull,
     ResumeItemStatusResponse,
     ResumeItemViewsResponse,
+    ResumeVisibilityListResponse,
     ResumeVisibilityListType,
     ResumeVisibilitySearchParams,
     ResumeVisibilitySearchResponse,
@@ -189,7 +190,7 @@ export async function getResumeConditionsById(
 export async function getSimilarVacancies(
     token: string,
     resumeId: string,
-    params?: SimilarVacancySearchParams
+    params?: Partial<SimilarVacancySearchParams>
 ): Promise<SimilarVacanciesResponse> {
     return request<SimilarVacanciesResponse>(
         `/resumes/${resumeId}/similar_vacancies`,
@@ -223,6 +224,20 @@ export async function searchResumeVisibilityEmployers(
             method: 'GET',
             token,
             queryParams: objectToUrlSearchParams(params),
+        }
+    )
+}
+
+export async function getResumeVisibilityList(
+    token: string,
+    resumeId: string,
+    listType: ResumeVisibilityListType
+): Promise<ResumeVisibilityListResponse> {
+    return request<ResumeVisibilityListResponse>(
+        `/resumes/${resumeId}/${listType}`,
+        {
+            method: 'GET',
+            token,
         }
     )
 }

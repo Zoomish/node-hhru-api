@@ -168,3 +168,12 @@ export interface ResumeVisibilitySearchResponse {
     per_page: number
     items: EmployerResumeVisibility[]
 }
+
+export interface ResumeVisibilityListResponse {
+    found: number
+    page: number
+    pages: number
+    per_page: number
+    limit: number
+    items: Employer[]
+}
