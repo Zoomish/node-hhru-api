@@ -24,6 +24,13 @@ yarn add node-hhru-api
 ```ts
 import { getUserToken } from "node-hhru-api/common"
 import { getResume } from "node-hhru-api/applicant"
+import { setHttpConfig } from "node-hhru-api/http"
+
+setHttpConfig({
+  locale: "RU",
+  host: "hh.ru",
+  userAgent: "MyApp/1.0 (me@example.com)"
+})
 
 const userTokenResponse = await getUserToken(
   clientId,
