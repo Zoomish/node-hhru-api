@@ -1,7 +1,10 @@
 import {
+    Argument,
+    Cluster,
     Employer,
     FieldCondition,
     FieldsCondition,
+    Fixes,
     IdName,
     ListFieldCondition,
     ModerationNote,
@@ -9,6 +12,7 @@ import {
     ResumeItemMiddle,
     ResumeItemProgress,
     ResumeItemShort,
+    Suggests,
     Vacancy,
 } from './index.ts'
 
@@ -143,8 +147,8 @@ export interface SimilarVacanciesResponse {
     pages: number
     per_page: number
     items: Vacancy[]
-    clusters?: any[] | null
-    arguments?: any[] | null
-    fixes?: any | null
-    suggests?: any | null
+    clusters?: Cluster[] | null
+    arguments?: Argument[] | null
+    fixes?: Fixes | null
+    suggests?: Suggests | null
 }

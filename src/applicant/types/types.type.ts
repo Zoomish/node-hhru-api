@@ -349,6 +349,17 @@ export interface FieldCondition {
     regexp?: string | null
 }
 
+export interface Argument {
+    argument: string
+    cluster_group: IdName
+    disable_url: string
+    hex_color: string | null
+    metro_type: string | null
+    name: string | null
+    value: string
+    value_description: string | null
+}
+
 export interface ListFieldCondition extends FieldCondition {
     min_count?: number | null
     max_count?: number | null
@@ -413,6 +424,7 @@ export interface MetroStation {
     lng: number | null
     station_id: string
     station_name: string
+    area: IdUrlName
 }
 
 export interface MetroStationResume {
@@ -426,6 +438,7 @@ export interface MetroStationResume {
 
 export interface MetroLine extends IdName {
     hex_color: string
+    area: IdUrlName
 }
 
 export interface Employer {
@@ -455,8 +468,20 @@ export interface SalaryRange {
     to?: number | null
     currency: string
     gross: boolean
-    frequency?: { id: string; name: string } | null
-    mode?: { id: string; name: string }
+    frequency?: IdName | null
+    mode?: IdName
+}
+
+export interface Cluster extends IdName {
+    items: ClusterItem[]
+}
+export interface ClusterItem {
+    count: number
+    name: string
+    type: 'metro_station' | 'metro_line'
+    url: string
+    metro_line?: MetroLine
+    metro_station?: MetroStation
 }
 
 export interface WorkSchedule {
@@ -474,6 +499,16 @@ export interface VacancySnippet {
 export interface VacancyCounters {
     responses: number
     total_responses: number
+}
+
+export interface Fixes {
+    fixed: string
+    original: string
+}
+
+export interface Suggests {
+    found: number
+    value: string
 }
 
 export interface Vacancy {
