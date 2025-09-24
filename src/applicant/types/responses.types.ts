@@ -9,8 +9,8 @@ import {
     ResumeItemMiddle,
     ResumeItemProgress,
     ResumeItemShort,
-    Vacancy
-} from './types.ts'
+    Vacancy,
+} from './index.ts'
 
 export interface PhoneConfirmationBody {
     phone: string
@@ -45,9 +45,9 @@ export interface ResumeItemByStatusResponse {
     not_published: ResumeItem[]
     suitable: ResumeItem[]
     unavailable: ResumeItem[]
-    counters: Counters
+    counters: CounterResume
 }
-export type Counters = Record<
+export type CounterResume = Record<
     'already_applied' | 'not_published' | 'suitable' | 'unavailable',
     number
 >

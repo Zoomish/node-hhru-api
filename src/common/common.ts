@@ -1,5 +1,5 @@
 import { request } from '../http.ts'
-import { AppTokenResponse, UserTokenResponse } from './types.ts'
+import { AppTokenResponse, UserTokenResponse } from './types/index.ts'
 
 export async function getAppToken(
     clientId: string,

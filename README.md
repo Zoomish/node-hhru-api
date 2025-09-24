@@ -1,4 +1,5 @@
 # HeadHunter API SDK for Node.js
+# In Development
 
 A lightweight **TypeScript/JavaScript SDK** for [HeadHunter API](https://api.hh.ru).
 
@@ -21,16 +22,17 @@ yarn add node-hhru-api
 ## ⚡ Quick Start
 
 ```ts
-import { getAppToken } from "node-hhru-api/common"
-import { getCurrentUser } from "node-hhru-api/employer"
+import { getUserToken } from "node-hhru-api/common"
+import { getResume } from "node-hhru-api/applicant"
 
-const appToken = await getAppToken(
-  process.env.HH_CLIENT_ID!,
-  process.env.HH_CLIENT_SECRET!
+const userTokenResponse = await getUserToken(
+  clientId,
+  clientSecret,
+  code,         // received from OAuth redirect
 )
 
-const me = await getCurrentUser("<user_access_token>")
-console.log(me.email)
+const resume = await getResume(userTokenResponse.access_token)
+console.log(resume.id)
 ```
 
 ---
@@ -45,13 +47,17 @@ You can import methods in two ways:
 ### 1. Direct Imports
 
 ```ts
-import { getAppToken, getUserToken, refreshUserToken } from "hh-api-sdk/common/common"
-import { getResumes } from "hh-api-sdk/applicant/applicant"
-import { getCurrentUser } from "hh-api-sdk/employer/employer"
+import { getUserToken } from "node-hhru-api/common"
+import { getResume } from "node-hhru-api/applicant"
 
-// Same usage as above
-const appToken = await getAppToken(clientId, clientSecret)
-const resumes = await getResumes(userToken)
+const userTokenResponse = await getUserToken(
+  clientId,
+  clientSecret,
+  code,         // received from OAuth redirect
+)
+
+const resume = await getResume(userTokenResponse.access_token)
+console.log(resume.id)
 ```
 
 ---
@@ -60,13 +66,16 @@ const resumes = await getResumes(userToken)
 ### 2. Using Namespaces
 
 ```ts
-import { Common, Applicant, Employer } from "hh-api-sdk"
+import { Common, Employer } from "node-hhru-api"
 
-// Application token (client_credentials flow)
-const appToken = await Common.getAppToken(clientId, clientSecret)
+const userTokenResponse = await Common.getUserToken(
+  clientId,
+  clientSecret,
+  code,         // received from OAuth redirect
+)
 
-// User token (authorization_code flow)
-const userToken = await Common.getUserToken(clientId, clientSecret, code, redirectUri)
+const me = await Employer.getCurrentUser(userTokenResponse.access_token)
+console.log(me.email)
 ```
 
 ## 🔑 Authentication Flows
@@ -118,7 +127,7 @@ setHttpConfig({
   locale: "RU",
   host: "hh.ru",
   userAgent: "MyApp/1.0 (me@example.com)"
-})
+}) //Use this at the beginning of your code
 ```
 
 ⚠️ HeadHunter requires a valid `HH-User-Agent`.
@@ -143,10 +152,6 @@ import { AppTokenResponse, UserTokenResponse } from "node-hhru-api/common/types"
 
 The project includes tests with [Vitest](https://vitest.dev/):
 
-```bash
-npm run test
-```
-
 Before running, make sure to set environment variables:
 
 ```bash
@@ -155,6 +160,11 @@ export HH_CLIENT_SECRET=your_client_secret
 export HH_AUTH_CODE=your_auth_code
 export HH_REDIRECT_URI=your_redirect_uri
 ```
+
+```bash
+npm run test
+```
+
 
 ---
 

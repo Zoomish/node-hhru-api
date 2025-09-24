@@ -6,16 +6,10 @@ import {
     PhoneSendCodeResponse,
     ResumeConditions,
     ResumeItemByStatusResponse,
-    ResumeItemCreationAvailability,
-    ResumeItemStatusResponse,
+    ResumeItemCreationAvailability, ResumeItemFull, ResumeItemStatusResponse,
     ResumeItemViewsResponse,
-    SimilarVacanciesResponse,
-    SuitableResumeItemsResponse,
-} from './responses.types.ts'
-import {
-    ResumeItemFull,
-    SimilarVacancySearchParams
-} from './types.ts'
+    SimilarVacanciesResponse, SimilarVacancySearchParams, SuitableResumeItemsResponse
+} from './types/index.ts'
 
 function objectToUrlSearchParams(obj?: object): string {
     if (!obj) return ''

@@ -1,4 +1,4 @@
-import { Dictionary, Locales } from '../const.ts'
+import { Dictionary, Locales } from '../../const.ts'
 export interface IdName {
     id: string
     name: string
