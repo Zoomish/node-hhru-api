@@ -498,14 +498,7 @@ export interface Vacancy {
     premium?: boolean | null
     professional_roles: ProfessionalRole[]
     published_at?: string
-    relations?: Array<
-        | 'favorited'
-        | 'got_response'
-        | 'got_invitation'
-        | 'got_rejection'
-        | 'blacklisted'
-        | null
-    >
+    relations?: Dictionary['vacancy_relation'][number]['id'][] | null
     response_letter_required: boolean
     response_url?: string | null
     salary?: SalaryRange | null
