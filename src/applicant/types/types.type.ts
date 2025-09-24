@@ -369,43 +369,6 @@ export interface FieldsCondition extends FieldCondition {
     fields?: Record<string, FieldCondition | FieldsCondition | null> | null
 }
 
-export interface SimilarVacancySearchParams {
-    page?: number
-    per_page?: number
-    text?: string
-    search_field?: string | string[]
-    experience?: string | string[]
-    employment?: string | string[]
-    schedule?: string | string[]
-    area?: string | string[]
-    metro?: string | string[]
-    professional_role?: string
-    industry?: string | string[]
-    employer_id?: string | string[]
-    excluded_employer_id?: string | string[]
-    currency?: string
-    salary?: number
-    label?: string | string[]
-    only_with_salary?: boolean
-    period?: number
-    date_from?: string
-    date_to?: string
-    top_lat?: number
-    bottom_lat?: number
-    left_lng?: number
-    right_lng?: number
-    order_by?: string
-    sort_point_lat?: number
-    sort_point_lng?: number
-    clusters?: boolean
-    describe_arguments?: boolean
-    no_magic?: boolean
-    premium?: boolean
-    responses_count_enabled?: boolean
-    part_time?: string | string[]
-    locale?: string
-    host?: string
-}
 export interface Address {
     building?: string | null
     city?: string | null
@@ -441,16 +404,17 @@ export interface MetroLine extends IdName {
     area: IdUrlName
 }
 
-export interface Employer {
-    id: string
-    name: string
+export interface Employer extends IdUrlName {
     trusted: boolean
     alternate_url: string
-    url: string
     logo_urls?: Record<string, string> | null
     vacancies_url: string
     accredited_it_employer?: boolean
     employer_rating?: any
+}
+
+export interface EmployerResumeVisibility extends Employer {
+    selected: boolean
 }
 
 export interface Department {

@@ -2,6 +2,7 @@ import {
     Argument,
     Cluster,
     Employer,
+    EmployerResumeVisibility,
     FieldCondition,
     FieldsCondition,
     Fixes,
@@ -15,7 +16,7 @@ import {
     ResumeItemProgress,
     ResumeItemShort,
     Suggests,
-    Vacancy
+    Vacancy,
 } from './index.ts'
 
 export interface PhoneConfirmationBody {
@@ -158,4 +159,12 @@ export interface SimilarVacanciesResponse {
 export interface ResumeAccessTypeResponse {
     auto_hide_time_options: IdUrlName[]
     items: ResumeAccessTypeFull[]
+}
+
+export interface ResumeVisibilitySearchResponse {
+    found: number
+    page: number
+    pages: number
+    per_page: number
+    items: EmployerResumeVisibility[]
 }

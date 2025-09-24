@@ -11,6 +11,9 @@ import {
     ResumeItemFull,
     ResumeItemStatusResponse,
     ResumeItemViewsResponse,
+    ResumeVisibilityListType,
+    ResumeVisibilitySearchParams,
+    ResumeVisibilitySearchResponse,
     SimilarVacanciesResponse,
     SimilarVacancySearchParams,
     SuitableResumeItemsResponse,
@@ -36,17 +39,15 @@ export async function confirmPhone(token: string, body: PhoneConfirmationBody) {
     })
 }
 
-export async function getPhoneInfo(token: string, phone: string) {
-    return request<PhoneInfoResponse>(
-        `/resume_should_send_sms?${objectToUrlSearchParams({ phone })}`,
-        {
-            method: 'GET',
-            token,
-        }
-    )
+export async function getPhoneInfo(token: string, phone: string): Promise<PhoneInfoResponse> {
+    return request<PhoneInfoResponse>(`/resume_should_send_sms`, {
+        method: 'GET',
+        token,
+        queryParams: objectToUrlSearchParams({ phone }),
+    })
 }
 
-export async function sendPhoneConfirmationCode(token: string, phone: string) {
+export async function sendPhoneConfirmationCode(token: string, phone: string): Promise<PhoneSendCodeResponse> {
     return request<PhoneSendCodeResponse>('/resume_phone_generate_code', {
         method: 'POST',
         body: objectToUrlSearchParams({ phone }),
@@ -55,7 +56,7 @@ export async function sendPhoneConfirmationCode(token: string, phone: string) {
     })
 }
 
-export async function deleteResume(token: string, resumeId: string) {
+export async function deleteResume(token: string, resumeId: string): Promise<void> {
     return request<void>(`/resumes/${resumeId}`, {
         method: 'DELETE',
         token,
@@ -134,14 +135,11 @@ export async function getResumeViews(
     token: string,
     withEmployerLogo?: boolean
 ): Promise<ResumeItemViewsResponse> {
-    const query = withEmployerLogo ? '?with_employer_logo=true' : ''
-    return request<ResumeItemViewsResponse>(
-        `/resumes/${resumeId}/views${query}`,
-        {
-            method: 'GET',
-            token,
-        }
-    )
+    return request<ResumeItemViewsResponse>(`/resumes/${resumeId}/views`, {
+        method: 'GET',
+        token,
+        queryParams: withEmployerLogo ? '?with_employer_logo=true' : '',
+    })
 }
 
 export async function getResume(
@@ -153,13 +151,11 @@ export async function getResume(
         with_job_search_status?: boolean
     }
 ): Promise<ResumeItemFull> {
-    return request<ResumeItemFull>(
-        `/resumes/${resumeId}?${objectToUrlSearchParams(queryParams)}`,
-        {
-            method: 'GET',
-            token,
-        }
-    )
+    return request<ResumeItemFull>(`/resumes/${resumeId}`, {
+        method: 'GET',
+        token,
+        queryParams: objectToUrlSearchParams(queryParams),
+    })
 }
 
 export async function getResumeConditions(
@@ -187,10 +183,11 @@ export async function getSimilarVacancies(
     params?: SimilarVacancySearchParams
 ): Promise<SimilarVacanciesResponse> {
     return request<SimilarVacanciesResponse>(
-        `/resumes/${resumeId}/similar_vacancies?${objectToUrlSearchParams(params)}`,
+        `/resumes/${resumeId}/similar_vacancies`,
         {
             method: 'GET',
             token,
+            queryParams: objectToUrlSearchParams(params),
         }
     )
 }
@@ -201,6 +198,22 @@ export async function getResumeAccessTypes(token: string, resumeId: string) {
         {
             method: 'GET',
             token,
+        }
+    )
+}
+
+export async function searchResumeVisibilityEmployers(
+    token: string,
+    resumeId: string,
+    listType: ResumeVisibilityListType,
+    params: ResumeVisibilitySearchParams
+): Promise<ResumeVisibilitySearchResponse> {
+    return request<ResumeVisibilitySearchResponse>(
+        `/resumes/${resumeId}/${listType}/search`,
+        {
+            method: 'GET',
+            token,
+            queryParams: objectToUrlSearchParams(params),
         }
     )
 }

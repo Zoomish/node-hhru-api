@@ -7,6 +7,7 @@ interface RequestOptions {
     token: string
     rawBody: boolean
     oldAddress: boolean
+    queryParams: string
 }
 
 interface HttpConfig {
@@ -34,10 +35,11 @@ export async function request<T>(
         token,
         rawBody = false,
         oldAddress = false,
+        queryParams = '',
     } = options
 
     const response: Response = await fetch(
-        `https://${oldAddress ? 'hh.ru' : 'api.hh.ru'}${url}`,
+        `https://${oldAddress ? 'hh.ru' : 'api.hh.ru'}${url}?${queryParams}`,
         {
             method,
             headers: {
