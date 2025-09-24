@@ -10,7 +10,16 @@
     "hh",
     "headhunter",
     "api",
-    "typescript"
+    "headhunter-api",
+    "typescript",
+    "javascript",
+    "sdk",
+    "node",
+    "nodejs",
+    "node-hhru-api",
+    "node-hhru",
+    "node-hh",
+    "hhru"
   ],
   "license": "MIT",
   "author": {
