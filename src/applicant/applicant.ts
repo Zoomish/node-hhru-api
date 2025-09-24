@@ -152,7 +152,7 @@ export async function getResumeViews(
     return request<ResumeItemViewsResponse>(`/resumes/${resumeId}/views`, {
         method: 'GET',
         token,
-        queryParams: withEmployerLogo ? '?with_employer_logo=true' : '',
+        queryParams: withEmployerLogo ? 'with_employer_logo=true' : '',
     })
 }
 
