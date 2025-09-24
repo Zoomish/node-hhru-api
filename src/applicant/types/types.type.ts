@@ -553,3 +553,10 @@ export interface Vacancy {
     snippet?: VacancySnippet
     accept_only_for_part_time?: string[]
 }
+
+export interface ResumeAccessTypeFull extends ResumeAccessType {
+    active: boolean | null
+    limit: number | null
+    list_url: string | null
+    total: number | null
+}

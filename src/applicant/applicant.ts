@@ -4,11 +4,16 @@ import {
     PhoneConfirmationBody,
     PhoneInfoResponse,
     PhoneSendCodeResponse,
+    ResumeAccessTypeResponse,
     ResumeConditions,
     ResumeItemByStatusResponse,
-    ResumeItemCreationAvailability, ResumeItemFull, ResumeItemStatusResponse,
+    ResumeItemCreationAvailability,
+    ResumeItemFull,
+    ResumeItemStatusResponse,
     ResumeItemViewsResponse,
-    SimilarVacanciesResponse, SimilarVacancySearchParams, SuitableResumeItemsResponse
+    SimilarVacanciesResponse,
+    SimilarVacancySearchParams,
+    SuitableResumeItemsResponse,
 } from './types/index.ts'
 
 function objectToUrlSearchParams(obj?: object): string {
@@ -183,6 +188,16 @@ export async function getSimilarVacancies(
 ): Promise<SimilarVacanciesResponse> {
     return request<SimilarVacanciesResponse>(
         `/resumes/${resumeId}/similar_vacancies?${objectToUrlSearchParams(params)}`,
+        {
+            method: 'GET',
+            token,
+        }
+    )
+}
+
+export async function getResumeAccessTypes(token: string, resumeId: string) {
+    return request<ResumeAccessTypeResponse>(
+        `/resumes/${resumeId}/access_types`,
         {
             method: 'GET',
             token,

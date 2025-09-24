@@ -6,14 +6,16 @@ import {
     FieldsCondition,
     Fixes,
     IdName,
+    IdUrlName,
     ListFieldCondition,
     ModerationNote,
+    ResumeAccessTypeFull,
     ResumeItem,
     ResumeItemMiddle,
     ResumeItemProgress,
     ResumeItemShort,
     Suggests,
-    Vacancy,
+    Vacancy
 } from './index.ts'
 
 export interface PhoneConfirmationBody {
@@ -151,4 +153,9 @@ export interface SimilarVacanciesResponse {
     arguments?: Argument[] | null
     fixes?: Fixes | null
     suggests?: Suggests | null
+}
+
+export interface ResumeAccessTypeResponse {
+    auto_hide_time_options: IdUrlName[]
+    items: ResumeAccessTypeFull[]
 }
