@@ -32,8 +32,11 @@ function objectToUrlSearchParams(obj?: object): string {
     ).toString()
 }
 
-export async function confirmPhone(token: string, body: PhoneConfirmationBody) {
-    return request('/resume_phone_confirm', {
+export async function confirmPhone(
+    token: string,
+    body: PhoneConfirmationBody
+): Promise<void> {
+    return request<void>('/resume_phone_confirm', {
         method: 'POST',
         body: objectToUrlSearchParams(body),
         token,
@@ -203,7 +206,7 @@ export async function getSimilarVacancies(
     )
 }
 
-export async function getResumeAccessTypes(token: string, resumeId: string) {
+export async function getAccessTypes(token: string, resumeId: string) {
     return request<ResumeAccessTypeResponse>(
         `/resumes/${resumeId}/access_types`,
         {
@@ -213,7 +216,7 @@ export async function getResumeAccessTypes(token: string, resumeId: string) {
     )
 }
 
-export async function searchResumeVisibilityEmployers(
+export async function searchVisibilityEmployers(
     token: string,
     resumeId: string,
     listType: ResumeVisibilityListType,
@@ -229,7 +232,7 @@ export async function searchResumeVisibilityEmployers(
     )
 }
 
-export async function getResumeVisibilityList(
+export async function getVisibilityList(
     token: string,
     resumeId: string,
     listType: ResumeVisibilityListType
@@ -243,7 +246,7 @@ export async function getResumeVisibilityList(
     )
 }
 
-export async function addEmployersToVisibilityList(
+export async function addToVisibilityList(
     token: string,
     resumeId: string,
     listType: ResumeVisibilityListType,
@@ -257,4 +260,15 @@ export async function addEmployersToVisibilityList(
             body,
         }
     )
+}
+
+export async function clearVisibilityList(
+    token: string,
+    resumeId: string,
+    listType: ResumeVisibilityListType
+): Promise<void> {
+    return request<void>(`/resumes/${resumeId}/${listType}`, {
+        method: 'DELETE',
+        token,
+    })
 }
