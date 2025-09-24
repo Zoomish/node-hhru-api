@@ -1,3 +1,4 @@
+import { arrayToUrlSearchParams, objectToUrlSearchParams } from '../helpers.ts'
 import { request } from '../http.ts'
 import {
     AddEmployersToVisibilityListBody,
@@ -20,17 +21,6 @@ import {
     SimilarVacancySearchParams,
     SuitableResumeItemsResponse,
 } from './types/index.ts'
-
-function objectToUrlSearchParams(obj?: object): string {
-    if (!obj) return ''
-    return new URLSearchParams(
-        Object.entries(obj ?? {}).flatMap(([key, value]) => {
-            if (value === undefined || value === null) return []
-            if (Array.isArray(value)) return value.map((v) => [key, String(v)])
-            return [[key, String(value)]]
-        })
-    ).toString()
-}
 
 export async function confirmPhone(
     token: string,
@@ -270,5 +260,18 @@ export async function clearVisibilityList(
     return request<void>(`/resumes/${resumeId}/${listType}`, {
         method: 'DELETE',
         token,
+    })
+}
+
+export async function removeFromVisibilityList(
+    token: string,
+    resumeId: string,
+    listType: ResumeVisibilityListType,
+    id: string[]
+): Promise<void> {
+    return request<void>(`/resumes/${resumeId}/${listType}/employer`, {
+        method: 'DELETE',
+        token,
+        queryParams: arrayToUrlSearchParams('id', id),
     })
 }
