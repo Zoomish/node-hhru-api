@@ -1,9 +1,10 @@
 import fetch, { Response } from 'node-fetch'
 import { HHError } from './error.ts'
+import { Methods } from './types/const.ts'
 import { HHApiError } from './types/errors.types.ts'
 
 interface RequestOptions {
-    method: string
+    method: Methods
     headers: Record<string, string>
     body: any
     token: string

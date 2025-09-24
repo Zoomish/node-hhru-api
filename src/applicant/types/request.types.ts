@@ -1,3 +1,5 @@
+import { Id } from './types.type.ts'
+
 export interface SimilarVacancySearchParams {
     page: number
     per_page: number
@@ -44,3 +46,7 @@ export interface ResumeVisibilitySearchParams {
 }
 
 export type ResumeVisibilityListType = 'whitelist' | 'blacklist'
+
+export interface AddEmployersToVisibilityListBody {
+    items: Id[]
+}

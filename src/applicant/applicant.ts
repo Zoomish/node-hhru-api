@@ -1,5 +1,6 @@
 import { request } from '../http.ts'
 import {
+    AddEmployersToVisibilityListBody,
     MyResumeItemsResponse,
     PhoneConfirmationBody,
     PhoneInfoResponse,
@@ -238,6 +239,22 @@ export async function getResumeVisibilityList(
         {
             method: 'GET',
             token,
+        }
+    )
+}
+
+export async function addEmployersToVisibilityList(
+    token: string,
+    resumeId: string,
+    listType: ResumeVisibilityListType,
+    body: AddEmployersToVisibilityListBody
+): Promise<ResumeVisibilitySearchResponse> {
+    return request<ResumeVisibilitySearchResponse>(
+        `/resumes/${resumeId}/${listType}`,
+        {
+            method: 'POST',
+            token,
+            body,
         }
     )
 }

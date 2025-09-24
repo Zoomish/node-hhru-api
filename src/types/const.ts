@@ -1601,3 +1601,6 @@ export type Locales = [
         current: false
     },
 ]
+
+
+export type Methods = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'

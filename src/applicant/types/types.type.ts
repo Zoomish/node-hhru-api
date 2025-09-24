@@ -1,11 +1,12 @@
 import { Dictionary, Locales } from '../../types/const.ts'
-export interface IdName {
+
+export interface Id {
     id: string
+}
+export interface IdName extends Id {
     name: string
 }
-export interface IdUrlName {
-    id: string
-    name: string
+export interface IdUrlName extends IdName {
     url: string
 }
 
