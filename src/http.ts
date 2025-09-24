@@ -1,4 +1,6 @@
 import fetch, { Response } from 'node-fetch'
+import { HHError } from './error.ts'
+import { HHApiError } from './types/errors.types.ts'
 
 interface RequestOptions {
     method: string
@@ -54,12 +56,10 @@ export async function request<T>(
         }
     )
 
+    const json = await response.json().catch(() => ({}))
     if (!response.ok) {
-        throw new Error(
-            `HH API Error: ${response.status} ${response.statusText} fetching from ${url}\n` +
-                (await response.text())
-        )
+        throw new HHError(response.status, json as HHApiError)
     }
 
-    return response.json() as Promise<T>
+    return json as Promise<T>
 }

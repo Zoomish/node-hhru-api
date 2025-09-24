@@ -39,7 +39,10 @@ export async function confirmPhone(token: string, body: PhoneConfirmationBody) {
     })
 }
 
-export async function getPhoneInfo(token: string, phone: string): Promise<PhoneInfoResponse> {
+export async function getPhoneInfo(
+    token: string,
+    phone: string
+): Promise<PhoneInfoResponse> {
     return request<PhoneInfoResponse>(`/resume_should_send_sms`, {
         method: 'GET',
         token,
@@ -47,7 +50,10 @@ export async function getPhoneInfo(token: string, phone: string): Promise<PhoneI
     })
 }
 
-export async function sendPhoneConfirmationCode(token: string, phone: string): Promise<PhoneSendCodeResponse> {
+export async function sendPhoneConfirmationCode(
+    token: string,
+    phone: string
+): Promise<PhoneSendCodeResponse> {
     return request<PhoneSendCodeResponse>('/resume_phone_generate_code', {
         method: 'POST',
         body: objectToUrlSearchParams({ phone }),
@@ -56,7 +62,10 @@ export async function sendPhoneConfirmationCode(token: string, phone: string): P
     })
 }
 
-export async function deleteResume(token: string, resumeId: string): Promise<void> {
+export async function deleteResume(
+    token: string,
+    resumeId: string
+): Promise<void> {
     return request<void>(`/resumes/${resumeId}`, {
         method: 'DELETE',
         token,
