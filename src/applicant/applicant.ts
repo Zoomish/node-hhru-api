@@ -9,6 +9,7 @@ import {
     ApplyVacancyBody,
     BlacklistEmployersResponse,
     BlacklistVacanciesResponse,
+    CreateSavedSearchParams,
     FavoritedVacanciesResponse,
     MyResumeItemsResponse,
     PhoneConfirmationBody,
@@ -407,5 +408,16 @@ export async function getSavedSearches(
         method: 'GET',
         token,
         queryParams: objectToUrlSearchParams({ page, per_page }),
+    })
+}
+
+export async function createSavedSearch(
+    token: string,
+    options: Partial<CreateSavedSearchParams>
+): Promise<void> {
+    return request<void>(`/saved_searches/vacancies`, {
+        method: 'POST',
+        token,
+        queryParams: objectToUrlSearchParams(options),
     })
 }
