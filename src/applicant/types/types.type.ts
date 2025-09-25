@@ -209,10 +209,14 @@ export interface ResumeItemMiddle extends ResumeItem {
         id: string
     }[]
 }
+
+export interface DriverLicenseTypes {
+    id: Dictionary['driver_license_types'][number]['id']
+}
 export interface ResumeItemFull extends ResumeItemMiddle {
     business_trip_readiness: BusinessTripReadiness
     citizenship: IdUrlName[]
-    driver_license_types: Dictionary['driver_license_types'][number]['id'][]
+    driver_license_types: DriverLicenseTypes[]
     employments: Employments
     has_vehicle: boolean
     language: Language[]
@@ -408,10 +412,30 @@ export interface MetroLine extends IdName {
 export interface Employer extends IdUrlName {
     trusted: boolean
     alternate_url: string
-    logo_urls?: Record<string, string> | null
+    logo_urls?: LogoUrls | null
     vacancies_url: string
     accredited_it_employer?: boolean
-    employer_rating?: any
+    employer_rating?: EmployerRating
+}
+
+export interface EmployerRating {
+    reviews_count: number
+    total_rating: number
+}
+
+export interface EmployerVakancy
+    extends Omit<Employer, 'accredited_it_employer'> {
+    accredited_it_employer: boolean
+    blacklisted: boolean
+    applicant_services: ApplicantServices
+}
+
+export interface ApplicantServices {
+    target_employer: TargetEmployer
+}
+
+export interface TargetEmployer {
+    count: number
 }
 
 export interface EmployerResumeVisibility extends Employer {
@@ -419,7 +443,7 @@ export interface EmployerResumeVisibility extends Employer {
 }
 
 export interface Department {
-    id?: string
+    id: string
     name: string
 }
 
@@ -489,10 +513,10 @@ export interface Vacancy {
     metro_stations?: MetroStation[]
     created_at?: string
     department?: Department | null
-    employer?: Employer
-    fly_in_fly_out_duration?: { id: string; name: string }[] | null
+    employer?: EmployerVakancy
+    fly_in_fly_out_duration?: FlyInFlyOutDuration[] | null
     has_test: boolean
-    insider_interview?: { id: string; url: string } | null
+    insider_interview?: Omit<IdUrlName, 'name'> | null
     internship?: boolean | null
     night_shifts?: boolean | null
     premium?: boolean | null
@@ -501,12 +525,10 @@ export interface Vacancy {
     relations?: Dictionary['vacancy_relation'][number]['id'][] | null
     response_letter_required: boolean
     response_url?: string | null
-    salary?: SalaryRange | null
     salary_range?: SalaryRange | null
     schedule?: WorkSchedule | null
     show_contacts?: boolean | null
     sort_point_distance?: number | null
-    type: { id: string; name: string }
     url: string
     work_format?: WorkFormat[] | null
     work_schedule_by_days?: WorkSchedule[] | null
@@ -520,10 +542,83 @@ export interface Vacancy {
 }
 
 export interface VacancyFull extends Vacancy {
-    active: boolean | null
-    limit: number | null
-    list_url: string | null
-    total: number | null
+    accept_handicapped: boolean
+    age_restriction: AgeRestriction
+    allow_messages: boolean
+    approved: boolean
+    area: IdUrlName
+    closed_for_applicants: boolean | null
+    code: string | null
+    contacts: ContactsVacancy | null
+    driver_license_types: DriverLicenseTypes[]
+    employment_form: EmploymentForm
+    experience: Experience
+    initial_created_at: string
+    key_skills: Omit<IdName, 'id'>[]
+    languages: Language[]
+    negotiations_url: string
+    suitable_resumes_url: string | null
+    test: Test
+    vacancy_properties: VacancyProperties
+}
+
+export interface VacancyProperties {
+    appearance: Appearance
+    properties: Properties
+}
+
+export interface Appearance {
+    title: string
+}
+
+export interface Properties {
+    end_time: string
+    start_time: string
+    parameters: string[]
+    property_type: PropertyType
+}
+export type PropertyType =
+    | 'HH_ANONYMOUS'
+    | 'HH_STANDARD_PLUS'
+    | 'HH_STANDARD'
+    | 'HH_FREE'
+    | 'HH_PREMIUM'
+    | 'HH_ADVERTISING'
+    | 'HH_PAY_FOR_PERFORMANCE'
+    | 'ZP_CROSSPOSTING'
+
+export interface Test extends Id {
+    required: boolean
+}
+
+export interface Experience {
+    id: Dictionary['experience'][number]['id']
+    name: Dictionary['experience'][number]['name']
+}
+
+export interface AgeRestriction {
+    id: Dictionary['age_restriction'][number]['id']
+    name: Dictionary['age_restriction'][number]['name']
+}
+
+export interface FlyInFlyOutDuration {
+    id: Dictionary['fly_in_fly_out_duration'][number]['id']
+    name: Dictionary['fly_in_fly_out_duration'][number]['name']
+}
+
+export interface ContactsVacancy {
+    call_tracking_enabled: boolean | null
+    email: string | null
+    name: string | null
+    phones: PhoneContacts[] | null
+}
+
+export interface PhoneContacts {
+    city: string
+    comment: string | null
+    country: string
+    formatted: string
+    number: string
 }
 
 export interface ResumeAccessTypeFull extends ResumeAccessType {
