@@ -25,6 +25,7 @@ import {
     ResumeVisibilityListType,
     ResumeVisibilitySearchParams,
     ResumeVisibilitySearchResponse,
+    SavedSearchesResponse,
     SimilarVacanciesResponse,
     SimilarVacancySearchParams,
     SuitableResumeItemsResponse,
@@ -394,5 +395,17 @@ export async function removeVacancyFromFavourites(
     return request<void>(`/vacancies/favorited/${vacancyId}`, {
         method: 'DELETE',
         token,
+    })
+}
+
+export async function getSavedSearches(
+    token: string,
+    page: number,
+    per_page: number
+): Promise<SavedSearchesResponse> {
+    return request<SavedSearchesResponse>(`/saved_searches/vacancies`, {
+        method: 'GET',
+        token,
+        queryParams: objectToUrlSearchParams({ page, per_page }),
     })
 }

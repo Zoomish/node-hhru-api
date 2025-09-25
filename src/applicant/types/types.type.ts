@@ -658,3 +658,15 @@ export interface ResumeAccessTypeFull extends ResumeAccessType {
     list_url: string | null
     total: number | null
 }
+
+export interface CountUrl {
+    count: number
+    url: string
+}
+
+export interface SavedSearch extends IdName {
+    created_at: string
+    subscription: boolean
+    items: CountUrl
+    new_items: CountUrl
+}

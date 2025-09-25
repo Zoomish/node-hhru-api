@@ -16,6 +16,7 @@ import {
     ResumeItemMiddle,
     ResumeItemProgress,
     ResumeItemShort,
+    SavedSearch,
     Suggests,
     Vacancy,
     VacancyShort,
@@ -189,7 +190,8 @@ export interface BlacklistVacanciesResponse {
     items: VacancyShort[]
 }
 
-export interface FavoritedVacanciesResponse extends BlacklistVacanciesResponse {}
+export interface FavoritedVacanciesResponse
+    extends BlacklistVacanciesResponse {}
 
 export interface BlacklistEmployersResponse {
     found: number
@@ -198,4 +200,12 @@ export interface BlacklistEmployersResponse {
     per_page: number
     limit_reached: boolean
     items: EmployerBlacklisted[]
+}
+
+export interface SavedSearchesResponse {
+    found: number
+    page: number
+    pages: number
+    per_page: number
+    items: SavedSearch[]
 }
