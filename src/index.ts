@@ -5,10 +5,12 @@ export * as Common from './common/common.ts'
 export * from './employer/employer.ts'
 export * as Employer from './employer/employer.ts'
 
-export * from './types/index.ts'
 export * from './applicant/types/index.ts'
 export * as ApplicantTypes from './applicant/types/index.ts'
 export * from './common/types/index.ts'
 export * as CommonTypes from './common/types/index.ts'
 export * from './employer/types/index.ts'
 export * as EmployerTypes from './employer/types/index.ts'
+export * from './http.ts'
+export * from './types/index.ts'
+

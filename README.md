@@ -22,9 +22,7 @@ yarn add node-hhru-api
 ## ⚡ Quick Start
 
 ```ts
-import { getUserToken } from "node-hhru-api/common"
-import { getResume } from "node-hhru-api/applicant"
-import { setHttpConfig } from "node-hhru-api/http"
+import { getUserToken, getResume, setHttpConfig } from "node-hhru-api"
 
 setHttpConfig({
   locale: "RU",
