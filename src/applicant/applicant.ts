@@ -7,6 +7,7 @@ import { request } from '../http.ts'
 import {
     AddEmployersToVisibilityListBody,
     ApplyVacancyBody,
+    BlacklistEmployersResponse,
     BlacklistVacanciesResponse,
     MyResumeItemsResponse,
     PhoneConfirmationBody,
@@ -339,8 +340,8 @@ export async function removeVacancyFromBlacklist(
 
 export async function getBlacklistEmployers(
     token: string
-): Promise<BlacklistVacanciesResponse> {
-    return request<BlacklistVacanciesResponse>(`/employers/blacklisted`, {
+): Promise<BlacklistEmployersResponse> {
+    return request<BlacklistEmployersResponse>(`/employers/blacklisted`, {
         method: 'GET',
         token,
     })
