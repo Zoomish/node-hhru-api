@@ -2,6 +2,7 @@ import {
     Argument,
     Cluster,
     Employer,
+    EmployerBlacklisted,
     EmployerResumeVisibility,
     FieldCondition,
     FieldsCondition,
@@ -186,4 +187,13 @@ export interface BlacklistVacanciesResponse {
     per_page: number
     limit_reached: boolean
     items: VacancyShort[]
+}
+
+export interface BlacklistEmployersResponse {
+    found: number
+    page: number
+    pages: number
+    per_page: number
+    limit_reached: boolean
+    items: EmployerBlacklisted[]
 }

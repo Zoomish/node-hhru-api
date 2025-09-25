@@ -336,3 +336,32 @@ export async function removeVacancyFromBlacklist(
         token,
     })
 }
+
+export async function getBlacklistEmployers(
+    token: string
+): Promise<BlacklistVacanciesResponse> {
+    return request<BlacklistVacanciesResponse>(`/employers/blacklisted`, {
+        method: 'GET',
+        token,
+    })
+}
+
+export async function addEmployerToBlacklist(
+    token: string,
+    employerId: string
+): Promise<void> {
+    return request<void>(`/employers/blacklisted/${employerId}`, {
+        method: 'PUT',
+        token,
+    })
+}
+
+export async function removeEmployerFromBlacklist(
+    token: string,
+    employerId: string
+): Promise<void> {
+    return request<void>(`/employers/blacklisted/${employerId}`, {
+        method: 'DELETE',
+        token,
+    })
+}

@@ -418,6 +418,11 @@ export interface Employer extends IdUrlName {
     employer_rating?: EmployerRating
 }
 
+export interface EmployerBlacklisted
+    extends Omit<Employer, 'accredited_it_employer' | 'employer_rating'> {
+    open_vacancies: number
+}
+
 export interface EmployerRating {
     reviews_count: number
     total_rating: number
