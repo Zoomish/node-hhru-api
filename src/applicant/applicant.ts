@@ -316,3 +316,23 @@ export async function getBlacklistVacancies(
         token,
     })
 }
+
+export async function addVacancyToBlacklist(
+    token: string,
+    vacancyId: string
+): Promise<void> {
+    return request<void>(`/vacancies/blacklisted/${vacancyId}`, {
+        method: 'PUT',
+        token,
+    })
+}
+
+export async function removeVacancyFromBlacklist(
+    token: string,
+    vacancyId: string
+): Promise<void> {
+    return request<void>(`/vacancies/blacklisted/${vacancyId}`, {
+        method: 'DELETE',
+        token,
+    })
+}
