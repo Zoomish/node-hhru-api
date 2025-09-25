@@ -560,6 +560,24 @@ export interface VacancyFull extends Vacancy {
     suitable_resumes_url: string | null
     test: Test
     vacancy_properties: VacancyProperties
+    video_vacancy: VideoVacancy
+}
+
+export interface VideoVacancy {
+    cover_picture: CoverPicture
+    snippet_picture: Omit<IdUrlName, 'name' | 'id'>
+    snippet_video: SnippetVideo
+    video: SnippetVideo
+}
+
+export interface SnippetVideo extends Omit<IdUrlName, 'name' | 'id'> {
+    upload_id: number
+}
+
+export interface CoverPicture {
+    resized_height: number
+    resized_path: string
+    resized_width: number
 }
 
 export interface VacancyProperties {
