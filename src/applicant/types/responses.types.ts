@@ -17,6 +17,7 @@ import {
     ResumeItemShort,
     Suggests,
     Vacancy,
+    VacancyShort,
 } from './index.ts'
 
 export interface PhoneConfirmationBody {
@@ -176,4 +177,13 @@ export interface ResumeVisibilityListResponse {
     per_page: number
     limit: number
     items: Employer[]
+}
+
+export interface BlacklistVacanciesResponse {
+    found: number
+    page: number
+    pages: number
+    per_page: number
+    limit_reached: boolean
+    items: VacancyShort[]
 }

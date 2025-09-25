@@ -500,36 +500,48 @@ export interface Suggests {
     value: string
 }
 
-export interface Vacancy {
-    id: string
-    name: string
+export interface VacancyType {
+    id: Dictionary['vacancy_type'][number]['id']
+    name: Dictionary['vacancy_type'][number]['name']
+}
+
+export interface VacancyShort {
+    address?: Address | null
+    adv_response_url: string
     alternate_url: string
     apply_alternate_url: string
-    description?: string | null
-    archived?: boolean | null
-    accept_incomplete_resumes: boolean
-    accept_temporary?: boolean | null
-    address?: Address | null
-    metro_stations?: MetroStation[]
-    created_at?: string
+    archived: boolean
+    area: IdUrlName
+    created_at: string
     department?: Department | null
     employer?: EmployerVakancy
-    fly_in_fly_out_duration?: FlyInFlyOutDuration[] | null
     has_test: boolean
+    id: string
     insider_interview?: Omit<IdUrlName, 'name'> | null
-    internship?: boolean | null
-    night_shifts?: boolean | null
-    premium?: boolean | null
-    professional_roles: ProfessionalRole[]
-    published_at?: string
+    name: string
+    premium: boolean
+    published_at: string
     relations?: Dictionary['vacancy_relation'][number]['id'][] | null
     response_letter_required: boolean
     response_url?: string | null
     salary_range?: SalaryRange | null
-    schedule?: WorkSchedule | null
     show_contacts?: boolean | null
     sort_point_distance?: number | null
+    type: VacancyType
     url: string
+}
+
+export interface Vacancy extends VacancyShort {
+    description?: string | null
+    accept_incomplete_resumes: boolean
+    accept_temporary?: boolean | null
+    address?: Address | null
+    metro_stations?: MetroStation[]
+    fly_in_fly_out_duration?: FlyInFlyOutDuration[] | null
+    internship?: boolean | null
+    night_shifts?: boolean | null
+    professional_roles: ProfessionalRole[]
+    schedule?: WorkSchedule | null
     work_format?: WorkFormat[] | null
     work_schedule_by_days?: WorkSchedule[] | null
     working_hours?: WorkSchedule[] | null
@@ -543,7 +555,6 @@ export interface VacancyFull extends Vacancy {
     age_restriction: AgeRestriction
     allow_messages: boolean
     approved: boolean
-    area: IdUrlName
     closed_for_applicants: boolean | null
     code: string | null
     contacts: ContactsVacancy | null

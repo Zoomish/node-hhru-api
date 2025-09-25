@@ -7,6 +7,7 @@ import { request } from '../http.ts'
 import {
     AddEmployersToVisibilityListBody,
     ApplyVacancyBody,
+    BlacklistVacanciesResponse,
     MyResumeItemsResponse,
     PhoneConfirmationBody,
     PhoneInfoResponse,
@@ -202,7 +203,10 @@ export async function getSimilarVacancies(
     )
 }
 
-export async function getAccessTypes(token: string, resumeId: string) {
+export async function getAccessTypes(
+    token: string,
+    resumeId: string
+): Promise<ResumeAccessTypeResponse> {
     return request<ResumeAccessTypeResponse>(
         `/resumes/${resumeId}/access_types`,
         {
@@ -301,5 +305,14 @@ export async function applyVacancy(
         token,
         body: objectToFormData(body),
         contentType: 'multipart/form-data',
+    })
+}
+
+export async function getBlacklistVacancies(
+    token: string
+): Promise<BlacklistVacanciesResponse> {
+    return request<BlacklistVacanciesResponse>(`/vacancies/blacklisted`, {
+        method: 'GET',
+        token,
     })
 }
