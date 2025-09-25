@@ -11,6 +11,7 @@ import {
     BlacklistVacanciesResponse,
     CreateSavedSearchParams,
     FavoritedVacanciesResponse,
+    GetMeResponse,
     MyResumeItemsResponse,
     PhoneConfirmationBody,
     PhoneInfoResponse,
@@ -452,6 +453,13 @@ export async function deleteSavedSearch(
 ): Promise<void> {
     return request<void>(`/saved_searches/vacancies/${id}`, {
         method: 'DELETE',
+        token,
+    })
+}
+
+export async function getMe(token: string): Promise<GetMeResponse> {
+    return request<GetMeResponse>(`/me`, {
+        method: 'GET',
         token,
     })
 }

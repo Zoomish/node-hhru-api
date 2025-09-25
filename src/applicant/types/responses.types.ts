@@ -10,6 +10,7 @@ import {
     IdName,
     IdUrlName,
     ListFieldCondition,
+    Me,
     ModerationNote,
     ResumeAccessTypeFull,
     ResumeItem,
@@ -211,3 +212,5 @@ export interface SavedSearchesResponse {
 }
 
 export interface SavedSearchByIdResponse extends SavedSearch {}
+
+export interface GetMeResponse extends Me {}

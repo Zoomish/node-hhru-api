@@ -670,3 +670,47 @@ export interface SavedSearch extends IdName {
     items: CountUrl
     new_items: CountUrl
 }
+
+export interface Me extends Id {
+    auth_type: 'applicant'
+    is_admin: boolean
+    is_applicant: boolean
+    is_application: boolean
+    is_employer: boolean
+    is_employer_integration: boolean
+    email: string | null
+    first_name: string
+    last_name: string
+    middle_name: string | null
+    phone: string | null
+    counters: MeCounters
+    is_in_search: boolean
+    negotiations_url: string
+    profile_videos: MeVideos
+    resumes_url: string
+    user_statuses: UserStatuses
+    [key: string]: any
+}
+
+export interface MeCounters {
+    new_resume_views: number
+    resumes_count: number
+    unread_negotiations: number
+}
+
+export interface MeVideos {
+    items: MeVideo[]
+}
+
+export interface MeVideo extends Id {
+    download_url: DownloadUrl
+}
+
+export interface DownloadUrl {
+    url: string
+    expires_at: string
+}
+
+export interface UserStatuses {
+    job_search_status: JobSearchStatus
+}
