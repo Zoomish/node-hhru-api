@@ -9,6 +9,7 @@ import {
     ApplyVacancyBody,
     BlacklistEmployersResponse,
     BlacklistVacanciesResponse,
+    FavoritedVacanciesResponse,
     MyResumeItemsResponse,
     PhoneConfirmationBody,
     PhoneInfoResponse,
@@ -362,6 +363,35 @@ export async function removeEmployerFromBlacklist(
     employerId: string
 ): Promise<void> {
     return request<void>(`/employers/blacklisted/${employerId}`, {
+        method: 'DELETE',
+        token,
+    })
+}
+
+export async function getFavouritesVacancies(
+    token: string
+): Promise<FavoritedVacanciesResponse> {
+    return request<FavoritedVacanciesResponse>(`/vacancies/favorited`, {
+        method: 'GET',
+        token,
+    })
+}
+
+export async function addVacancyToFavourites(
+    token: string,
+    vacancyId: string
+): Promise<void> {
+    return request<void>(`/vacancies/favorited/${vacancyId}`, {
+        method: 'PUT',
+        token,
+    })
+}
+
+export async function removeVacancyFromFavourites(
+    token: string,
+    vacancyId: string
+): Promise<void> {
+    return request<void>(`/vacancies/favorited/${vacancyId}`, {
         method: 'DELETE',
         token,
     })

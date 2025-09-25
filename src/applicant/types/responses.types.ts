@@ -189,6 +189,8 @@ export interface BlacklistVacanciesResponse {
     items: VacancyShort[]
 }
 
+export interface FavoritedVacanciesResponse extends BlacklistVacanciesResponse {}
+
 export interface BlacklistEmployersResponse {
     found: number
     page: number
