@@ -51,7 +51,7 @@ export interface AddEmployersToVisibilityListBody {
     items: Id[]
 }
 
-export interface ApplyVacancyFormDataBody {
+export interface ApplyVacancyBody {
     message?: string
     resume_id: string
     vacancy_id: string

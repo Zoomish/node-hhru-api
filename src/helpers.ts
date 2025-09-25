@@ -13,3 +13,14 @@ export function arrayToUrlSearchParams(field: string, array: string[]): string {
     if (!array) return ''
     return new URLSearchParams(array.map((s) => [field, s])).toString()
 }
+
+export function objectToFormData<T extends object>(obj: T): FormData {
+    const formData = new FormData()
+    Object.keys(obj).forEach((key) => {
+        const value = obj[key as keyof T]
+        if (value !== undefined && value !== null) {
+            formData.append(key, value instanceof Blob ? value : String(value))
+        }
+    })
+    return formData
+}

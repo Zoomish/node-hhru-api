@@ -1,8 +1,12 @@
-import { arrayToUrlSearchParams, objectToUrlSearchParams } from '../helpers.ts'
+import {
+    arrayToUrlSearchParams,
+    objectToFormData,
+    objectToUrlSearchParams,
+} from '../helpers.ts'
 import { request } from '../http.ts'
 import {
     AddEmployersToVisibilityListBody,
-    ApplyVacancyFormDataBody,
+    ApplyVacancyBody,
     MyResumeItemsResponse,
     PhoneConfirmationBody,
     PhoneInfoResponse,
@@ -290,12 +294,12 @@ export async function getVacancy(
 
 export async function applyVacancy(
     token: string,
-    body: ApplyVacancyFormDataBody
+    body: ApplyVacancyBody
 ): Promise<void> {
     return request<void>(`/negotiations`, {
         method: 'POST',
         token,
-        body,
+        body: objectToFormData(body),
         contentType: 'multipart/form-data',
     })
 }
