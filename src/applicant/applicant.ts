@@ -2,6 +2,7 @@ import { arrayToUrlSearchParams, objectToUrlSearchParams } from '../helpers.ts'
 import { request } from '../http.ts'
 import {
     AddEmployersToVisibilityListBody,
+    ApplyVacancyFormDataBody,
     MyResumeItemsResponse,
     PhoneConfirmationBody,
     PhoneInfoResponse,
@@ -31,7 +32,7 @@ export async function confirmPhone(
         method: 'POST',
         body: objectToUrlSearchParams(body),
         token,
-        rawBody: true,
+        contentType: 'application/x-www-form-urlencoded',
     })
 }
 
@@ -53,7 +54,7 @@ export async function sendPhoneConfirmationCode(
     return request<PhoneSendCodeResponse>('/resume_phone_generate_code', {
         method: 'POST',
         body: objectToUrlSearchParams({ phone }),
-        rawBody: true,
+        contentType: 'application/x-www-form-urlencoded',
         token,
     })
 }
@@ -284,5 +285,17 @@ export async function getVacancy(
     return request<VacancyFull>(`/vacancies/${vacancyId}`, {
         method: 'GET',
         token,
+    })
+}
+
+export async function applyVacancy(
+    token: string,
+    body: ApplyVacancyFormDataBody
+): Promise<void> {
+    return request<void>(`/negotiations`, {
+        method: 'POST',
+        token,
+        body,
+        contentType: 'multipart/form-data',
     })
 }

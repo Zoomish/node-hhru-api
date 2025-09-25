@@ -1602,5 +1602,10 @@ export type Locales = [
     },
 ]
 
-
 export type Methods = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
+
+export type ContentType =
+    | 'application/x-www-form-urlencoded'
+    | 'text/plain'
+    | 'multipart/form-data'
+    | 'application/json'

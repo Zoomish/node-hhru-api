@@ -50,3 +50,9 @@ export type ResumeVisibilityListType = 'whitelist' | 'blacklist'
 export interface AddEmployersToVisibilityListBody {
     items: Id[]
 }
+
+export interface ApplyVacancyFormDataBody {
+    message?: string
+    resume_id: string
+    vacancy_id: string
+}

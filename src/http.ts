@@ -1,6 +1,6 @@
 import fetch, { Response } from 'node-fetch'
 import { HHError } from './error.ts'
-import { Methods } from './types/const.ts'
+import { ContentType, Methods } from './types/const.ts'
 import { HHApiError } from './types/errors.types.ts'
 
 interface RequestOptions {
@@ -8,7 +8,7 @@ interface RequestOptions {
     headers: Record<string, string>
     body: any
     token: string
-    rawBody: boolean
+    contentType: ContentType
     oldAddress: boolean
     queryParams: string
 }
@@ -36,7 +36,7 @@ export async function request<T>(
         headers = {},
         body,
         token,
-        rawBody = false,
+        contentType = 'application/json',
         oldAddress = false,
         queryParams = '',
     } = options
@@ -46,14 +46,15 @@ export async function request<T>(
         {
             method,
             headers: {
-                'Content-Type': rawBody
-                    ? 'application/x-www-form-urlencoded'
-                    : 'application/json',
+                'Content-Type': contentType,
                 ...(token ? { Authorization: `Bearer ${token}` } : {}),
                 'HH-User-Agent': globalConfig.userAgent,
                 ...headers,
             },
-            body: rawBody ? body : JSON.stringify(body),
+            body:
+                contentType !== 'application/json'
+                    ? body
+                    : JSON.stringify(body),
         }
     )
 
