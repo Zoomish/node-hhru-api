@@ -12,7 +12,7 @@ export async function getAppToken(
             client_id: clientId,
             client_secret: clientSecret,
         }),
-        rawBody: true,
+        contentType: 'application/x-www-form-urlencoded',
         oldAddress: true,
     })
 }
@@ -32,7 +32,7 @@ export async function getUserToken(
             code,
             redirect_uri: redirectUri ?? '',
         }).toString(),
-        rawBody: true,
+        contentType: 'application/x-www-form-urlencoded',
         oldAddress: true,
     })
 }
@@ -50,7 +50,7 @@ export async function refreshUserToken(
             client_secret: clientSecret,
             refresh_token: refreshToken,
         }).toString(),
-        rawBody: true,
+        contentType: 'application/x-www-form-urlencoded',
         oldAddress: true,
     })
 }
