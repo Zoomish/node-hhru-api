@@ -1,5 +1,5 @@
 import { Dictionary } from '../../types/const.ts'
-import { Id } from './types.type.ts'
+import { Id, UpdateMeFIO, UpdateMeInSearch } from './types.type.ts'
 
 export interface SimilarVacancySearchParams {
     page: number
@@ -75,3 +75,5 @@ export interface ApplyVacancyBody {
 }
 
 export interface CreateSavedSearchParams extends SimilarVacancySearchParams {}
+
+export type UpdateMeBody = UpdateMeFIO | UpdateMeInSearch

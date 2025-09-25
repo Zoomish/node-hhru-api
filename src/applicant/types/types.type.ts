@@ -714,3 +714,13 @@ export interface DownloadUrl {
 export interface UserStatuses {
     job_search_status: JobSearchStatus
 }
+
+export interface UpdateMeFIO {
+    first_name: string
+    last_name: string
+    middle_name: string
+}
+
+export interface UpdateMeInSearch {
+    is_in_search: boolean
+}

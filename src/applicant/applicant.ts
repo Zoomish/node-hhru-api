@@ -32,6 +32,7 @@ import {
     SimilarVacanciesResponse,
     SimilarVacancySearchParams,
     SuitableResumeItemsResponse,
+    UpdateMeBody,
     VacancyFull,
 } from './types/index.ts'
 
@@ -461,5 +462,17 @@ export async function getMe(token: string): Promise<GetMeResponse> {
     return request<GetMeResponse>(`/me`, {
         method: 'GET',
         token,
+    })
+}
+
+export async function updateMe(
+    token: string,
+    body: UpdateMeBody
+): Promise<GetMeResponse> {
+    return request<GetMeResponse>(`/me`, {
+        method: 'POST',
+        body: objectToUrlSearchParams(body),
+        token,
+        contentType: 'application/x-www-form-urlencoded',
     })
 }
