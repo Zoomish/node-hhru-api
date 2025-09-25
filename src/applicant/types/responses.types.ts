@@ -209,3 +209,5 @@ export interface SavedSearchesResponse {
     per_page: number
     items: SavedSearch[]
 }
+
+export interface SavedSearchByIdResponse extends SavedSearch {}

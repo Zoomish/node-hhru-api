@@ -26,6 +26,7 @@ import {
     ResumeVisibilityListType,
     ResumeVisibilitySearchParams,
     ResumeVisibilitySearchResponse,
+    SavedSearchByIdResponse,
     SavedSearchesResponse,
     SimilarVacanciesResponse,
     SimilarVacancySearchParams,
@@ -419,5 +420,38 @@ export async function createSavedSearch(
         method: 'POST',
         token,
         queryParams: objectToUrlSearchParams(options),
+    })
+}
+
+export async function getSavedSearch(
+    token: string,
+    id: string
+): Promise<SavedSearchByIdResponse> {
+    return request<SavedSearchByIdResponse>(`/saved_searches/vacancies/${id}`, {
+        method: 'GET',
+        token,
+    })
+}
+
+export async function updateSavedSearch(
+    token: string,
+    id: string,
+    name?: string,
+    subscription?: boolean
+): Promise<void> {
+    return request<void>(`/saved_searches/vacancies/${id}`, {
+        method: 'PUT',
+        token,
+        queryParams: objectToUrlSearchParams({ name, subscription }),
+    })
+}
+
+export async function deleteSavedSearch(
+    token: string,
+    id: string
+): Promise<void> {
+    return request<void>(`/saved_searches/vacancies/${id}`, {
+        method: 'DELETE',
+        token,
     })
 }
