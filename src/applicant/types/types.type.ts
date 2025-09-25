@@ -532,10 +532,7 @@ export interface Vacancy {
     url: string
     work_format?: WorkFormat[] | null
     work_schedule_by_days?: WorkSchedule[] | null
-    working_days?: any[] | null
     working_hours?: WorkSchedule[] | null
-    working_time_intervals?: any[] | null
-    working_time_modes?: any[] | null
     counters?: VacancyCounters
     snippet?: VacancySnippet
     accept_only_for_part_time?: string[]
