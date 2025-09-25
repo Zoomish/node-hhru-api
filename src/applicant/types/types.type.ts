@@ -519,6 +519,13 @@ export interface Vacancy {
     accept_only_for_part_time?: string[]
 }
 
+export interface VacancyFull extends Vacancy {
+    active: boolean | null
+    limit: number | null
+    list_url: string | null
+    total: number | null
+}
+
 export interface ResumeAccessTypeFull extends ResumeAccessType {
     active: boolean | null
     limit: number | null

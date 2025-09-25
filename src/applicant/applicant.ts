@@ -20,6 +20,7 @@ import {
     SimilarVacanciesResponse,
     SimilarVacancySearchParams,
     SuitableResumeItemsResponse,
+    VacancyFull,
 } from './types/index.ts'
 
 export async function confirmPhone(
@@ -273,5 +274,15 @@ export async function removeFromVisibilityList(
         method: 'DELETE',
         token,
         queryParams: arrayToUrlSearchParams('id', id),
+    })
+}
+
+export async function getVacancy(
+    token: string,
+    vacancyId: string
+): Promise<VacancyFull> {
+    return request<VacancyFull>(`/vacancies/${vacancyId}`, {
+        method: 'GET',
+        token,
     })
 }
