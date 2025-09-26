@@ -28,6 +28,7 @@ import {
     ResumeItemFull,
     ResumeItemStatusResponse,
     ResumeItemViewsResponse,
+    ResumeProfileResponse,
     ResumeVisibilityListResponse,
     ResumeVisibilityListType,
     ResumeVisibilitySearchParams,
@@ -556,8 +557,8 @@ export async function getPhoto(token: string): Promise<PhotoResponse> {
 export async function getResumeProfile(
     token: string,
     resumeId: string
-): Promise<PhotoResponse> {
-    return request<PhotoResponse>(`/resume_profile/${resumeId}`, {
+): Promise<ResumeProfileResponse> {
+    return request<ResumeProfileResponse>(`/resume_profile/${resumeId}`, {
         method: 'POST',
         token,
     })

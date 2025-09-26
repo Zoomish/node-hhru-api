@@ -862,19 +862,68 @@ export interface SkillsWithLevel extends IdName {
     category: 'LANG' | 'SKILL'
     level: Level
     practice: Practice
+    theory: Theory
+}
+
+interface Theory extends Id {
+    attempted_at: string
+    level: Level
+    method: Method
+    result: Result
+    validity: Validity
+    verified: boolean
+    verified_by: 'NONE' | 'THEORY' | 'PRACTICE' | 'THEORY_AND_PRACTICE'
+    [key: string]: any
 }
 
 interface Practice extends Id {
     attempted_at: string
     level: Level
     method: Method
+    result: Result
+    validity: Validity
     [key: string]: any
+}
+
+interface Validity {
+    state: string
+    valid_until: string | null
+    [key: string]: any
+}
+
+interface Result {
+    antifraud_verdict:
+        | 'FRAUD_DETECTED'
+        | 'UNKNOWN'
+        | 'VERIFIED'
+        | 'FAILED_TO_VERIFY'
+        | 'EVALUATION_WAS_NOT_REQUESTED'
+    score: Score
+    status: string
+    type: string
+    [key: string]: any
+}
+
+interface Score {
+    actual: number
+    max: number
 }
 
 interface Method extends IdName {
     branding_settings: BrandingSettings | null
     description: string
-    headline: Headline
+    headline: Headline | null
+    icon: Headline | null
+    platform: 'KAK_DELA_QUIZ'
+    source: Source
+    [key: string]: any
+}
+
+interface Source extends IdName {
+    description: string | null
+    headline: Headline | null
+    href: string | null
+    icon: Headline | null
     [key: string]: any
 }
 

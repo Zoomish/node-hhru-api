@@ -217,7 +217,7 @@ export interface PhotoResponse extends Pagination {
     items: CreatePortfolioResponse[]
 }
 
-export interface ResumeProfile {
+export interface ResumeProfileResponse {
     additional_properties: AdditionalProperties
     conditions: ResumeConditions
     creds: ResumeCreds
