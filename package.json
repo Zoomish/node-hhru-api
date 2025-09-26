@@ -6,6 +6,10 @@
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Zoomish/node-hhru-api"
+  },
   "keywords": [
     "hh",
     "headhunter",

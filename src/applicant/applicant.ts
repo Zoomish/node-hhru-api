@@ -552,3 +552,13 @@ export async function getPhoto(token: string): Promise<PhotoResponse> {
         token,
     })
 }
+
+export async function getResumeProfile(
+    token: string,
+    resumeId: string
+): Promise<PhotoResponse> {
+    return request<PhotoResponse>(`/resume_profile/${resumeId}`, {
+        method: 'POST',
+        token,
+    })
+}

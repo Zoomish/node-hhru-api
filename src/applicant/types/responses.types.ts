@@ -210,3 +210,7 @@ interface PortfolioResponseItem extends CreatePortfolioResponse {
 export interface PhotoResponse extends Pagination {
     items: CreatePortfolioResponse[]
 }
+
+export interface ResumeProfile {
+    conditions: ResumeConditions
+}
