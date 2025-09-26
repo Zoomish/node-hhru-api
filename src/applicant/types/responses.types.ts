@@ -22,6 +22,7 @@ import {
     ResumeItemMiddle,
     ResumeItemProgress,
     ResumeItemShort,
+    ResumeShort,
     SavedSearch,
     Suggests,
     Vacancy,
@@ -220,4 +221,12 @@ export interface ResumeProfile {
     creds: ResumeCreds
     next_incomplete_screen_id: string | null
     profile: Profile
+    profile_conditions: ResumeConditions
+    resume: ResumeItemMiddle
+    resumes: ResumesItem
+}
+
+interface ResumesItem {
+    conditions: ResumeConditions
+    resume: ResumeShort
 }

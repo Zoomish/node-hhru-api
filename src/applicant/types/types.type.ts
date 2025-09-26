@@ -246,6 +246,12 @@ export interface ResumeItemShort {
     alternate_url: string
 }
 
+export interface ResumeShort extends Id {
+    photo: Photo | null
+    status: IdName
+    title: string
+}
+
 interface Portfolio {
     description: string
     medium: string
