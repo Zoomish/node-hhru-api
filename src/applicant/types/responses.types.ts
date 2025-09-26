@@ -234,3 +234,19 @@ interface ResumesItem {
     conditions: ResumeConditions
     resume: ResumeShort
 }
+
+export interface ResumeProfileDictResponse {
+    resume_any_job_titles: Items
+    resume_default_titles: Items
+    resume_popular_titles: Items
+    resume_profile_communication_methods: Items
+}
+
+interface Items {
+    items: RoleId
+}
+
+interface RoleId {
+    name: string
+    role_ids?: string[] | null
+}

@@ -11,6 +11,7 @@ import {
     BlacklistVacanciesResponse,
     CreatePortfolioBody,
     CreatePortfolioResponse,
+    CreateResumeProfileBody,
     CreateSavedSearchParams,
     FavoritedVacanciesResponse,
     GetMeResponse,
@@ -28,6 +29,7 @@ import {
     ResumeItemFull,
     ResumeItemStatusResponse,
     ResumeItemViewsResponse,
+    ResumeProfileDictResponse,
     ResumeProfileResponse,
     ResumeVisibilityListResponse,
     ResumeVisibilityListType,
@@ -40,6 +42,7 @@ import {
     SuitableResumeItemsResponse,
     UpdateMeBody,
     UpdatePortfolioBody,
+    UpdateResumeProfileBody,
     VacancyFull,
 } from './types/index.ts'
 
@@ -559,7 +562,40 @@ export async function getResumeProfile(
     resumeId: string
 ): Promise<ResumeProfileResponse> {
     return request<ResumeProfileResponse>(`/resume_profile/${resumeId}`, {
+        method: 'GET',
+        token,
+    })
+}
+
+export async function updateResumeProfile(
+    token: string,
+    resumeId: string,
+    body: UpdateResumeProfileBody
+): Promise<ResumeProfileResponse> {
+    return request<ResumeProfileResponse>(`/resume_profile/${resumeId}`, {
+        method: 'PUT',
+        token,
+        body,
+    })
+}
+
+export async function createResumeProfile(
+    token: string,
+    resumeId: string,
+    body: Partial<CreateResumeProfileBody>
+): Promise<ResumeProfileResponse> {
+    return request<ResumeProfileResponse>(`/resume_profile/${resumeId}`, {
         method: 'POST',
+        token,
+        body,
+    })
+}
+
+export async function getResumeProfileDict(
+    token: string
+): Promise<ResumeProfileDictResponse> {
+    return request<ResumeProfileDictResponse>(`/resume_profile/dictionaries`, {
+        method: 'GET',
         token,
     })
 }

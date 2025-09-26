@@ -1,5 +1,12 @@
-import { Dictionary } from '../../types/const.ts'
-import { Id, UpdateMeFIO, UpdateMeInSearch } from './types.type.ts'
+import { Dictionary, LngLat } from '../../types/const.ts'
+import {
+    AdditionalProperties,
+    Id,
+    Profile,
+    ResumeItemMiddle,
+    UpdateMeFIO,
+    UpdateMeInSearch,
+} from './types.type.ts'
 
 export interface SimilarVacancySearchParams {
     page: number
@@ -86,4 +93,28 @@ export interface CreatePortfolioBody {
     description?: string
     file: string
     type: 'photo' | 'portfolio'
+}
+
+export interface UpdateResumeProfileBody {
+    additional_properties?: Partial<AdditionalProperties>
+    creds?: Creds
+    current_screen_id: string
+    profile?: Partial<Profile>
+    resume?: Partial<ResumeItemMiddle>
+}
+
+interface Creds {
+    question_to_answer_map: { [key: string]: string[] }
+}
+
+export interface CreateResumeProfileBody extends LngLat {
+    entry_point:
+        | 'default'
+        | 'vacancy_response'
+        | 'onboarding_short'
+        | 'onboarding_area_creds'
+    vacancy_id: number
+    additional_properties: Partial<AdditionalProperties>
+    clone_resume_id: string
+    update_profile: boolean
 }
