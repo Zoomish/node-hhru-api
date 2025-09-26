@@ -24,6 +24,8 @@ import {
     ResumeItemShort,
     ResumeShort,
     SavedSearch,
+    ScreenProfile,
+    SkillsWithLevel,
     Suggests,
     Vacancy,
     VacancyShort,
@@ -224,6 +226,8 @@ export interface ResumeProfile {
     profile_conditions: ResumeConditions
     resume: ResumeItemMiddle
     resumes: ResumesItem
+    screens: ScreenProfile
+    skills_with_levels: SkillsWithLevel[]
 }
 
 interface ResumesItem {

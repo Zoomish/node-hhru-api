@@ -833,3 +833,38 @@ interface CommunicationMethod {
     title?: string | null
     value: string | null
 }
+
+export interface ScreenProfile {
+    fields_options: { [key: string]: FieldsOptions }
+    messages: { [key: string]: Message }
+    screen_content: ScreenContent[]
+    screen_id: string
+    screen_type: 'static' | 'dynamic'
+    title: string
+}
+
+interface ScreenContent {
+    content_id: string
+    content_type: 'cred' | 'skill_levels'
+}
+
+interface Message {
+    fields: string[]
+    text: string
+}
+
+interface FieldsOptions {
+    fields: object
+    visibility: 'show' | 'hide'
+}
+
+export interface SkillsWithLevel extends IdName {
+    category: 'LANG' | 'SKILL'
+    level: Level
+}
+
+interface Level extends IdName {
+    internal_id: string
+    rank: number
+    [key: string]: any
+}
