@@ -18,6 +18,7 @@ import {
     PhoneConfirmationBody,
     PhoneInfoResponse,
     PhoneSendCodeResponse,
+    PhotoResponse,
     PortfolioConditionsResponse,
     PortfolioResponse,
     ResumeAccessTypeResponse,
@@ -528,7 +529,7 @@ export async function createPortfolio(
     token: string,
     body: CreatePortfolioBody
 ): Promise<CreatePortfolioResponse> {
-    return request<CreatePortfolioResponse>(`/resumes`, {
+    return request<CreatePortfolioResponse>(`/artifacts`, {
         method: 'POST',
         token,
         body: objectToFormData(body),
@@ -541,6 +542,13 @@ export async function getPhotoConditions(
 ): Promise<PortfolioConditionsResponse> {
     return request<PortfolioConditionsResponse>(`/artifacts/photo/conditions`, {
         method: 'GET',
+        token,
+    })
+}
+
+export async function getPhoto(token: string): Promise<PhotoResponse> {
+    return request<PhotoResponse>(`/artifacts/photo`, {
+        method: 'POST',
         token,
     })
 }

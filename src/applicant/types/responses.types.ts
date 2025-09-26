@@ -206,3 +206,7 @@ export interface PortfolioResponse extends Pagination {
 interface PortfolioResponseItem extends CreatePortfolioResponse {
     description: string
 }
+
+export interface PhotoResponse extends Pagination {
+    items: CreatePortfolioResponse[]
+}
