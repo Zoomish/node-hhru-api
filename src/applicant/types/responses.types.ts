@@ -218,4 +218,16 @@ export interface GetMeResponse extends Me {}
 
 export interface PortfolioConditionsResponse extends PortfolioConditions {}
 
+export interface CreatePortfolioResponse {
+    id: string
+    medium: string
+    small: string
+    state: CreatePortfolioState
+}
+
+interface CreatePortfolioState {
+    id: 'processing' | 'failed' | 'ok'
+    name: string
+}
+
 export interface PortfolioResponse {}

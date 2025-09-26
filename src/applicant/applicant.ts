@@ -9,6 +9,8 @@ import {
     ApplyVacancyBody,
     BlacklistEmployersResponse,
     BlacklistVacanciesResponse,
+    CreatePortfolioBody,
+    CreatePortfolioResponse,
     CreateSavedSearchParams,
     FavoritedVacanciesResponse,
     GetMeResponse,
@@ -519,5 +521,17 @@ export async function deletePortfolio(
     return request<void>(`/artifacts/${id}`, {
         method: 'DELETE',
         token,
+    })
+}
+
+export async function createPortfolio(
+    token: string,
+    body: CreatePortfolioBody
+): Promise<CreatePortfolioResponse> {
+    return request<CreatePortfolioResponse>(`/resumes`, {
+        method: 'POST',
+        token,
+        body: objectToFormData(body),
+        contentType: 'multipart/form-data',
     })
 }

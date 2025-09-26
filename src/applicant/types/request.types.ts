@@ -81,3 +81,9 @@ export type UpdateMeBody = UpdateMeFIO | UpdateMeInSearch
 export interface UpdatePortfolioBody {
     description: string
 }
+
+export interface CreatePortfolioBody {
+    description?: string
+    file: string
+    type: 'photo' | 'portfolio'
+}
