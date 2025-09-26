@@ -1,4 +1,4 @@
-import { Dictionary, Locales } from '../../types/const.ts'
+import { Dictionary, LngLat, Locales } from '../../types/const.ts'
 
 export interface Id {
     id: string
@@ -374,32 +374,24 @@ export interface FieldsCondition extends FieldCondition {
     fields?: Record<string, FieldCondition | FieldsCondition | null> | null
 }
 
-interface Address {
+interface Address extends Partial<LngLat> {
     building?: string | null
     city?: string | null
-    lat?: number | null
-    lng?: number | null
     metro?: MetroStation | null
     raw?: string | null
     street?: string | null
     id?: string | null
 }
 
-interface MetroStation {
-    lat: number | null
+interface MetroStation extends LngLat {
     line_id: string
     line_name: string
-    lng: number | null
     station_id: string
     station_name: string
     area: IdUrlName
 }
 
-interface MetroStationResume {
-    lat: number
-    lng: number
-    id: string
-    name: string
+interface MetroStationResume extends LngLat, IdName {
     order: number
     line: MetroLine
 }
@@ -750,4 +742,88 @@ interface ConditionsFile {
     max_size: number
     mime_type: string[]
     required: boolean
+}
+
+export interface AdditionalProperties {
+    any_job: boolean
+    job_by_education: boolean
+}
+
+export interface ResumeCreds {
+    answers: { [key: string]: AnswerId }
+    question_to_answer_map: { [key: string]: string[] }
+    questions: { [key: string]: QuestionId }
+}
+
+interface AnswerId {
+    answer_group: string
+    answer_id: string
+    ask_questions_after: string[]
+    description: string | null
+    positive_title: string
+    skip_at_result: boolean
+    title: string
+}
+
+interface QuestionId {
+    description: string | null
+    is_active: boolean
+    possible_answers: string[]
+    question_id: string
+    question_title: string
+    question_type: string
+    required: boolean
+    skip_title_at_view: boolean
+    view_title: string | null
+}
+
+interface Area extends LngLat, IdUrlName {}
+
+export interface Profile {
+    address_coordinates: LngLat | null
+    area: Area
+    birth_date: string | null
+    citizenship: IdUrlName[]
+    communication_methods: { [key: string]: CommunicationMethod }
+    driver_license_types: DriverLicenseTypes[]
+    education: Education
+    first_name: string | null
+    gender: Gender | null
+    has_vehicle: boolean
+    language: Language[]
+    last_name: string | null
+    metro: MetroStationResume
+    middle_name: string | null
+    other_communication_methods: OtherCommunicationMethods[] | null
+    preferred_work_all_areas: boolean | null
+    preferred_work_areas: PreferredWorkAreas[]
+    relocation: Relocation
+    status: IdName
+    work_ticket: IdUrlName
+}
+
+interface PreferredWorkAreas {
+    area: IdUrlName
+    districts: District[]
+    lines: Omit<MetroLine, 'area'>
+    stations: MetroStationResume[]
+}
+
+interface District extends IdUrlName {
+    area_id: string
+}
+
+interface OtherCommunicationMethods {
+    description?: string | null
+    value: string
+}
+
+interface CommunicationMethod {
+    description?: string | null
+    error_message?: string | null
+    placeholder?: string | null
+    position?: number | null
+    regexp?: string | null
+    title?: string | null
+    value: string | null
 }

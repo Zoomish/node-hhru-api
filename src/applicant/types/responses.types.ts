@@ -1,5 +1,6 @@
 import { Pagination } from '../../types/const.ts'
 import {
+    AdditionalProperties,
     Argument,
     Cluster,
     Employer,
@@ -14,7 +15,9 @@ import {
     Me,
     ModerationNote,
     PortfolioConditions,
+    Profile,
     ResumeAccessTypeFull,
+    ResumeCreds,
     ResumeItem,
     ResumeItemMiddle,
     ResumeItemProgress,
@@ -212,5 +215,9 @@ export interface PhotoResponse extends Pagination {
 }
 
 export interface ResumeProfile {
+    additional_properties: AdditionalProperties
     conditions: ResumeConditions
+    creds: ResumeCreds
+    next_incomplete_screen_id: string | null
+    profile: Profile
 }
