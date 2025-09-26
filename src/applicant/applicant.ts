@@ -535,3 +535,12 @@ export async function createPortfolio(
         contentType: 'multipart/form-data',
     })
 }
+
+export async function getPhotoConditions(
+    token: string
+): Promise<PortfolioConditionsResponse> {
+    return request<PortfolioConditionsResponse>(`/artifacts/photo/conditions`, {
+        method: 'GET',
+        token,
+    })
+}

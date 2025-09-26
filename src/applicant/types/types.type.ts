@@ -10,43 +10,43 @@ export interface IdUrlName extends IdName {
     url: string
 }
 
-export interface FileUrl {
+interface FileUrl {
     url: string
 }
-export interface Download {
+interface Download {
     pdf: FileUrl
     rtf: FileUrl
 }
 
-export interface Photo {
+interface Photo {
     id?: string
     medium: string
     small: string
 }
 
-export interface Salary {
+interface Salary {
     amount: number | null
     currency: Dictionary['currency'][number]['code'] | null
     title?: string | null
 }
 
-export interface TotalExperience {
+interface TotalExperience {
     months: number | null
 }
-export interface ResumeAccessType {
+interface ResumeAccessType {
     id: Dictionary['resume_access_type'][number]['id']
     name: Dictionary['resume_access_type'][number]['name']
 }
-export interface AccessType {
+interface AccessType {
     type: ResumeAccessType
 }
-export interface LogoUrls {
+interface LogoUrls {
     90?: string
     240?: string
     original: string
 }
 
-export interface Certificate {
+interface Certificate {
     achieved_at: string
     owner: string | null
     title: string
@@ -54,7 +54,7 @@ export interface Certificate {
     url: string | null
 }
 
-export interface ExperienceItem {
+interface ExperienceItem {
     area: IdUrlName
     company?: string | null
     company_id?: string | null
@@ -67,7 +67,7 @@ export interface ExperienceItem {
     start: string
 }
 
-export interface Education {
+interface Education {
     additional?: BaseEducation[] | null
     attestation?: BaseEducation[] | null
     elementary?: ElementaryEducation[] | null
@@ -75,22 +75,22 @@ export interface Education {
     level: IdName
 }
 
-export interface EducationLevel {
+interface EducationLevel {
     id: Dictionary['education_level'][number]['id']
     name: Dictionary['education_level'][number]['name']
 }
 
-export interface BaseEducation {
+interface BaseEducation {
     id: string | null
     name: string
     organization?: string
     result?: string | null
     year: number
 }
-export interface ElementaryEducation extends BaseEducation {
+interface ElementaryEducation extends BaseEducation {
     level: IdUrlName
 }
-export interface HigherEducation extends BaseEducation {
+interface HigherEducation extends BaseEducation {
     name_id?: string | null
     organization_id?: string | null
     result_id?: string | null
@@ -98,32 +98,32 @@ export interface HigherEducation extends BaseEducation {
     education_level: IdUrlName
 }
 
-export interface Gender {
+interface Gender {
     id: Dictionary['gender'][number]['id']
     name: Dictionary['gender'][number]['name']
 }
 
-export interface WorkFormat {
+interface WorkFormat {
     id: Dictionary['work_format'][number]['id']
     name: Dictionary['work_format'][number]['name']
 }
 
-export interface ResumeHiddenFields {
+interface ResumeHiddenFields {
     id: Dictionary['resume_hidden_fields'][number]['id']
     name: Dictionary['resume_hidden_fields'][number]['name']
 }
 
-export interface EmploymentForm {
+interface EmploymentForm {
     id: Dictionary['employment_form'][number]['id']
     name: Dictionary['employment_form'][number]['name']
 }
 
-export interface PaidServices extends IdName {
+interface PaidServices extends IdName {
     active?: boolean
     expires?: string
 }
 
-export interface ContactInfo {
+interface ContactInfo {
     comment?: string | null
     contact_value: string | null
     kind: string
@@ -138,25 +138,25 @@ export interface ContactInfo {
     verified: boolean
 }
 
-export interface SimilarVacancies {
+interface SimilarVacancies {
     counters: Counters
     url: string
 }
-export interface BusinessTripReadiness {
+interface BusinessTripReadiness {
     id: Dictionary['business_trip_readiness'][number]['id']
     name: Dictionary['business_trip_readiness'][number]['name']
 }
 
-export interface Employments {
+interface Employments {
     id: Dictionary['employment'][number]['id']
     name: Dictionary['employment'][number]['name']
 }
 
-export interface Language extends IdName {
+interface Language extends IdName {
     level: LanguageLevel
 }
 
-export interface LanguageLevel {
+interface LanguageLevel {
     id: Dictionary['language_level'][number]['id']
     name: Dictionary['language_level'][number]['name']
 }
@@ -210,7 +210,7 @@ export interface ResumeItemMiddle extends ResumeItem {
     }[]
 }
 
-export interface DriverLicenseTypes {
+interface DriverLicenseTypes {
     id: Dictionary['driver_license_types'][number]['id']
 }
 export interface ResumeItemFull extends ResumeItemMiddle {
@@ -246,28 +246,28 @@ export interface ResumeItemShort {
     alternate_url: string
 }
 
-export interface Portfolio {
+interface Portfolio {
     description: string
     medium: string
     small: string
 }
-export interface Owner {
+interface Owner {
     id: string
     comments: Comments
 }
-export interface Comments {
+interface Comments {
     url: string
     counters: Counters
 }
-export interface Counters {
+interface Counters {
     total: number
 }
-export interface NegotiationsHistory {
+interface NegotiationsHistory {
     url: string
     vacancies: VacanciesNegotiationsHistory
 }
 
-export interface VacanciesNegotiationsHistory {
+interface VacanciesNegotiationsHistory {
     archived: boolean
     can_edit: boolean
     id: string
@@ -277,12 +277,12 @@ export interface VacanciesNegotiationsHistory {
     url: string
     items: NegotiationsHistoryItem[]
 }
-export interface NegotiationsHistoryItem {
+interface NegotiationsHistoryItem {
     created_at: string
     with_message: boolean
     employer_state: IdName
 }
-export interface JobSearchStatus {
+interface JobSearchStatus {
     id: Dictionary['job_search_statuses_employer'][number]['id']
     name: Dictionary['job_search_statuses_employer'][number]['name']
     last_change_time: string
@@ -294,42 +294,42 @@ export interface ResumeItemProgress {
     percentage: number
 }
 
-export interface ResumeSite {
+interface ResumeSite {
     type: ContactsSiteType
     url: string
 }
 
-export interface ContactsSiteType {
+interface ContactsSiteType {
     id: Dictionary['resume_contacts_site_type'][number]['id']
     name: Dictionary['resume_contacts_site_type'][number]['name']
 }
-export interface TravelTime {
+interface TravelTime {
     id: Dictionary['travel_time'][number]['id']
     name: Dictionary['travel_time'][number]['name']
 }
 
-export interface Locale {
+interface Locale {
     id: Locales[number]['id']
     name: Locales[number]['name']
 }
 
-export interface Schedule {
+interface Schedule {
     id: Dictionary['schedule'][number]['id']
     name: Dictionary['schedule'][number]['name']
 }
 
-export interface Relocation {
+interface Relocation {
     area: IdUrlName
     district: IdName
     type: RelocationType
 }
 
-export interface RelocationType {
+interface RelocationType {
     id: Dictionary['relocation_type'][number]['id']
     name: Dictionary['relocation_type'][number]['name']
 }
 
-export interface Recommendation {
+interface Recommendation {
     contact: string
     name: string
     organization: string
@@ -374,7 +374,7 @@ export interface FieldsCondition extends FieldCondition {
     fields?: Record<string, FieldCondition | FieldsCondition | null> | null
 }
 
-export interface Address {
+interface Address {
     building?: string | null
     city?: string | null
     lat?: number | null
@@ -385,7 +385,7 @@ export interface Address {
     id?: string | null
 }
 
-export interface MetroStation {
+interface MetroStation {
     lat: number | null
     line_id: string
     line_name: string
@@ -395,7 +395,7 @@ export interface MetroStation {
     area: IdUrlName
 }
 
-export interface MetroStationResume {
+interface MetroStationResume {
     lat: number
     lng: number
     id: string
@@ -404,7 +404,7 @@ export interface MetroStationResume {
     line: MetroLine
 }
 
-export interface MetroLine extends IdName {
+interface MetroLine extends IdName {
     hex_color: string
     area: IdUrlName
 }
@@ -423,23 +423,22 @@ export interface EmployerBlacklisted
     open_vacancies: number
 }
 
-export interface EmployerRating {
+interface EmployerRating {
     reviews_count: number
     total_rating: number
 }
 
-export interface EmployerVakancy
-    extends Omit<Employer, 'accredited_it_employer'> {
+interface EmployerVakancy extends Omit<Employer, 'accredited_it_employer'> {
     accredited_it_employer: boolean
     blacklisted: boolean
     applicant_services: ApplicantServices
 }
 
-export interface ApplicantServices {
+interface ApplicantServices {
     target_employer: TargetEmployer
 }
 
-export interface TargetEmployer {
+interface TargetEmployer {
     count: number
 }
 
@@ -447,17 +446,17 @@ export interface EmployerResumeVisibility extends Employer {
     selected: boolean
 }
 
-export interface Department {
+interface Department {
     id: string
     name: string
 }
 
-export interface ProfessionalRole {
+interface ProfessionalRole {
     id: string
     name: string
 }
 
-export interface SalaryRange {
+interface SalaryRange {
     from?: number | null
     to?: number | null
     currency: string
@@ -469,7 +468,7 @@ export interface SalaryRange {
 export interface Cluster extends IdName {
     items: ClusterItem[]
 }
-export interface ClusterItem {
+interface ClusterItem {
     count: number
     name: string
     type: 'metro_station' | 'metro_line'
@@ -478,19 +477,19 @@ export interface ClusterItem {
     metro_station?: MetroStation
 }
 
-export interface WorkSchedule {
+interface WorkSchedule {
     id: Dictionary['schedule'][number]['id']
     name: Dictionary['schedule'][number]['name']
 }
 
-export interface VacancySnippet {
+interface VacancySnippet {
     show_logo_in_search?: boolean
     video?: any
     snippet_picture_url?: string | null
     snippet_video_url?: string | null
 }
 
-export interface VacancyCounters {
+interface VacancyCounters {
     responses: number
     total_responses: number
 }
@@ -505,7 +504,7 @@ export interface Suggests {
     value: string
 }
 
-export interface VacancyType {
+interface VacancyType {
     id: Dictionary['vacancy_type'][number]['id']
     name: Dictionary['vacancy_type'][number]['name']
 }
@@ -576,39 +575,39 @@ export interface VacancyFull extends Vacancy {
     video_vacancy: VideoVacancy
 }
 
-export interface VideoVacancy {
+interface VideoVacancy {
     cover_picture: CoverPicture
     snippet_picture: Omit<IdUrlName, 'name' | 'id'>
     snippet_video: SnippetVideo
     video: SnippetVideo
 }
 
-export interface SnippetVideo extends Omit<IdUrlName, 'name' | 'id'> {
+interface SnippetVideo extends Omit<IdUrlName, 'name' | 'id'> {
     upload_id: number
 }
 
-export interface CoverPicture {
+interface CoverPicture {
     resized_height: number
     resized_path: string
     resized_width: number
 }
 
-export interface VacancyProperties {
+interface VacancyProperties {
     appearance: Appearance
     properties: Properties
 }
 
-export interface Appearance {
+interface Appearance {
     title: string
 }
 
-export interface Properties {
+interface Properties {
     end_time: string
     start_time: string
     parameters: string[]
     property_type: PropertyType
 }
-export type PropertyType =
+type PropertyType =
     | 'HH_ANONYMOUS'
     | 'HH_STANDARD_PLUS'
     | 'HH_STANDARD'
@@ -618,33 +617,33 @@ export type PropertyType =
     | 'HH_PAY_FOR_PERFORMANCE'
     | 'ZP_CROSSPOSTING'
 
-export interface Test extends Id {
+interface Test extends Id {
     required: boolean
 }
 
-export interface Experience {
+interface Experience {
     id: Dictionary['experience'][number]['id']
     name: Dictionary['experience'][number]['name']
 }
 
-export interface AgeRestriction {
+interface AgeRestriction {
     id: Dictionary['age_restriction'][number]['id']
     name: Dictionary['age_restriction'][number]['name']
 }
 
-export interface FlyInFlyOutDuration {
+interface FlyInFlyOutDuration {
     id: Dictionary['fly_in_fly_out_duration'][number]['id']
     name: Dictionary['fly_in_fly_out_duration'][number]['name']
 }
 
-export interface ContactsVacancy {
+interface ContactsVacancy {
     call_tracking_enabled: boolean | null
     email: string | null
     name: string | null
     phones: PhoneContacts[] | null
 }
 
-export interface PhoneContacts {
+interface PhoneContacts {
     city: string
     comment: string | null
     country: string
@@ -659,7 +658,7 @@ export interface ResumeAccessTypeFull extends ResumeAccessType {
     total: number | null
 }
 
-export interface CountUrl {
+interface CountUrl {
     count: number
     url: string
 }
@@ -692,26 +691,26 @@ export interface Me extends Id {
     [key: string]: any
 }
 
-export interface MeCounters {
+interface MeCounters {
     new_resume_views: number
     resumes_count: number
     unread_negotiations: number
 }
 
-export interface MeVideos {
+interface MeVideos {
     items: MeVideo[]
 }
 
-export interface MeVideo extends Id {
+interface MeVideo extends Id {
     download_url: DownloadUrl
 }
 
-export interface DownloadUrl {
+interface DownloadUrl {
     url: string
     expires_at: string
 }
 
-export interface UserStatuses {
+interface UserStatuses {
     job_search_status: JobSearchStatus
 }
 
@@ -730,24 +729,24 @@ export interface PortfolioConditions {
     fields: PortfolioConditionsField
 }
 
-export interface PortfolioConditionsCounters {
+interface PortfolioConditionsCounters {
     max: number
     uploaded: number
 }
 
-export interface PortfolioConditionsField {
+interface PortfolioConditionsField {
     description: ConditionsDescription
     file: ConditionsFile
     type: Pick<ConditionsDescription, 'required'>
 }
 
-export interface ConditionsDescription {
+interface ConditionsDescription {
     max_length: number
     min_length: number
     required: boolean
 }
 
-export interface ConditionsFile {
+interface ConditionsFile {
     max_size: number
     mime_type: string[]
     required: boolean

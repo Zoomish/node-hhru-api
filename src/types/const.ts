@@ -1609,3 +1609,10 @@ export type ContentType =
     | 'text/plain'
     | 'multipart/form-data'
     | 'application/json'
+
+export type Pagination = {
+    found: number
+    page: number
+    pages: number
+    per_page: number
+}

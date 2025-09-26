@@ -1,3 +1,4 @@
+import { Pagination } from '../../types/const.ts'
 import {
     Argument,
     Cluster,
@@ -88,20 +89,12 @@ export interface ResumeItemOverall {
     unavailable: number
 }
 
-export interface SuitableResumeItemsResponse {
-    found: number
-    page: number
-    pages: number
-    per_page: number
+export interface SuitableResumeItemsResponse extends Pagination {
     items: ResumeItemMiddle[]
     overall: ResumeItemOverall
 }
 
-export interface ResumeItemViewsResponse {
-    found: number
-    page: number
-    pages: number
-    per_page: number
+export interface ResumeItemViewsResponse extends Pagination {
     items: ResumeItemViewItem[]
     ResumeItem: ResumeItemShort
 }
@@ -149,11 +142,7 @@ export interface ResumeConditions {
     work_formats?: ListFieldCondition | null
 }
 
-export interface SimilarVacanciesResponse {
-    found: number
-    page: number
-    pages: number
-    per_page: number
+export interface SimilarVacanciesResponse extends Pagination {
     items: Vacancy[]
     clusters?: Cluster[] | null
     arguments?: Argument[] | null
@@ -166,28 +155,16 @@ export interface ResumeAccessTypeResponse {
     items: ResumeAccessTypeFull[]
 }
 
-export interface ResumeVisibilitySearchResponse {
-    found: number
-    page: number
-    pages: number
-    per_page: number
+export interface ResumeVisibilitySearchResponse extends Pagination {
     items: EmployerResumeVisibility[]
 }
 
-export interface ResumeVisibilityListResponse {
-    found: number
-    page: number
-    pages: number
-    per_page: number
+export interface ResumeVisibilityListResponse extends Pagination {
     limit: number
     items: Employer[]
 }
 
-export interface BlacklistVacanciesResponse {
-    found: number
-    page: number
-    pages: number
-    per_page: number
+export interface BlacklistVacanciesResponse extends Pagination {
     limit_reached: boolean
     items: VacancyShort[]
 }
@@ -195,20 +172,12 @@ export interface BlacklistVacanciesResponse {
 export interface FavoritedVacanciesResponse
     extends BlacklistVacanciesResponse {}
 
-export interface BlacklistEmployersResponse {
-    found: number
-    page: number
-    pages: number
-    per_page: number
+export interface BlacklistEmployersResponse extends Pagination {
     limit_reached: boolean
     items: EmployerBlacklisted[]
 }
 
-export interface SavedSearchesResponse {
-    found: number
-    page: number
-    pages: number
-    per_page: number
+export interface SavedSearchesResponse extends Pagination {
     items: SavedSearch[]
 }
 
@@ -220,8 +189,8 @@ export interface PortfolioConditionsResponse extends PortfolioConditions {}
 
 export interface CreatePortfolioResponse {
     id: string
-    medium: string
-    small: string
+    medium: string | null
+    small: string | null
     state: CreatePortfolioState
 }
 
@@ -230,4 +199,10 @@ interface CreatePortfolioState {
     name: string
 }
 
-export interface PortfolioResponse {}
+export interface PortfolioResponse extends Pagination {
+    items: PortfolioResponseItem[]
+}
+
+interface PortfolioResponseItem extends CreatePortfolioResponse {
+    description: string
+}
