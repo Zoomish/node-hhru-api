@@ -861,6 +861,34 @@ interface FieldsOptions {
 export interface SkillsWithLevel extends IdName {
     category: 'LANG' | 'SKILL'
     level: Level
+    practice: Practice
+}
+
+interface Practice extends Id {
+    attempted_at: string
+    level: Level
+    method: Method
+    [key: string]: any
+}
+
+interface Method extends IdName {
+    branding_settings: BrandingSettings | null
+    description: string
+    headline: Headline
+    [key: string]: any
+}
+
+interface Headline {
+    dark: { [key: string]: string }
+    defaults: { [key: string]: string }
+    light: { [key: string]: string }
+}
+
+interface BrandingSettings {
+    age_label: string
+    cta_button_enabled: boolean
+    enabled: boolean
+    [key: string]: any
 }
 
 interface Level extends IdName {
