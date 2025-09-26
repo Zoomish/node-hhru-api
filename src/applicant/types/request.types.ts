@@ -77,3 +77,7 @@ export interface ApplyVacancyBody {
 export interface CreateSavedSearchParams extends SimilarVacancySearchParams {}
 
 export type UpdateMeBody = UpdateMeFIO | UpdateMeInSearch
+
+export interface UpdatePortfolioBody {
+    description: string
+}

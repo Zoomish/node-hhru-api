@@ -724,3 +724,31 @@ export interface UpdateMeFIO {
 export interface UpdateMeInSearch {
     is_in_search: boolean
 }
+
+export interface PortfolioConditions {
+    counters: PortfolioConditionsCounters
+    fields: PortfolioConditionsField
+}
+
+export interface PortfolioConditionsCounters {
+    max: number
+    uploaded: number
+}
+
+export interface PortfolioConditionsField {
+    description: ConditionsDescription
+    file: ConditionsFile
+    type: Pick<ConditionsDescription, 'required'>
+}
+
+export interface ConditionsDescription {
+    max_length: number
+    min_length: number
+    required: boolean
+}
+
+export interface ConditionsFile {
+    max_size: number
+    mime_type: string[]
+    required: boolean
+}

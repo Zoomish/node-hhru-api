@@ -12,6 +12,7 @@ import {
     ListFieldCondition,
     Me,
     ModerationNote,
+    PortfolioConditions,
     ResumeAccessTypeFull,
     ResumeItem,
     ResumeItemMiddle,
@@ -214,3 +215,7 @@ export interface SavedSearchesResponse {
 export interface SavedSearchByIdResponse extends SavedSearch {}
 
 export interface GetMeResponse extends Me {}
+
+export interface PortfolioConditionsResponse extends PortfolioConditions {}
+
+export interface PortfolioResponse {}

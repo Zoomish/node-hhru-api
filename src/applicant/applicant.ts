@@ -16,6 +16,8 @@ import {
     PhoneConfirmationBody,
     PhoneInfoResponse,
     PhoneSendCodeResponse,
+    PortfolioConditionsResponse,
+    PortfolioResponse,
     ResumeAccessTypeResponse,
     ResumeConditions,
     ResumeItemByStatusResponse,
@@ -33,6 +35,7 @@ import {
     SimilarVacancySearchParams,
     SuitableResumeItemsResponse,
     UpdateMeBody,
+    UpdatePortfolioBody,
     VacancyFull,
 } from './types/index.ts'
 
@@ -474,5 +477,47 @@ export async function updateMe(
         body: objectToUrlSearchParams(body),
         token,
         contentType: 'application/x-www-form-urlencoded',
+    })
+}
+
+export async function getPortfolioConditions(
+    token: string
+): Promise<PortfolioConditionsResponse> {
+    return request<PortfolioConditionsResponse>(
+        `/artifacts/portfolio/conditions`,
+        {
+            method: 'GET',
+            token,
+        }
+    )
+}
+
+export async function getPortfolio(token: string): Promise<PortfolioResponse> {
+    return request<PortfolioResponse>(`/artifacts/portfolio`, {
+        method: 'GET',
+        token,
+    })
+}
+
+export async function updatePortfolio(
+    token: string,
+    id: string,
+    body: UpdatePortfolioBody
+): Promise<void> {
+    return request<void>(`/artifacts/${id}`, {
+        method: 'POST',
+        token,
+        body: objectToFormData(body),
+        contentType: 'multipart/form-data',
+    })
+}
+
+export async function deletePortfolio(
+    token: string,
+    id: string
+): Promise<void> {
+    return request<void>(`/artifacts/${id}`, {
+        method: 'DELETE',
+        token,
     })
 }
