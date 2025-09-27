@@ -250,3 +250,11 @@ interface RoleId {
     name: string
     role_ids?: string[] | null
 }
+
+export type NegotiationsResponse =
+    | NegotiationsSuccessResponse
+    | NegotiationsCollectionsResponse
+
+interface NegotiationsSuccessResponse {}
+
+interface NegotiationsCollectionsResponse {}

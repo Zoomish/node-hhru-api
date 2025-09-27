@@ -1617,6 +1617,11 @@ export type Pagination = {
     per_page: number
 }
 
+export type PaginationRequest = {
+    page: number
+    per_page: number
+}
+
 export type LngLat = {
     lng: number
     lat: number

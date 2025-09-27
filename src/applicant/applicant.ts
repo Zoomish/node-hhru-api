@@ -15,7 +15,9 @@ import {
     CreateSavedSearchParams,
     FavoritedVacanciesResponse,
     GetMeResponse,
+    GetNegotiationsQuery,
     MyResumeItemsResponse,
+    NegotiationsResponse,
     PhoneConfirmationBody,
     PhoneInfoResponse,
     PhoneSendCodeResponse,
@@ -426,7 +428,7 @@ export async function getSavedSearches(
 
 export async function createSavedSearch(
     token: string,
-    options: Partial<CreateSavedSearchParams>
+    options?: Partial<CreateSavedSearchParams>
 ): Promise<void> {
     return request<void>(`/saved_searches/vacancies`, {
         method: 'POST',
@@ -582,7 +584,7 @@ export async function updateResumeProfile(
 export async function createResumeProfile(
     token: string,
     resumeId: string,
-    body: Partial<CreateResumeProfileBody>
+    body?: Partial<CreateResumeProfileBody>
 ): Promise<ResumeProfileResponse> {
     return request<ResumeProfileResponse>(`/resume_profile/${resumeId}`, {
         method: 'POST',
@@ -597,5 +599,16 @@ export async function getResumeProfileDict(
     return request<ResumeProfileDictResponse>(`/resume_profile/dictionaries`, {
         method: 'GET',
         token,
+    })
+}
+
+export async function getNegotiations(
+    token: string,
+    query?: Partial<GetNegotiationsQuery>
+): Promise<NegotiationsResponse> {
+    return request<NegotiationsResponse>(`/negotiations`, {
+        method: 'GET',
+        token,
+        queryParams: objectToUrlSearchParams(query),
     })
 }

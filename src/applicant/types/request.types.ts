@@ -1,4 +1,4 @@
-import { Dictionary, LngLat } from '../../types/const.ts'
+import { Dictionary, LngLat, PaginationRequest } from '../../types/const.ts'
 import {
     AdditionalProperties,
     Id,
@@ -61,12 +61,8 @@ type PartTime =
     | 'project'
     | 'accept_temporary'
 
-export interface ResumeVisibilitySearchParams {
+export interface ResumeVisibilitySearchParams extends PaginationRequest {
     text: string
-    per_page?: number
-    page?: number
-    locale?: string
-    host?: string
 }
 
 export type ResumeVisibilityListType = 'whitelist' | 'blacklist'
@@ -117,4 +113,14 @@ export interface CreateResumeProfileBody extends LngLat {
     additional_properties: Partial<AdditionalProperties>
     clone_resume_id: string
     update_profile: boolean
+}
+
+export interface GetNegotiationsQuery extends PaginationRequest {
+    order_by: Dictionary['negotiations_order'][number]['id']
+    order: 'asc' | 'desc'
+    vacancy_id: string
+    status: Dictionary['applicant_negotiation_status'][number]['id']
+    has_updates: boolean
+    with_job_search_status: boolean
+    with_generated_collections: boolean
 }
