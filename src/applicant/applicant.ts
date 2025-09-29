@@ -17,6 +17,7 @@ import {
     GetMeResponse,
     GetNegotiationsQuery,
     MyResumeItemsResponse,
+    NegotiationsMessageResponse,
     NegotiationsSuccessResponse,
     PhoneConfirmationBody,
     PhoneInfoResponse,
@@ -633,5 +634,15 @@ export async function deleteNegotiation(
         method: 'DELETE',
         token,
         queryParams: objectToUrlSearchParams({ with_decline_message }),
+    })
+}
+
+export async function getNegotiationMessage(
+    token: string,
+    id: string
+): Promise<NegotiationsMessageResponse> {
+    return request<NegotiationsMessageResponse>(`/negotiations/${id}`, {
+        method: 'GET',
+        token,
     })
 }

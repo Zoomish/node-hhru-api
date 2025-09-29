@@ -255,3 +255,5 @@ interface RoleId {
 export interface NegotiationsSuccessResponse extends Pagination {
     items: Negotiation[]
 }
+
+export interface NegotiationsMessageResponse extends Negotiation {}
