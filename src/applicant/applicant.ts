@@ -45,7 +45,7 @@ import {
     UpdateMeBody,
     UpdatePortfolioBody,
     UpdateResumeProfileBody,
-    VacancyFull
+    VacancyFull,
 } from './types/index.ts'
 
 export async function confirmPhone(
@@ -610,5 +610,28 @@ export async function getNegotiations(
         method: 'GET',
         token,
         queryParams: objectToUrlSearchParams(query),
+    })
+}
+
+export async function updateNegotiationMessage(
+    token: string,
+    nid: string,
+    mid: string
+): Promise<void> {
+    return request<void>(`/negotiations/${nid}/messages/${mid}`, {
+        method: 'PUT',
+        token,
+    })
+}
+
+export async function deleteNegotiation(
+    token: string,
+    nid: string,
+    with_decline_message: boolean
+): Promise<void> {
+    return request<void>(`/negotiations/active/${nid}`, {
+        method: 'DELETE',
+        token,
+        body: objectToUrlSearchParams({ with_decline_message }),
     })
 }
