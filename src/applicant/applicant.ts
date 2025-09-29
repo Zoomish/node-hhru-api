@@ -632,6 +632,6 @@ export async function deleteNegotiation(
     return request<void>(`/negotiations/active/${nid}`, {
         method: 'DELETE',
         token,
-        body: objectToUrlSearchParams({ with_decline_message }),
+        queryParams: objectToUrlSearchParams({ with_decline_message }),
     })
 }
