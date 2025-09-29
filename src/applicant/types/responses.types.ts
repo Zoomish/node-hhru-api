@@ -14,6 +14,7 @@ import {
     ListFieldCondition,
     Me,
     ModerationNote,
+    Negotiation,
     PortfolioConditions,
     Profile,
     ResumeAccessTypeFull,
@@ -251,10 +252,6 @@ interface RoleId {
     role_ids?: string[] | null
 }
 
-export type NegotiationsResponse =
-    | NegotiationsSuccessResponse
-    | NegotiationsCollectionsResponse
-
-interface NegotiationsSuccessResponse {}
-
-interface NegotiationsCollectionsResponse {}
+export interface NegotiationsSuccessResponse extends Pagination {
+    items: Negotiation[]
+}

@@ -1,4 +1,9 @@
-import { Dictionary, LngLat, Locales } from '../../types/const.ts'
+import {
+    Dictionary,
+    LngLat,
+    Locales,
+    NegotiationSource,
+} from '../../types/const.ts'
 
 export interface Id {
     id: string
@@ -73,11 +78,6 @@ interface Education {
     elementary?: ElementaryEducation[] | null
     primary?: HigherEducation[] | null
     level: IdName
-}
-
-interface EducationLevel {
-    id: Dictionary['education_level'][number]['id']
-    name: Dictionary['education_level'][number]['name']
 }
 
 interface BaseEducation {
@@ -239,10 +239,8 @@ export interface ResumeItemFull extends ResumeItemMiddle {
     view_without_contacts_reason: string | null
 }
 
-export interface ResumeItemShort {
-    id: string
+export interface ResumeItemShort extends Omit<IdUrlName, 'name'> {
     title: string | null
-    url: string
     alternate_url: string
 }
 
@@ -944,4 +942,47 @@ interface Level extends IdName {
     internal_id: string
     rank: number
     [key: string]: any
+}
+
+export interface Negotiation extends Omit<IdUrlName, 'name'> {
+    applicant_question_state: boolean
+    counters: NegotiationCounter
+    created_at: string
+    has_updates: boolean
+    messaging_status: Dictionary['messaging_status'][number]['id']
+    professional_roles: Id[]
+    source: NegotiationSource
+    state: NegotiationState
+    updated_at: string
+    viewed_by_opponent: boolean
+    decline_allowed: boolean
+    hidden: boolean
+    job_search_status: Omit<JobSearchStatus, 'last_change_time'>
+    phone_calls: PhoneCalls
+    tags: Id[]
+    vacancy: VacancyShort
+    interview_review: Id
+    resume: ResumeItemShort
+}
+
+interface PhoneCalls {
+    items: PhoneCallItem[]
+    picked_up_phone_by_opponent: boolean
+}
+
+interface PhoneCallItem extends Id {
+    creation_time: string
+    duration_seconds: number | null
+    last_change_time: string | null
+    status: Dictionary['phone_call_status'][number]['id']
+}
+
+interface NegotiationState {
+    id: Dictionary['negotiations_state'][number]['id']
+    name: Dictionary['negotiations_state'][number]['name']
+}
+
+interface NegotiationCounter {
+    messages: number
+    unread_messages: number
 }

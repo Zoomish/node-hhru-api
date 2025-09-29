@@ -17,7 +17,7 @@ import {
     GetMeResponse,
     GetNegotiationsQuery,
     MyResumeItemsResponse,
-    NegotiationsResponse,
+    NegotiationsSuccessResponse,
     PhoneConfirmationBody,
     PhoneInfoResponse,
     PhoneSendCodeResponse,
@@ -45,7 +45,7 @@ import {
     UpdateMeBody,
     UpdatePortfolioBody,
     UpdateResumeProfileBody,
-    VacancyFull,
+    VacancyFull
 } from './types/index.ts'
 
 export async function confirmPhone(
@@ -605,8 +605,8 @@ export async function getResumeProfileDict(
 export async function getNegotiations(
     token: string,
     query?: Partial<GetNegotiationsQuery>
-): Promise<NegotiationsResponse> {
-    return request<NegotiationsResponse>(`/negotiations`, {
+): Promise<NegotiationsSuccessResponse> {
+    return request<NegotiationsSuccessResponse>(`/negotiations`, {
         method: 'GET',
         token,
         queryParams: objectToUrlSearchParams(query),

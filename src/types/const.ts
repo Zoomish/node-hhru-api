@@ -1626,3 +1626,15 @@ export type LngLat = {
     lng: number
     lat: number
 }
+
+export type NegotiationSource =
+    | 'NEGOTIATION'
+    | 'PHONE_CALL'
+    | 'CHAT'
+    | 'VR'
+    | 'AUTO_INVITE'
+    | 'APPLICANT_QUESTIONS'
+    | 'AUTO_RESPONSE'
+    | 'AUTO_RESPONSE_HH_PRO'
+    | 'CLICKME_CPA'
+    | 'REGISTRATION'
