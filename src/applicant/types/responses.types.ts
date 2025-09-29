@@ -15,6 +15,8 @@ import {
     Me,
     ModerationNote,
     Negotiation,
+    NegotiationMessage,
+    NegotiationMessageWithAssessment,
     PortfolioConditions,
     Profile,
     ResumeAccessTypeFull,
@@ -257,3 +259,9 @@ export interface NegotiationsSuccessResponse extends Pagination {
 }
 
 export interface NegotiationsMessageResponse extends Negotiation {}
+
+export interface NegotiationsSendMessageResponse extends NegotiationMessage {}
+
+export interface NegotiationsMessagesResponse extends Pagination {
+    items: NegotiationMessageWithAssessment[]
+}

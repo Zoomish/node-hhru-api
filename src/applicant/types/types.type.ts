@@ -3,6 +3,7 @@ import {
     LngLat,
     Locales,
     NegotiationSource,
+    ParticipantType,
 } from '../../types/const.ts'
 
 export interface Id {
@@ -378,7 +379,7 @@ export interface FieldsCondition extends FieldCondition {
     fields?: Record<string, FieldCondition | FieldsCondition | null> | null
 }
 
-interface Address extends Partial<LngLat> {
+export interface Address extends Partial<LngLat> {
     building?: string | null
     city?: string | null
     metro?: MetroStation | null
@@ -985,4 +986,30 @@ interface NegotiationState {
 interface NegotiationCounter {
     messages: number
     unread_messages: number
+}
+
+export interface NegotiationMessage extends Id {
+    author: { participant_type: ParticipantType }
+    created_at: string
+    editable: boolean
+    read: boolean
+    state: IdName
+    text: string | null
+    viewed_by_me: boolean
+    viewed_by_opponent: boolean
+    address: Address | null
+}
+
+export interface NegotiationMessageWithAssessment extends NegotiationMessage {
+    assessments: Assessment
+}
+
+interface Assessment extends IdName {
+    actions: Action[]
+}
+
+interface Action extends IdName {
+    alternate_url: string
+    disable_reason: string
+    enabled: boolean
 }

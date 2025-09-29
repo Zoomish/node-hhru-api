@@ -1638,3 +1638,5 @@ export type NegotiationSource =
     | 'AUTO_RESPONSE_HH_PRO'
     | 'CLICKME_CPA'
     | 'REGISTRATION'
+
+export type ParticipantType = 'applicant' | 'employer'

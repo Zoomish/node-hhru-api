@@ -18,6 +18,8 @@ import {
     GetNegotiationsQuery,
     MyResumeItemsResponse,
     NegotiationsMessageResponse,
+    NegotiationsMessagesResponse,
+    NegotiationsSendMessageResponse,
     NegotiationsSuccessResponse,
     PhoneConfirmationBody,
     PhoneInfoResponse,
@@ -484,8 +486,8 @@ export async function updateMe(
 ): Promise<GetMeResponse> {
     return request<GetMeResponse>(`/me`, {
         method: 'POST',
-        body: objectToUrlSearchParams(body),
         token,
+        body: objectToUrlSearchParams(body),
         contentType: 'application/x-www-form-urlencoded',
     })
 }
@@ -645,4 +647,35 @@ export async function getNegotiationMessage(
         method: 'GET',
         token,
     })
+}
+
+export async function createNegotiationMessage(
+    token: string,
+    nid: string,
+    message: string
+): Promise<NegotiationsSendMessageResponse> {
+    return request<NegotiationsSendMessageResponse>(
+        `/negotiations/${nid}/messages`,
+        {
+            method: 'POST',
+            token,
+            body: objectToUrlSearchParams({ message }),
+            contentType: 'application/x-www-form-urlencoded',
+        }
+    )
+}
+
+export async function getNegotiationMessages(
+    token: string,
+    nid: string,
+    with_text_only: boolean
+): Promise<NegotiationsMessagesResponse> {
+    return request<NegotiationsMessagesResponse>(
+        `/negotiations/${nid}/messages`,
+        {
+            method: 'GET',
+            token,
+            queryParams: objectToUrlSearchParams({ with_text_only }),
+        }
+    )
 }
