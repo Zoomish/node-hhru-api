@@ -1,5 +1,4 @@
-import { VacancySearchParams } from '../../common/types/request.types.ts'
-import { Dictionary, LngLat, PaginationRequest } from '../../types/const.ts'
+import { Dictionary, LngLat, PaginationRequest, VacancySearchParamsOld } from '../../types/const.ts'
 import {
     AdditionalProperties,
     Id,
@@ -9,7 +8,7 @@ import {
     UpdateMeInSearch,
 } from './types.type.ts'
 
-export interface SimilarVacancySearchParams extends VacancySearchParams {}
+export interface SimilarVacancySearchParams extends VacancySearchParamsOld {}
 
 export interface ResumeVisibilitySearchParams extends PaginationRequest {
     text: string
@@ -27,7 +26,7 @@ export interface ApplyVacancyBody {
     vacancy_id: string
 }
 
-export interface CreateSavedSearchParams extends VacancySearchParams {}
+export interface CreateSavedSearchParams extends VacancySearchParamsOld {}
 
 export type UpdateMeBody = UpdateMeFIO | UpdateMeInSearch
 

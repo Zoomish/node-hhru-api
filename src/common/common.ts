@@ -1,10 +1,7 @@
 import { objectToUrlSearchParams } from '../helpers.ts'
 import { request } from '../http.ts'
-import {
-    AppTokenResponse,
-    UserTokenResponse,
-    VacancySearchParams,
-} from './types/index.ts'
+import { VacancySearchParams } from '../types/const.ts'
+import { AppTokenResponse, UserTokenResponse } from './types/index.ts'
 
 export async function getAppToken(
     clientId: string,
