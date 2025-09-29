@@ -1,5 +1,10 @@
+import { objectToUrlSearchParams } from '../helpers.ts'
 import { request } from '../http.ts'
-import { AppTokenResponse, UserTokenResponse } from './types/index.ts'
+import {
+    AppTokenResponse,
+    UserTokenResponse,
+    VacancySearchParams,
+} from './types/index.ts'
 
 export async function getAppToken(
     clientId: string,
@@ -52,5 +57,16 @@ export async function refreshUserToken(
         }).toString(),
         contentType: 'application/x-www-form-urlencoded',
         oldAddress: true,
+    })
+}
+
+export async function searchVacancies(
+    token: string,
+    query: Partial<VacancySearchParams>
+): Promise<void> {
+    return request<void>('/vacancies', {
+        method: 'GET',
+        token,
+        queryParams: objectToUrlSearchParams(query),
     })
 }
