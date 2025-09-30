@@ -1610,11 +1610,12 @@ export type ContentType =
     | 'multipart/form-data'
     | 'application/json'
 
-export type Pagination = {
+export type Pagination<T> = {
     found: number
     page: number
     pages: number
     per_page: number
+    items: T[]
 }
 
 export type PaginationRequest = {

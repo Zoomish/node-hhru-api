@@ -98,13 +98,13 @@ export interface ResumeItemOverall {
     unavailable: number
 }
 
-export interface SuitableResumeItemsResponse extends Pagination {
-    items: ResumeItemMiddle[]
+export interface SuitableResumeItemsResponse
+    extends Pagination<ResumeItemMiddle> {
     overall: ResumeItemOverall
 }
 
-export interface ResumeItemViewsResponse extends Pagination {
-    items: ResumeItemViewItem[]
+export interface ResumeItemViewsResponse
+    extends Pagination<ResumeItemViewItem> {
     ResumeItem: ResumeItemShort
 }
 
@@ -151,8 +151,7 @@ export interface ResumeConditions {
     work_formats?: ListFieldCondition | null
 }
 
-export interface SimilarVacanciesResponse extends Pagination {
-    items: Vacancy[]
+export interface SimilarVacanciesResponse extends Pagination<Vacancy> {
     clusters?: Cluster[] | null
     arguments?: Argument[] | null
     fixes?: Fixes | null
@@ -164,31 +163,26 @@ export interface ResumeAccessTypeResponse {
     items: ResumeAccessTypeFull[]
 }
 
-export interface ResumeVisibilitySearchResponse extends Pagination {
-    items: EmployerResumeVisibility[]
-}
+export interface ResumeVisibilitySearchResponse
+    extends Pagination<EmployerResumeVisibility> {}
 
-export interface ResumeVisibilityListResponse extends Pagination {
+export interface ResumeVisibilityListResponse extends Pagination<Employer> {
     limit: number
-    items: Employer[]
 }
 
-export interface BlacklistVacanciesResponse extends Pagination {
+export interface BlacklistVacanciesResponse extends Pagination<VacancyShort> {
     limit_reached: boolean
-    items: VacancyShort[]
 }
 
 export interface FavoritedVacanciesResponse
     extends BlacklistVacanciesResponse {}
 
-export interface BlacklistEmployersResponse extends Pagination {
+export interface BlacklistEmployersResponse
+    extends Pagination<EmployerBlacklisted> {
     limit_reached: boolean
-    items: EmployerBlacklisted[]
 }
 
-export interface SavedSearchesResponse extends Pagination {
-    items: SavedSearch[]
-}
+export interface SavedSearchesResponse extends Pagination<SavedSearch> {}
 
 export interface SavedSearchByIdResponse extends SavedSearch {}
 
@@ -208,17 +202,13 @@ interface CreatePortfolioState {
     name: string
 }
 
-export interface PortfolioResponse extends Pagination {
-    items: PortfolioResponseItem[]
-}
+export interface PortfolioResponse extends Pagination<PortfolioResponseItem> {}
 
 interface PortfolioResponseItem extends CreatePortfolioResponse {
     description: string
 }
 
-export interface PhotoResponse extends Pagination {
-    items: CreatePortfolioResponse[]
-}
+export interface PhotoResponse extends Pagination<CreatePortfolioResponse> {}
 
 export interface ResumeProfileResponse {
     additional_properties: AdditionalProperties
@@ -254,14 +244,11 @@ interface RoleId {
     role_ids?: string[] | null
 }
 
-export interface NegotiationsSuccessResponse extends Pagination {
-    items: Negotiation[]
-}
+export interface NegotiationsSuccessResponse extends Pagination<Negotiation> {}
 
 export interface NegotiationsMessageResponse extends Negotiation {}
 
 export interface NegotiationsSendMessageResponse extends NegotiationMessage {}
 
-export interface NegotiationsMessagesResponse extends Pagination {
-    items: NegotiationMessageWithAssessment[]
-}
+export interface NegotiationsMessagesResponse
+    extends Pagination<NegotiationMessageWithAssessment> {}
