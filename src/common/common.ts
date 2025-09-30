@@ -1,7 +1,14 @@
 import { objectToUrlSearchParams } from '../helpers.ts'
 import { request } from '../http.ts'
-import { VacancySearchParams } from '../types/shared.types.ts'
-import { AppTokenResponse, UserTokenResponse } from './types/index.ts'
+import {
+    VacancySearchParams,
+    VacancySearchParamsOld,
+} from '../types/shared.types.ts'
+import {
+    AppTokenResponse,
+    UserTokenResponse,
+    VacancySearchResponse,
+} from './types/index.ts'
 
 export async function getAppToken(
     clientId: string,
@@ -59,11 +66,41 @@ export async function refreshUserToken(
 
 export async function searchVacancies(
     token: string,
-    query: Partial<VacancySearchParams>
-): Promise<void> {
-    return request<void>('/vacancies', {
+    query?: Partial<VacancySearchParams>
+): Promise<VacancySearchResponse> {
+    return request<VacancySearchResponse>('/vacancies', {
         method: 'GET',
         token,
         queryParams: objectToUrlSearchParams(query),
     })
+}
+
+export async function searchSuitableVacancies(
+    token: string,
+    vacancyId: string,
+    query?: Partial<VacancySearchParamsOld>
+): Promise<VacancySearchResponse> {
+    return request<VacancySearchResponse>(
+        `/vacancies/${vacancyId}/related_vacancies`,
+        {
+            method: 'GET',
+            token,
+            queryParams: objectToUrlSearchParams(query),
+        }
+    )
+}
+
+export async function searchSimilarVacancies(
+    token: string,
+    vacancyId: string,
+    query?: Partial<VacancySearchParamsOld>
+): Promise<VacancySearchResponse> {
+    return request<VacancySearchResponse>(
+        `/vacancies/${vacancyId}/similar_vacancies`,
+        {
+            method: 'GET',
+            token,
+            queryParams: objectToUrlSearchParams(query),
+        }
+    )
 }

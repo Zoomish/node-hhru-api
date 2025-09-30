@@ -4,6 +4,7 @@ import {
     objectToUrlSearchParams,
 } from '../helpers.ts'
 import { request } from '../http.ts'
+import { VacancyFull } from '../types/shared.types.ts'
 import {
     AddEmployersToVisibilityListBody,
     ApplyVacancyBody,
@@ -42,13 +43,10 @@ import {
     ResumeVisibilitySearchResponse,
     SavedSearchByIdResponse,
     SavedSearchesResponse,
-    SimilarVacanciesResponse,
-    SimilarVacancySearchParams,
     SuitableResumeItemsResponse,
     UpdateMeBody,
     UpdatePortfolioBody,
     UpdateResumeProfileBody,
-    VacancyFull,
 } from './types/index.ts'
 
 export async function confirmPhone(
@@ -208,21 +206,6 @@ export async function getResumeConditionsById(
         method: 'GET',
         token,
     })
-}
-
-export async function getSimilarVacancies(
-    token: string,
-    resumeId: string,
-    params?: Partial<SimilarVacancySearchParams>
-): Promise<SimilarVacanciesResponse> {
-    return request<SimilarVacanciesResponse>(
-        `/resumes/${resumeId}/similar_vacancies`,
-        {
-            method: 'GET',
-            token,
-            queryParams: objectToUrlSearchParams(params),
-        }
-    )
 }
 
 export async function getAccessTypes(

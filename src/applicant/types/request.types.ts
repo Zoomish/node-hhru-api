@@ -13,8 +13,6 @@ import {
     UpdateMeInSearch,
 } from './types.type.ts'
 
-export interface SimilarVacancySearchParams extends VacancySearchParamsOld {}
-
 export interface ResumeVisibilitySearchParams extends PaginationRequest {
     text: string
 }
