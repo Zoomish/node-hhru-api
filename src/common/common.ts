@@ -8,9 +8,12 @@ import {
 import {
     AppTokenResponse,
     DictResponse,
+    DistrictsResponse,
     EducationalInstitutionsResponse,
+    IndustriesResponse,
     LanguagesResponse,
     LocalesResponse,
+    MetroResponse,
     ProfessionalRolesResponse,
     SkillsResponse,
     UserTokenResponse,
@@ -170,4 +173,22 @@ export async function getEducationalInstitutionsFaculties(
             method: 'GET',
         }
     )
+}
+
+export async function getIndustries(): Promise<IndustriesResponse> {
+    return request<IndustriesResponse>('/industries', {
+        method: 'GET',
+    })
+}
+
+export async function getDistricts(): Promise<DistrictsResponse[]> {
+    return request<DistrictsResponse[]>('/districts', {
+        method: 'GET',
+    })
+}
+
+export async function getMetro(): Promise<MetroResponse[]> {
+    return request<MetroResponse[]>('/metro', {
+        method: 'GET',
+    })
 }

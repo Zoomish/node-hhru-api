@@ -4,8 +4,10 @@ import {
     Fixes,
     Id,
     IdName,
+    IdUrlName,
+    MetroLine,
     Pagination,
-    Suggests,
+    Suggests
 } from '../../types/shared.types.ts'
 import { VacancySearchItem } from './types.types.ts'
 
@@ -77,4 +79,16 @@ interface Role extends IdName {
     search_deprecated_datetime: string | null
     select_deprecated: boolean
     select_deprecated_datetime: string | null
+}
+
+export interface IndustriesResponse extends IdName {
+    industries: IdName[]
+}
+
+export interface DistrictsResponse extends IdName {
+    area_id: string
+}
+
+export interface MetroResponse extends IdUrlName {
+    lines: Omit<MetroLine, 'area'>[]
 }
