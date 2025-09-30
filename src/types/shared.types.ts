@@ -1,4 +1,4 @@
-import { Dictionary } from './const.ts'
+import { Dictionary, PropertyType } from './const.ts'
 
 export interface Id {
     id: string
@@ -171,4 +171,242 @@ export interface Fixes {
 export interface Suggests {
     found: number
     value: string
+}
+
+export interface Address extends Partial<LngLat> {
+    building?: string | null
+    city?: string | null
+    metro?: MetroStation | null
+    raw?: string | null
+    street?: string | null
+    id?: string | null
+}
+
+export interface VacancyShort {
+    address?: Address | null
+    adv_response_url: string
+    alternate_url: string
+    apply_alternate_url: string
+    archived: boolean
+    area: IdUrlName
+    created_at: string
+    department?: Department | null
+    employer?: EmployerVakancy
+    has_test: boolean
+    id: string
+    insider_interview?: Omit<IdUrlName, 'name'> | null
+    name: string
+    premium: boolean | null
+    published_at: string
+    relations?: Dictionary['vacancy_relation'][number]['id'][] | null
+    response_letter_required: boolean
+    response_url?: string | null
+    salary_range?: SalaryRange | null
+    show_contacts?: boolean | null
+    sort_point_distance?: number | null
+    type: VacancyType
+    url: string
+}
+
+export interface Vacancy extends VacancyShort {
+    description?: string | null
+    accept_incomplete_resumes: boolean
+    accept_temporary?: boolean | null
+    metro_stations?: MetroStation[]
+    fly_in_fly_out_duration?: FlyInFlyOutDuration[] | null
+    internship?: boolean | null
+    night_shifts?: boolean | null
+    professional_roles: ProfessionalRole[]
+    schedule?: WorkSchedule | null
+    work_format?: WorkFormat[] | null
+    work_schedule_by_days?: WorkSchedule[] | null
+    working_hours?: WorkSchedule[] | null
+    counters?: VacancyCounters
+    snippet?: VacancySnippet
+    accept_only_for_part_time?: string[]
+}
+
+export interface VacancyFull extends Vacancy {
+    accept_handicapped: boolean
+    age_restriction: AgeRestriction
+    allow_messages: boolean
+    approved: boolean
+    closed_for_applicants: boolean | null
+    code: string | null
+    contacts: ContactsVacancy | null
+    driver_license_types: DriverLicenseTypes[]
+    employment_form: EmploymentForm | null
+    experience: Experience
+    initial_created_at: string
+    key_skills: Omit<IdName, 'id'>[]
+    languages: Language[]
+    negotiations_url: string
+    suitable_resumes_url: string | null
+    test: Test
+    vacancy_properties: VacancyProperties
+    video_vacancy: VideoVacancy
+}
+
+export interface Language extends IdName {
+    level: LanguageLevel
+}
+
+interface LanguageLevel {
+    id: Dictionary['language_level'][number]['id']
+    name: Dictionary['language_level'][number]['name']
+}
+
+export interface EmploymentForm {
+    id: Dictionary['employment_form'][number]['id']
+    name: Dictionary['employment_form'][number]['name']
+}
+
+export interface DriverLicenseTypes {
+    id: Dictionary['driver_license_types'][number]['id']
+}
+
+export interface WorkFormat {
+    id: Dictionary['work_format'][number]['id']
+    name: Dictionary['work_format'][number]['name']
+}
+
+interface ProfessionalRole {
+    id: string
+    name: string
+}
+
+interface WorkSchedule {
+    id: Dictionary['schedule'][number]['id']
+    name: Dictionary['schedule'][number]['name']
+}
+
+interface VacancySnippet {
+    show_logo_in_search?: boolean
+    video?: any
+    snippet_picture_url?: string | null
+    snippet_video_url?: string | null
+}
+
+interface VacancyCounters {
+    responses: number
+    total_responses: number
+}
+
+interface VideoVacancy {
+    cover_picture: CoverPicture
+    snippet_picture: Omit<IdUrlName, 'name' | 'id'>
+    snippet_video: SnippetVideo
+    video: SnippetVideo
+}
+
+interface SnippetVideo extends Omit<IdUrlName, 'name' | 'id'> {
+    upload_id: number
+}
+
+interface CoverPicture {
+    resized_height: number
+    resized_path: string
+    resized_width: number
+}
+
+interface VacancyProperties {
+    appearance: Appearance
+    properties: Properties
+}
+
+interface Appearance {
+    title: string
+}
+
+interface Properties {
+    end_time: string
+    start_time: string
+    parameters: string[]
+    property_type: PropertyType
+}
+interface Test extends Id {
+    required: boolean
+}
+
+export interface Experience {
+    id: Dictionary['experience'][number]['id']
+    name: Dictionary['experience'][number]['name']
+}
+
+interface AgeRestriction {
+    id: Dictionary['age_restriction'][number]['id']
+    name: Dictionary['age_restriction'][number]['name']
+}
+
+interface FlyInFlyOutDuration {
+    id: Dictionary['fly_in_fly_out_duration'][number]['id']
+    name: Dictionary['fly_in_fly_out_duration'][number]['name']
+}
+
+export interface ContactsVacancy {
+    call_tracking_enabled: boolean | null
+    email: string | null
+    name: string | null
+    phones: PhoneContacts[] | null
+}
+
+interface PhoneContacts {
+    city: string
+    comment: string | null
+    country: string
+    formatted: string
+    number: string
+}
+
+interface SalaryRange {
+    from?: number | null
+    to?: number | null
+    currency: string
+    gross: boolean
+    frequency?: IdName | null
+    mode?: IdName
+}
+
+interface EmployerVakancy extends Omit<Employer, 'accredited_it_employer'> {
+    accredited_it_employer: boolean
+    blacklisted: boolean
+    applicant_services: ApplicantServices
+}
+
+export interface Employer extends IdUrlName {
+    trusted: boolean
+    alternate_url: string
+    logo_urls?: LogoUrls | null
+    vacancies_url: string
+    accredited_it_employer?: boolean
+    employer_rating?: EmployerRating
+}
+
+interface EmployerRating {
+    reviews_count: number
+    total_rating: number
+}
+
+interface LogoUrls {
+    90?: string
+    240?: string
+    original: string
+}
+
+interface ApplicantServices {
+    target_employer: TargetEmployer
+}
+
+interface TargetEmployer {
+    count: number
+}
+
+interface Department {
+    id: string
+    name: string
+}
+
+interface VacancyType {
+    id: Dictionary['vacancy_type'][number]['id']
+    name: Dictionary['vacancy_type'][number]['name']
 }

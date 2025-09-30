@@ -1,15 +1,17 @@
 import {
     Argument,
     Cluster,
+    Employer,
+    Fixes,
     IdName,
     IdUrlName,
     Pagination,
     Suggests,
-    Fixes,
+    Vacancy,
+    VacancyShort,
 } from '../../types/shared.types.ts'
 import {
     AdditionalProperties,
-    Employer,
     EmployerBlacklisted,
     EmployerResumeVisibility,
     FieldCondition,
@@ -32,8 +34,6 @@ import {
     SavedSearch,
     ScreenProfile,
     SkillsWithLevel,
-    Vacancy,
-    VacancyShort,
 } from './index.ts'
 
 export interface PhoneConfirmationBody {

@@ -1625,3 +1625,15 @@ export type NegotiationSource =
 
 export type ParticipantType = 'applicant' | 'employer'
 
+
+export type PropertyType =
+    | 'HH_ANONYMOUS'
+    | 'HH_STANDARD_PLUS'
+    | 'HH_STANDARD'
+    | 'HH_FREE'
+    | 'HH_PREMIUM'
+    | 'HH_ADVERTISING'
+    | 'HH_PAY_FOR_PERFORMANCE'
+    | 'ZP_CROSSPOSTING'
+
+
