@@ -11,6 +11,8 @@ import {
     EducationalInstitutionsResponse,
     LanguagesResponse,
     LocalesResponse,
+    ProfessionalRolesResponse,
+    SkillsResponse,
     UserTokenResponse,
     VacancySearchResponse,
 } from './types/index.ts'
@@ -144,4 +146,17 @@ export async function getEducationalInstitutions(
             queryParams: arrayToUrlSearchParams('id', id),
         }
     )
+}
+
+export async function getSkills(id: string[]): Promise<SkillsResponse> {
+    return request<SkillsResponse>('/skills', {
+        method: 'GET',
+        queryParams: arrayToUrlSearchParams('id', id),
+    })
+}
+
+export async function getProfessionalRoles(): Promise<ProfessionalRolesResponse> {
+    return request<ProfessionalRolesResponse>('/professional_roles', {
+        method: 'GET',
+    })
 }

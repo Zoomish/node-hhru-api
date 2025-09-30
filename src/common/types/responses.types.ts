@@ -53,3 +53,28 @@ interface EducationalInstitution extends Id {
     synonyms: string | null
     text: string
 }
+
+export interface SkillsResponse {
+    items: Skill[]
+}
+
+interface Skill extends Id {
+    text: string
+}
+
+export interface ProfessionalRolesResponse {
+    categories: ProfessionalRole[]
+}
+
+interface ProfessionalRole extends IdName {
+    roles: Role[]
+}
+
+interface Role extends IdName {
+    accept_incomplete_resumes: boolean
+    is_default: boolean
+    search_deprecated: boolean
+    search_deprecated_datetime: string | null
+    select_deprecated: boolean
+    select_deprecated_datetime: string | null
+}
