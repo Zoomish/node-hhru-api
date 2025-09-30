@@ -356,17 +356,6 @@ export interface FieldCondition {
     regexp?: string | null
 }
 
-export interface Argument {
-    argument: string
-    cluster_group: IdName
-    disable_url: string
-    hex_color: string | null
-    metro_type: string | null
-    name: string | null
-    value: string
-    value_description: string | null
-}
-
 export interface ListFieldCondition extends FieldCondition {
     min_count?: number | null
     max_count?: number | null
@@ -461,16 +450,6 @@ interface VacancySnippet {
 interface VacancyCounters {
     responses: number
     total_responses: number
-}
-
-export interface Fixes {
-    fixed: string
-    original: string
-}
-
-export interface Suggests {
-    found: number
-    value: string
 }
 
 interface VacancyType {

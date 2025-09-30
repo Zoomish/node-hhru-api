@@ -151,3 +151,26 @@ type PartTime =
     | 'part'
     | 'project'
     | 'accept_temporary'
+
+export interface Argument {
+    argument: string
+    cluster_group: IdName
+    disable_url: string
+    hex_color: string | null
+    metro_type: string | null
+    name: string | null
+    value: string
+    value_description: string | null
+}
+
+
+
+export interface Fixes {
+    fixed: string
+    original: string
+}
+
+export interface Suggests {
+    found: number
+    value: string
+}

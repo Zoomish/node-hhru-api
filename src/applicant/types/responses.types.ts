@@ -1,18 +1,19 @@
 import {
+    Argument,
     Cluster,
     IdName,
     IdUrlName,
     Pagination,
+    Suggests,
+    Fixes,
 } from '../../types/shared.types.ts'
 import {
     AdditionalProperties,
-    Argument,
     Employer,
     EmployerBlacklisted,
     EmployerResumeVisibility,
     FieldCondition,
     FieldsCondition,
-    Fixes,
     ListFieldCondition,
     Me,
     ModerationNote,
@@ -31,7 +32,6 @@ import {
     SavedSearch,
     ScreenProfile,
     SkillsWithLevel,
-    Suggests,
     Vacancy,
     VacancyShort,
 } from './index.ts'
