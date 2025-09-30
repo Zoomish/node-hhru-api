@@ -160,3 +160,14 @@ export async function getProfessionalRoles(): Promise<ProfessionalRolesResponse>
         method: 'GET',
     })
 }
+
+export async function getEducationalInstitutionsFaculties(
+    id: string
+): Promise<DictResponse[]> {
+    return request<DictResponse[]>(
+        `/educational_institutions/${id}/faculties`,
+        {
+            method: 'GET',
+        }
+    )
+}
