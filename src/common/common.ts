@@ -216,3 +216,13 @@ export async function getRegions(
         queryParams: objectToUrlSearchParams({ additional_case }),
     })
 }
+
+export async function getRegionsFromId(
+    areaId: string,
+    additional_case?: 'prepositional'
+): Promise<AreaResponse> {
+    return request<AreaResponse>(`/areas/${areaId}`, {
+        method: 'GET',
+        queryParams: objectToUrlSearchParams({ additional_case }),
+    })
+}

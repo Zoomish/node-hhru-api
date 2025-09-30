@@ -101,4 +101,5 @@ export interface AreaResponse extends IdName {
     name_prepositional: string | null
     parent_id: string | null
     utc_offset: string | null
+    areas: AreaResponse[]
 }
