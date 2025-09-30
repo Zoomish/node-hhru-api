@@ -1,11 +1,16 @@
-import { objectToUrlSearchParams } from '../helpers.ts'
+import { arrayToUrlSearchParams, objectToUrlSearchParams } from '../helpers.ts'
 import { request } from '../http.ts'
+import { Dictionary } from '../types/const.ts'
 import {
     VacancySearchParams,
     VacancySearchParamsOld,
 } from '../types/shared.types.ts'
 import {
     AppTokenResponse,
+    DictResponse,
+    EducationalInstitutionsResponse,
+    LanguagesResponse,
+    LocalesResponse,
     UserTokenResponse,
     VacancySearchResponse,
 } from './types/index.ts'
@@ -101,6 +106,42 @@ export async function searchSimilarVacancies(
             method: 'GET',
             token,
             queryParams: objectToUrlSearchParams(query),
+        }
+    )
+}
+
+export async function getResumeLocales(): Promise<DictResponse[]> {
+    return request<DictResponse[]>('/locales/resume', {
+        method: 'GET',
+    })
+}
+
+export async function getLocales(): Promise<LocalesResponse[]> {
+    return request<LocalesResponse[]>('/resume', {
+        method: 'GET',
+    })
+}
+
+export async function getDictionaries(): Promise<Dictionary> {
+    return request<Dictionary>('/dictionaries', {
+        method: 'GET',
+    })
+}
+
+export async function getLanguages(): Promise<LanguagesResponse> {
+    return request<LanguagesResponse>('/languages', {
+        method: 'GET',
+    })
+}
+
+export async function getEducationalInstitutions(
+    id: string[]
+): Promise<EducationalInstitutionsResponse> {
+    return request<EducationalInstitutionsResponse>(
+        '/educational_institutions',
+        {
+            method: 'GET',
+            queryParams: arrayToUrlSearchParams('id', id),
         }
     )
 }

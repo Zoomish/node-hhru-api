@@ -2,6 +2,8 @@ import {
     Argument,
     Cluster,
     Fixes,
+    Id,
+    IdName,
     Pagination,
     Suggests,
 } from '../../types/shared.types.ts'
@@ -29,4 +31,25 @@ export interface VacancySearchResponse extends Pagination<VacancySearchItem> {
     arguments?: Argument[] | null
     fixes?: Fixes | null
     suggests?: Suggests | null
+}
+
+export interface DictResponse extends IdName {}
+
+export interface LocalesResponse extends IdName {
+    current: boolean
+}
+
+export interface LanguagesResponse extends IdName {
+    uid: string
+}
+
+export interface EducationalInstitutionsResponse {
+    items: EducationalInstitution[]
+}
+
+interface EducationalInstitution extends Id {
+    acronym: string | null
+    area: IdName
+    synonyms: string | null
+    text: string
 }
