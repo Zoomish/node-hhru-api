@@ -44,6 +44,19 @@ export interface MetroLine extends IdName {
     area: IdUrlName
 }
 
+export interface MetroLineWithStations extends Omit<MetroLine, 'area'> {
+    stations: MetroLineStation[]
+}
+
+interface MetroLineStation extends LngLat, IdName {
+    line: MetroLineStationItem
+    order: number
+}
+
+interface MetroLineStationItem extends IdName {
+    hex_color: string
+}
+
 export interface MetroStation extends LngLat {
     line_id: string
     line_name: string

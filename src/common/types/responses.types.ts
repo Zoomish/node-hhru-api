@@ -6,6 +6,7 @@ import {
     IdName,
     IdUrlName,
     MetroLine,
+    MetroLineWithStations,
     Pagination,
     Suggests
 } from '../../types/shared.types.ts'
@@ -90,5 +91,9 @@ export interface DistrictsResponse extends IdName {
 }
 
 export interface MetroResponse extends IdUrlName {
-    lines: Omit<MetroLine, 'area'>[]
+    lines: MetroLineWithStations[]
+}
+
+export interface MetroCityResponse extends IdName {
+    lines: MetroLineWithStations[]
 }

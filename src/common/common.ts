@@ -13,6 +13,7 @@ import {
     IndustriesResponse,
     LanguagesResponse,
     LocalesResponse,
+    MetroCityResponse,
     MetroResponse,
     ProfessionalRolesResponse,
     SkillsResponse,
@@ -189,6 +190,12 @@ export async function getDistricts(): Promise<DistrictsResponse[]> {
 
 export async function getMetro(): Promise<MetroResponse[]> {
     return request<MetroResponse[]>('/metro', {
+        method: 'GET',
+    })
+}
+
+export async function getCityMetro(cityId: string): Promise<MetroCityResponse> {
+    return request<MetroCityResponse>(`/metro/${cityId}`, {
         method: 'GET',
     })
 }
