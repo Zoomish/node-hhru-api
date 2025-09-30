@@ -5,10 +5,9 @@ import {
     Id,
     IdName,
     IdUrlName,
-    MetroLine,
     MetroLineWithStations,
     Pagination,
-    Suggests
+    Suggests,
 } from '../../types/shared.types.ts'
 import { VacancySearchItem } from './types.types.ts'
 
@@ -96,4 +95,10 @@ export interface MetroResponse extends IdUrlName {
 
 export interface MetroCityResponse extends IdName {
     lines: MetroLineWithStations[]
+}
+
+export interface AreaResponse extends IdName {
+    name_prepositional: string | null
+    parent_id: string | null
+    utc_offset: string | null
 }

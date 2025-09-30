@@ -8,6 +8,7 @@ import {
 } from '../types/shared.types.ts'
 import {
     AppTokenResponse,
+    AreaResponse,
     DictResponse,
     DistrictsResponse,
     EducationalInstitutionsResponse,
@@ -204,5 +205,14 @@ export async function getCityMetro(cityId: string): Promise<MetroCityResponse> {
 export async function getCountries(): Promise<IdUrlName[]> {
     return request<IdUrlName[]>('/areas/countries', {
         method: 'GET',
+    })
+}
+
+export async function getRegions(
+    additional_case?: 'prepositional'
+): Promise<AreaResponse[]> {
+    return request<AreaResponse[]>('/areas', {
+        method: 'GET',
+        queryParams: objectToUrlSearchParams({ additional_case }),
     })
 }
