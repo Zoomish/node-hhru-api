@@ -163,8 +163,6 @@ export interface Argument {
     value_description: string | null
 }
 
-
-
 export interface Fixes {
     fixed: string
     original: string
