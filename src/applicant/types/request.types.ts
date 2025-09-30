@@ -1,7 +1,12 @@
-import { Dictionary, LngLat, PaginationRequest, VacancySearchParamsOld } from '../../types/const.ts'
+import { Dictionary } from '../../types/const.ts'
+import {
+    Id,
+    LngLat,
+    PaginationRequest,
+    VacancySearchParamsOld,
+} from '../../types/shared.types.ts'
 import {
     AdditionalProperties,
-    Id,
     Profile,
     ResumeItemMiddle,
     UpdateMeFIO,

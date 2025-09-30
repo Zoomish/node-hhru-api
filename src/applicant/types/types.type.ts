@@ -1,20 +1,17 @@
 import {
     Dictionary,
-    LngLat,
     Locales,
     NegotiationSource,
     ParticipantType,
 } from '../../types/const.ts'
-
-export interface Id {
-    id: string
-}
-export interface IdName extends Id {
-    name: string
-}
-export interface IdUrlName extends IdName {
-    url: string
-}
+import {
+    Id,
+    IdName,
+    IdUrlName,
+    LngLat,
+    MetroLine,
+    MetroStation,
+} from '../../types/shared.types.ts'
 
 interface FileUrl {
     url: string
@@ -388,22 +385,9 @@ export interface Address extends Partial<LngLat> {
     id?: string | null
 }
 
-interface MetroStation extends LngLat {
-    line_id: string
-    line_name: string
-    station_id: string
-    station_name: string
-    area: IdUrlName
-}
-
 interface MetroStationResume extends LngLat, IdName {
     order: number
     line: MetroLine
-}
-
-interface MetroLine extends IdName {
-    hex_color: string
-    area: IdUrlName
 }
 
 export interface Employer extends IdUrlName {
@@ -460,18 +444,6 @@ interface SalaryRange {
     gross: boolean
     frequency?: IdName | null
     mode?: IdName
-}
-
-export interface Cluster extends IdName {
-    items: ClusterItem[]
-}
-interface ClusterItem {
-    count: number
-    name: string
-    type: 'metro_station' | 'metro_line'
-    url: string
-    metro_line?: MetroLine
-    metro_station?: MetroStation
 }
 
 interface WorkSchedule {

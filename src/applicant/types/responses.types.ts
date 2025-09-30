@@ -1,16 +1,18 @@
-import { Pagination } from '../../types/const.ts'
+import {
+    Cluster,
+    IdName,
+    IdUrlName,
+    Pagination,
+} from '../../types/shared.types.ts'
 import {
     AdditionalProperties,
     Argument,
-    Cluster,
     Employer,
     EmployerBlacklisted,
     EmployerResumeVisibility,
     FieldCondition,
     FieldsCondition,
     Fixes,
-    IdName,
-    IdUrlName,
     ListFieldCondition,
     Me,
     ModerationNote,
