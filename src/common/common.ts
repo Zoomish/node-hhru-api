@@ -2,6 +2,7 @@ import { arrayToUrlSearchParams, objectToUrlSearchParams } from '../helpers.ts'
 import { request } from '../http.ts'
 import { Dictionary } from '../types/const.ts'
 import {
+    IdUrlName,
     VacancySearchParams,
     VacancySearchParamsOld,
 } from '../types/shared.types.ts'
@@ -196,6 +197,12 @@ export async function getMetro(): Promise<MetroResponse[]> {
 
 export async function getCityMetro(cityId: string): Promise<MetroCityResponse> {
     return request<MetroCityResponse>(`/metro/${cityId}`, {
+        method: 'GET',
+    })
+}
+
+export async function getCountries(): Promise<IdUrlName[]> {
+    return request<IdUrlName[]>('/areas/countries', {
         method: 'GET',
     })
 }
