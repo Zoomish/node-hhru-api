@@ -1,8 +1,28 @@
 {
-"trailingComma": "es5",
-"tabWidth": 4,
-"semi": false,
-"singleQuote": true,
-"plugins": ["prettier-plugin-stylex-key-sort"],
-"minKeys": 3
+    "trailingComma": "es5",
+    "tabWidth": 4,
+    "semi": false,
+    "singleQuote": true,
+    "plugins": ["prettier-plugin-stylex-key-sort"],
+    "minKeys": 3,
+    "overrides": [
+        {
+            "files": "*.json",
+            "options": {
+                "tabWidth": 2
+            }
+        },
+        {
+            "files": "*.md",
+            "options": {
+                "tabWidth": 2
+            }
+        },
+        {
+            "files": "*.config.*",
+            "options": {
+                "tabWidth": 2
+            }
+        }
+    ]
 }

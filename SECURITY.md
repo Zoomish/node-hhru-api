@@ -5,8 +5,8 @@
 We actively maintain the latest version of this package.
 Only the most recent **major and minor releases** will receive security updates.
 
-| Version | Supported        |
-| ------- | ---------------- |
+| Version | Supported         |
+| ------- | ----------------- |
 | 0.x     | ✅ Latest release |
 | < 0.x   | ❌ Not supported  |
 
@@ -25,13 +25,12 @@ We will investigate and respond. Critical issues will be prioritized.
 
 When using this package in your applications:
 
-* Always provide a **valid `HH-User-Agent`** string that includes your app name and a contact email. HeadHunter rejects requests with invalid or blacklisted user agents.
-* Do not hardcode client secrets, tokens, or refresh tokens. Use environment variables or secret managers.
-* Rotate tokens regularly using the `refreshUserToken` method.
-* Ensure TLS/HTTPS is always used (the package defaults to `https://api.hh.ru`).
-* Restrict who can access your CI/CD logs if they contain API tokens.
-* Validate all inputs if you pass user data to API calls (e.g., when creating or updating resumes).
-
+- Always provide a **valid `HH-User-Agent`** string that includes your app name and a contact email. HeadHunter rejects requests with invalid or blacklisted user agents.
+- Do not hardcode client secrets, tokens, or refresh tokens. Use environment variables or secret managers.
+- Rotate tokens regularly using the `refreshUserToken` method.
+- Ensure TLS/HTTPS is always used (the package defaults to `https://api.hh.ru`).
+- Restrict who can access your CI/CD logs if they contain API tokens.
+- Validate all inputs if you pass user data to API calls (e.g., when creating or updating resumes).
 
 ---
 

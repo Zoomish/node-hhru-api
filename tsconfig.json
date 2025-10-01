@@ -12,8 +12,8 @@
     "declarationMap": true,
     "outDir": "dist",
     "rootDir": "src",
-    "allowImportingTsExtensions": true,  // <-- можно писать .ts в импортах
-    "emitDeclarationOnly": true           // <-- только декларации
+    "allowImportingTsExtensions": true,
+    "emitDeclarationOnly": true
   },
   "include": ["src"]
 }

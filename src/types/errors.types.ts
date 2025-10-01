@@ -2,9 +2,7 @@ export interface HHApiBaseError {
     request_id: string
 }
 
-export type BadArgumentErrorType =
-    | 'bad_argument'
-    | 'resume_visibility_list'
+export type BadArgumentErrorType = 'bad_argument' | 'resume_visibility_list'
 
 export type BadArgumentErrorValue =
     | 'per_page'
@@ -55,5 +53,3 @@ export interface HHApi404Error extends HHApiBaseError {
 }
 
 export type HHApiError = HHApi400Error | HHApi403Error | HHApi404Error
-
-

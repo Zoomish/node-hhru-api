@@ -1610,7 +1610,6 @@ export type ContentType =
     | 'multipart/form-data'
     | 'application/json'
 
-
 export type NegotiationSource =
     | 'NEGOTIATION'
     | 'PHONE_CALL'
@@ -1625,7 +1624,6 @@ export type NegotiationSource =
 
 export type ParticipantType = 'applicant' | 'employer'
 
-
 export type PropertyType =
     | 'HH_ANONYMOUS'
     | 'HH_STANDARD_PLUS'
@@ -1635,5 +1633,3 @@ export type PropertyType =
     | 'HH_ADVERTISING'
     | 'HH_PAY_FOR_PERFORMANCE'
     | 'ZP_CROSSPOSTING'
-
-

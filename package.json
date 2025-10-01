@@ -40,7 +40,9 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "prepublishOnly": "npm run build",
-    "test": "vitest run tests/all.test.ts"
+    "test": "vitest run tests/all.test.ts",
+    "lint": "prettier --check .",
+    "format": "prettier --write ."
   },
   "exports": {
     ".": {
