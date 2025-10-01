@@ -1,12 +1,8 @@
-import {
-    HHApiError
-} from './types/errors.types.ts'
-
-export class HHError extends Error {
+export class HHError<T extends object> extends Error {
     public status: number
-    public data: HHApiError
+    public data: T
 
-    constructor(status: number, data: HHApiError) {
+    constructor(status: number, data: T) {
         super(`HH API Error ${status}`)
         this.status = status
         this.data = data

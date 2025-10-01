@@ -60,7 +60,7 @@ export async function request<T>(
 
     const json = await response.json().catch(() => ({}))
     if (!response.ok) {
-        throw new HHError(response.status, json as HHApiError)
+        throw new HHError<HHApiError>(response.status, json as HHApiError)
     }
 
     return json as Promise<T>
