@@ -17,6 +17,7 @@ import {
     LocalesResponse,
     MetroCityResponse,
     MetroResponse,
+    PositionsSuggestsResponse,
     ProfessionalRolesResponse,
     SkillsResponse,
     UserTokenResponse,
@@ -224,5 +225,14 @@ export async function getRegionsFromId(
     return request<AreaResponse>(`/areas/${areaId}`, {
         method: 'GET',
         queryParams: objectToUrlSearchParams({ additional_case }),
+    })
+}
+
+export async function getPositionsSuggests(
+    text: string
+): Promise<PositionsSuggestsResponse> {
+    return request<PositionsSuggestsResponse>(`/suggests/positions`, {
+        method: 'GET',
+        queryParams: objectToUrlSearchParams({ text }),
     })
 }

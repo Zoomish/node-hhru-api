@@ -4,12 +4,13 @@ import {
     Fixes,
     Id,
     IdName,
+    IdText,
     IdUrlName,
     MetroLineWithStations,
     Pagination,
     Suggests,
 } from '../../types/shared.types.ts'
-import { VacancySearchItem } from './types.types.ts'
+import { PositionsSuggest, ProfessionalRole, VacancySearchItem } from './types.types.ts'
 
 export interface AppTokenResponse {
     access_token: string
@@ -57,28 +58,11 @@ interface EducationalInstitution extends Id {
 }
 
 export interface SkillsResponse {
-    items: Skill[]
-}
-
-interface Skill extends Id {
-    text: string
+    items: IdText[]
 }
 
 export interface ProfessionalRolesResponse {
     categories: ProfessionalRole[]
-}
-
-interface ProfessionalRole extends IdName {
-    roles: Role[]
-}
-
-interface Role extends IdName {
-    accept_incomplete_resumes: boolean
-    is_default: boolean
-    search_deprecated: boolean
-    search_deprecated_datetime: string | null
-    select_deprecated: boolean
-    select_deprecated_datetime: string | null
 }
 
 export interface IndustriesResponse extends IdName {
@@ -102,4 +86,8 @@ export interface AreaResponse extends IdName {
     parent_id: string | null
     utc_offset: string | null
     areas: AreaResponse[]
+}
+
+export interface PositionsSuggestsResponse {
+    items: PositionsSuggest[]
 }

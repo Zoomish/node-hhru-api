@@ -6,6 +6,9 @@ export interface Id {
 export interface IdName extends Id {
     name: string
 }
+export interface IdText extends Id {
+    text: string
+}
 export interface IdUrlName extends IdName {
     url: string
 }
