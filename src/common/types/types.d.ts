@@ -6,7 +6,7 @@ import {
     IdText,
     IdTextUrl,
     Vacancy,
-} from '../../types/shared.types.ts'
+} from '../../types/shared.js'
 
 export interface VacancySearchItem
     extends Omit<

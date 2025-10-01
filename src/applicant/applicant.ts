@@ -4,7 +4,7 @@ import {
     objectToUrlSearchParams,
 } from '../helpers.ts'
 import { request } from '../http.ts'
-import { VacancyFull } from '../types/shared.types.ts'
+import { VacancyFull } from '../types/shared.js'
 import {
     AddEmployersToVisibilityListBody,
     ApplyVacancyBody,

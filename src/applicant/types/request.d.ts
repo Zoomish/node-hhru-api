@@ -4,14 +4,14 @@ import {
     LngLat,
     PaginationRequest,
     VacancySearchParamsOld,
-} from '../../types/shared.types.ts'
+} from '../../types/shared.js'
 import {
     AdditionalProperties,
     Profile,
     ResumeItemMiddle,
     UpdateMeFIO,
     UpdateMeInSearch,
-} from './types.type.ts'
+} from './types.js'
 
 export interface ResumeVisibilitySearchParams extends PaginationRequest {
     text: string

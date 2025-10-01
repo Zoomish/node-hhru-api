@@ -15,10 +15,9 @@ import {
     Language,
     LngLat,
     MetroLine,
-    MetroStation,
     VacancyShort,
     WorkFormat,
-} from '../../types/shared.types.ts'
+} from '../../types/shared.js'
 
 interface FileUrl {
     url: string

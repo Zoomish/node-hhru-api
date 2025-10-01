@@ -10,7 +10,7 @@ import {
     MetroLineWithStations,
     Pagination,
     Suggests,
-} from '../../types/shared.types.ts'
+} from '../../types/shared.js'
 import {
     CompaniesSuggest,
     PositionsSuggest,
@@ -18,7 +18,7 @@ import {
     ProfessionalRolesSuggest,
     VacancyPositionsSuggest,
     VacancySearchItem,
-} from './types.types.ts'
+} from './types.js'
 
 export interface AppTokenResponse {
     access_token: string

@@ -1,1 +1,1 @@
-export * from './responses.types.ts'
+export * from './responses.js'

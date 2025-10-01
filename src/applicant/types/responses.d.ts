@@ -9,7 +9,7 @@ import {
     Suggests,
     Vacancy,
     VacancyShort,
-} from '../../types/shared.types.ts'
+} from '../../types/shared.js'
 import {
     AdditionalProperties,
     EmployerBlacklisted,

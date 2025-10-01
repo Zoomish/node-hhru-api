@@ -1,7 +1,7 @@
 import fetch, { Response } from 'node-fetch'
 import { HHError } from './error.ts'
 import { ContentType, Methods } from './types/const.ts'
-import { HHApiError } from './types/errors.types.ts'
+import { HHApiError } from './types/errors.js'
 
 interface RequestOptions {
     method: Methods

@@ -5,7 +5,7 @@ import {
     IdUrlName,
     VacancySearchParams,
     VacancySearchParamsOld,
-} from '../types/shared.types.ts'
+} from '../types/shared.js'
 import {
     AppTokenResponse,
     AreaLeavesSuggestsResponse,
