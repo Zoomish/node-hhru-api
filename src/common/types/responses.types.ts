@@ -12,6 +12,7 @@ import {
     Suggests,
 } from '../../types/shared.types.ts'
 import {
+    CompaniesSuggest,
     PositionsSuggest,
     ProfessionalRole,
     ProfessionalRolesSuggest,
@@ -129,4 +130,8 @@ export interface VacancySearchKeywordSuggestsResponse {
 
 export interface FieldsOfStudySuggestsResponse {
     items: IdText[]
+}
+
+export interface CompaniesSuggestsResponse {
+    items: CompaniesSuggest[]
 }

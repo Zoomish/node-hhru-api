@@ -11,6 +11,7 @@ import {
     AreaLeavesSuggestsResponse,
     AreaResponse,
     AreaSuggestsResponse,
+    CompaniesSuggestsResponse,
     DictResponse,
     DistrictsResponse,
     EducationalInstitutionsResponse,
@@ -341,6 +342,17 @@ export async function getFieldsOfStudySuggests(
     text: string
 ): Promise<FieldsOfStudySuggestsResponse> {
     return request<FieldsOfStudySuggestsResponse>(`/suggests/fields_of_study`, {
+        method: 'GET',
+        queryParams: objectToUrlSearchParams({
+            text,
+        }),
+    })
+}
+
+export async function getCompaniesSuggests(
+    text: string
+): Promise<CompaniesSuggestsResponse> {
+    return request<CompaniesSuggestsResponse>(`/suggests/companies`, {
         method: 'GET',
         queryParams: objectToUrlSearchParams({
             text,

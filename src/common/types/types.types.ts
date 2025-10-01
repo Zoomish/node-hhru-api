@@ -4,6 +4,7 @@ import {
     Experience,
     IdName,
     IdText,
+    IdTextUrl,
     Vacancy,
 } from '../../types/shared.types.ts'
 
@@ -54,4 +55,14 @@ export interface ProfessionalRolesSuggest extends IdText {
 
 interface ProfessionalRolesSuggestProfessionalRole extends IdText {
     accept_incomplete_resumes: boolean
+}
+
+export interface CompaniesSuggest extends IdTextUrl {
+    area: IdName
+    industries: IdName[]
+    logo_urls: LogoUrl
+}
+
+interface LogoUrl {
+    90: string
 }
