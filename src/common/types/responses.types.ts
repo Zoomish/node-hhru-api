@@ -126,3 +126,7 @@ export interface AreaSuggestsResponse {
 export interface VacancySearchKeywordSuggestsResponse {
     items: Text[]
 }
+
+export interface FieldsOfStudySuggestsResponse {
+    items: IdText[]
+}

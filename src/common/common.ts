@@ -14,6 +14,7 @@ import {
     DictResponse,
     DistrictsResponse,
     EducationalInstitutionsResponse,
+    FieldsOfStudySuggestsResponse,
     IndustriesResponse,
     LanguagesResponse,
     LocalesResponse,
@@ -323,9 +324,7 @@ export async function getAreasSuggests(
 }
 
 export async function getVacancySearchKeywordSuggests(
-    text: string,
-    areaId?: string,
-    includeParent?: boolean
+    text: string
 ): Promise<VacancySearchKeywordSuggestsResponse> {
     return request<VacancySearchKeywordSuggestsResponse>(
         `/suggests/vacancy_search_keyword`,
@@ -333,9 +332,18 @@ export async function getVacancySearchKeywordSuggests(
             method: 'GET',
             queryParams: objectToUrlSearchParams({
                 text,
-                areaId,
-                includeParent,
             }),
         }
     )
+}
+
+export async function getFieldsOfStudySuggests(
+    text: string
+): Promise<FieldsOfStudySuggestsResponse> {
+    return request<FieldsOfStudySuggestsResponse>(`/suggests/fields_of_study`, {
+        method: 'GET',
+        queryParams: objectToUrlSearchParams({
+            text,
+        }),
+    })
 }
