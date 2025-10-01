@@ -10,6 +10,7 @@ import {
     AppTokenResponse,
     AreaLeavesSuggestsResponse,
     AreaResponse,
+    AreaSuggestsResponse,
     DictResponse,
     DistrictsResponse,
     EducationalInstitutionsResponse,
@@ -21,6 +22,7 @@ import {
     PositionsSuggestsResponse,
     ProfessionalRolesResponse,
     ProfessionalRolesSuggestsResponse,
+    ResumeSearchKeywordSuggestsResponse,
     SkillsResponse,
     SkillsSuggestsResponse,
     UserTokenResponse,
@@ -294,4 +296,27 @@ export async function getProfessionalRolesSuggests(
             queryParams: objectToUrlSearchParams({ text }),
         }
     )
+}
+
+export async function getResumeSearchKeywordSuggests(
+    text: string
+): Promise<ResumeSearchKeywordSuggestsResponse> {
+    return request<ResumeSearchKeywordSuggestsResponse>(
+        `/suggests/resume_search_keyword`,
+        {
+            method: 'GET',
+            queryParams: objectToUrlSearchParams({ text }),
+        }
+    )
+}
+
+export async function getAreasSuggests(
+    text: string,
+    areaId?: string,
+    includeParent?: boolean
+): Promise<AreaSuggestsResponse> {
+    return request<AreaSuggestsResponse>(`/suggests/areas`, {
+        method: 'GET',
+        queryParams: objectToUrlSearchParams({ text, areaId, includeParent }),
+    })
 }

@@ -114,3 +114,11 @@ export interface VacancyPositionsSuggestsResponse {
 export interface ProfessionalRolesSuggestsResponse {
     items: ProfessionalRolesSuggest[]
 }
+
+export interface ResumeSearchKeywordSuggestsResponse {
+    items: { text: string }[]
+}
+
+export interface AreaSuggestsResponse {
+    items: IdTextUrl[]
+}
