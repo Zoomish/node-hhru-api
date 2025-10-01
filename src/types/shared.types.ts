@@ -3,18 +3,27 @@ import { Dictionary, PropertyType } from './const.ts'
 export interface Id {
     id: string
 }
-export interface IdName extends Id {
-    name: string
-}
-export interface IdText extends Id {
+
+export interface Text {
     text: string
 }
-export interface IdTextUrl extends IdText {
+
+export interface Name {
+    name: string
+}
+
+export interface Url {
     url: string
 }
-export interface IdUrlName extends IdName {
-    url: string
-}
+
+export interface IdName extends Id, Name {}
+
+export interface IdText extends Id, Text {}
+
+export interface IdTextUrl extends IdText, Url {}
+
+export interface IdUrlName extends IdName, Url {}
+
 export type Pagination<T> = {
     found: number
     page: number
