@@ -8,6 +8,7 @@ import {
 } from '../types/shared.types.ts'
 import {
     AppTokenResponse,
+    AreaLeavesSuggestsResponse,
     AreaResponse,
     DictResponse,
     DistrictsResponse,
@@ -234,5 +235,27 @@ export async function getPositionsSuggests(
     return request<PositionsSuggestsResponse>(`/suggests/positions`, {
         method: 'GET',
         queryParams: objectToUrlSearchParams({ text }),
+    })
+}
+
+export async function getEducationalInstitutionsSuggests(
+    text: string
+): Promise<EducationalInstitutionsResponse> {
+    return request<EducationalInstitutionsResponse>(
+        `/suggests/educational_institutions`,
+        {
+            method: 'GET',
+            queryParams: objectToUrlSearchParams({ text }),
+        }
+    )
+}
+
+export async function getAreaLeavesSuggests(
+    text: string,
+    areaId?: string
+): Promise<AreaLeavesSuggestsResponse> {
+    return request<AreaLeavesSuggestsResponse>(`/suggests/area_leaves`, {
+        method: 'GET',
+        queryParams: objectToUrlSearchParams({ text, areaId }),
     })
 }

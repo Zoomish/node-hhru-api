@@ -5,6 +5,7 @@ import {
     Id,
     IdName,
     IdText,
+    IdTextUrl,
     IdUrlName,
     MetroLineWithStations,
     Pagination,
@@ -90,4 +91,8 @@ export interface AreaResponse extends IdName {
 
 export interface PositionsSuggestsResponse {
     items: PositionsSuggest[]
+}
+
+export interface AreaLeavesSuggestsResponse {
+    items: IdTextUrl[]
 }
