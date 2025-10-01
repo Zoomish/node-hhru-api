@@ -1,4 +1,8 @@
 # HeadHunter API SDK for Node.js
+![npm version](https://img.shields.io/npm/v/node-hhru-api)
+![npm downloads](https://img.shields.io/npm/dw/node-hhru-api)
+![license](https://img.shields.io/github/license/node-hhru-api)
+![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue)
 
 ## In Development
 
