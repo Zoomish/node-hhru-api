@@ -11,7 +11,12 @@ import {
     Pagination,
     Suggests,
 } from '../../types/shared.types.ts'
-import { PositionsSuggest, ProfessionalRole, VacancySearchItem } from './types.types.ts'
+import {
+    PositionsSuggest,
+    ProfessionalRole,
+    VacancyPositionsSuggest,
+    VacancySearchItem,
+} from './types.types.ts'
 
 export interface AppTokenResponse {
     access_token: string
@@ -95,4 +100,12 @@ export interface PositionsSuggestsResponse {
 
 export interface AreaLeavesSuggestsResponse {
     items: IdTextUrl[]
+}
+
+export interface SkillsSuggestsResponse {
+    items: IdText[]
+}
+
+export interface VacancyPositionsSuggestsResponse {
+    items: VacancyPositionsSuggest[]
 }

@@ -21,7 +21,9 @@ import {
     PositionsSuggestsResponse,
     ProfessionalRolesResponse,
     SkillsResponse,
+    SkillsSuggestsResponse,
     UserTokenResponse,
+    VacancyPositionsSuggestsResponse,
     VacancySearchResponse,
 } from './types/index.ts'
 
@@ -258,4 +260,25 @@ export async function getAreaLeavesSuggests(
         method: 'GET',
         queryParams: objectToUrlSearchParams({ text, areaId }),
     })
+}
+
+export async function getSkillsSuggests(
+    text: string
+): Promise<SkillsSuggestsResponse> {
+    return request<SkillsSuggestsResponse>(`/suggests/skill_set`, {
+        method: 'GET',
+        queryParams: objectToUrlSearchParams({ text }),
+    })
+}
+
+export async function getVacancyPositionsSuggests(
+    text: string
+): Promise<VacancyPositionsSuggestsResponse> {
+    return request<VacancyPositionsSuggestsResponse>(
+        `/suggests/vacancy_positions`,
+        {
+            method: 'GET',
+            queryParams: objectToUrlSearchParams({ text }),
+        }
+    )
 }

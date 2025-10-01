@@ -43,3 +43,7 @@ interface PositionsSuggestsSpecializations extends IdName {
     profarea_id: string
     profarea_name: string
 }
+
+export interface VacancyPositionsSuggest extends IdText {
+    professional_roles: ProfessionalRole[]
+}
