@@ -14,6 +14,7 @@ import {
 import {
     PositionsSuggest,
     ProfessionalRole,
+    ProfessionalRolesSuggest,
     VacancyPositionsSuggest,
     VacancySearchItem,
 } from './types.types.ts'
@@ -108,4 +109,8 @@ export interface SkillsSuggestsResponse {
 
 export interface VacancyPositionsSuggestsResponse {
     items: VacancyPositionsSuggest[]
+}
+
+export interface ProfessionalRolesSuggestsResponse {
+    items: ProfessionalRolesSuggest[]
 }

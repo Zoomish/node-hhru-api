@@ -45,9 +45,13 @@ interface PositionsSuggestsSpecializations extends IdName {
 }
 
 export interface VacancyPositionsSuggest extends IdText {
-    professional_roles: VacancyPositionsSuggestProfessionalRole[]
+    professional_roles: PositionsSuggestProfessionalRole[]
 }
 
-interface VacancyPositionsSuggestProfessionalRole extends IdText {
+export interface ProfessionalRolesSuggest extends IdText {
+    professional_roles: ProfessionalRolesSuggestProfessionalRole[]
+}
+
+interface ProfessionalRolesSuggestProfessionalRole extends IdText {
     accept_incomplete_resumes: boolean
 }

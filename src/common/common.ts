@@ -20,6 +20,7 @@ import {
     MetroResponse,
     PositionsSuggestsResponse,
     ProfessionalRolesResponse,
+    ProfessionalRolesSuggestsResponse,
     SkillsResponse,
     SkillsSuggestsResponse,
     UserTokenResponse,
@@ -276,6 +277,18 @@ export async function getVacancyPositionsSuggests(
 ): Promise<VacancyPositionsSuggestsResponse> {
     return request<VacancyPositionsSuggestsResponse>(
         `/suggests/vacancy_positions`,
+        {
+            method: 'GET',
+            queryParams: objectToUrlSearchParams({ text }),
+        }
+    )
+}
+
+export async function getProfessionalRolesSuggests(
+    text: string
+): Promise<ProfessionalRolesSuggestsResponse> {
+    return request<ProfessionalRolesSuggestsResponse>(
+        `/suggests/professional_roles`,
         {
             method: 'GET',
             queryParams: objectToUrlSearchParams({ text }),
