@@ -1,4 +1,4 @@
-import { EmployerBlacklisted } from '../../applicant/types/types.types.ts'
+import { EmployerBlacklisted, Me } from '../../applicant/types/types.types.ts'
 import { Dictionary } from '../../types/const.types.ts'
 import {
     Argument,
@@ -172,3 +172,5 @@ export interface SalaryStatisticsProfessionalAreasResponse extends IdName {
 export interface SalaryStatisticsIndustriesResponse extends IdName {
     industries: IdName[]
 }
+
+export interface GetMeResponse extends Me {}

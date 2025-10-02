@@ -1,3 +1,4 @@
+import { GetMeResponse } from '../common/types/responses.types.ts'
 import {
     arrayToUrlSearchParams,
     objectToFormData,
@@ -15,7 +16,6 @@ import {
     CreateResumeProfileBody,
     CreateSavedSearchParams,
     FavoritedVacanciesResponse,
-    GetMeResponse,
     GetNegotiationsQuery,
     MyResumeItemsResponse,
     NegotiationsMessageResponse,
@@ -452,13 +452,6 @@ export async function deleteSavedSearch(
 ): Promise<void> {
     return request<void>(`/saved_searches/vacancies/${id}`, {
         method: 'DELETE',
-        token,
-    })
-}
-
-export async function getMe(token: string): Promise<GetMeResponse> {
-    return request<GetMeResponse>(`/me`, {
-        method: 'GET',
         token,
     })
 }

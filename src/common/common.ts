@@ -19,6 +19,7 @@ import {
     EmployersResponse,
     FieldsOfStudySuggestsResponse,
     GetEmployersOptions,
+    GetMeResponse,
     IndustriesResponse,
     LanguagesResponse,
     LocalesResponse,
@@ -426,4 +427,11 @@ export async function getSalaryStatisticsIndustries(): Promise<
             method: 'GET',
         }
     )
+}
+
+export async function getMe(token: string): Promise<GetMeResponse> {
+    return request<GetMeResponse>(`/me`, {
+        method: 'GET',
+        token,
+    })
 }

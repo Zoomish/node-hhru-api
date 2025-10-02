@@ -188,7 +188,6 @@ export interface SavedSearchesResponse extends Pagination<SavedSearch> {}
 
 export interface SavedSearchByIdResponse extends SavedSearch {}
 
-export interface GetMeResponse extends Me {}
 
 export interface PortfolioConditionsResponse extends PortfolioConditions {}
 
