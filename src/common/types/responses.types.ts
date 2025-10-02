@@ -161,10 +161,14 @@ export interface SalaryStatisticsEmployerLevelsResponse extends IdName {
     description: string
 }
 
-export interface SalaryStatisticsSalaryAreasResponse extends IdName {
-    areas: SalaryStatisticsSalaryAreasResponse[]
+export interface SalaryStatisticsAreasResponse extends IdName {
+    areas: SalaryStatisticsAreasResponse[]
 }
 
 export interface SalaryStatisticsProfessionalAreasResponse extends IdName {
     specializations: Specialization[]
+}
+
+export interface SalaryStatisticsIndustriesResponse extends IdName {
+    industries: IdName[]
 }

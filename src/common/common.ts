@@ -28,9 +28,10 @@ import {
     ProfessionalRolesResponse,
     ProfessionalRolesSuggestsResponse,
     ResumeSearchKeywordSuggestsResponse,
+    SalaryStatisticsAreasResponse,
     SalaryStatisticsEmployerLevelsResponse,
+    SalaryStatisticsIndustriesResponse,
     SalaryStatisticsProfessionalAreasResponse,
-    SalaryStatisticsSalaryAreasResponse,
     SkillsResponse,
     SkillsSuggestsResponse,
     UserTokenResponse,
@@ -394,10 +395,10 @@ export async function getSalaryStatisticsEmployerLevels(): Promise<
     )
 }
 
-export async function getSalaryStatisticsSalaryAreas(): Promise<
-    SalaryStatisticsSalaryAreasResponse[]
+export async function getSalaryStatisticsAreas(): Promise<
+    SalaryStatisticsAreasResponse[]
 > {
-    return request<SalaryStatisticsSalaryAreasResponse[]>(
+    return request<SalaryStatisticsAreasResponse[]>(
         `/salary_statistics/dictionaries/salary_areas`,
         {
             method: 'GET',
@@ -410,6 +411,17 @@ export async function getSalaryStatisticsProfessionalAreas(): Promise<
 > {
     return request<SalaryStatisticsProfessionalAreasResponse[]>(
         `/salary_statistics/dictionaries/professional_areas`,
+        {
+            method: 'GET',
+        }
+    )
+}
+
+export async function getSalaryStatisticsIndustries(): Promise<
+    SalaryStatisticsIndustriesResponse[]
+> {
+    return request<SalaryStatisticsIndustriesResponse[]>(
+        `/salary_statistics/dictionaries/salary_industries`,
         {
             method: 'GET',
         }
