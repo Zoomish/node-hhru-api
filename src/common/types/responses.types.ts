@@ -159,3 +159,7 @@ export interface EmployersResponse extends Pagination<EmployerBlacklisted> {}
 export interface SalaryStatisticsEmployerLevelsResponse extends IdName {
     description: string
 }
+
+export interface SalaryStatisticsSalaryAreasResponse extends IdName {
+    areas: SalaryStatisticsSalaryAreasResponse[]
+}
