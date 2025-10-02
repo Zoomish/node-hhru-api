@@ -21,6 +21,7 @@ import {
     PositionsSuggest,
     ProfessionalRoleItem,
     ProfessionalRolesSuggest,
+    Specialization,
     VacancyPositionsSuggest,
     VacancySearchItem,
 } from './types.types.ts'
@@ -162,4 +163,8 @@ export interface SalaryStatisticsEmployerLevelsResponse extends IdName {
 
 export interface SalaryStatisticsSalaryAreasResponse extends IdName {
     areas: SalaryStatisticsSalaryAreasResponse[]
+}
+
+export interface SalaryStatisticsProfessionalAreasResponse extends IdName {
+    specializations: Specialization[]
 }

@@ -104,3 +104,7 @@ interface Widget {
 export interface InsiderInterview extends Omit<IdUrlName, 'name'> {
     title: string
 }
+
+export interface Specialization extends IdName{
+    description: string
+}

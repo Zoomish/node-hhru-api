@@ -29,6 +29,7 @@ import {
     ProfessionalRolesSuggestsResponse,
     ResumeSearchKeywordSuggestsResponse,
     SalaryStatisticsEmployerLevelsResponse,
+    SalaryStatisticsProfessionalAreasResponse,
     SalaryStatisticsSalaryAreasResponse,
     SkillsResponse,
     SkillsSuggestsResponse,
@@ -404,3 +405,13 @@ export async function getSalaryStatisticsSalaryAreas(): Promise<
     )
 }
 
+export async function getSalaryStatisticsProfessionalAreas(): Promise<
+    SalaryStatisticsProfessionalAreasResponse[]
+> {
+    return request<SalaryStatisticsProfessionalAreasResponse[]>(
+        `/salary_statistics/dictionaries/professional_areas`,
+        {
+            method: 'GET',
+        }
+    )
+}
