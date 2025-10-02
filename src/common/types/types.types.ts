@@ -5,6 +5,7 @@ import {
     IdName,
     IdText,
     IdTextUrl,
+    IdUrlName,
     Url,
     Vacancy,
 } from '../../types/shared.types.ts'
@@ -98,4 +99,8 @@ interface Widgets {
 interface Widget {
     picture_id: string
     resized_path: string
+}
+
+export interface InsiderInterview extends Omit<IdUrlName, 'name'> {
+    title: string
 }

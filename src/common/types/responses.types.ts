@@ -1,3 +1,4 @@
+import { Dictionary } from '../../types/const.types.ts'
 import {
     Argument,
     Cluster,
@@ -15,6 +16,7 @@ import {
 import {
     Branding,
     CompaniesSuggest,
+    InsiderInterview,
     PositionsSuggest,
     ProfessionalRoleItem,
     ProfessionalRolesSuggest,
@@ -138,7 +140,15 @@ export interface CompaniesSuggestsResponse {
     items: CompaniesSuggest[]
 }
 
-export interface EmployerResponse extends EmployerVakancy {
+export interface EmployerResponse
+    extends Omit<EmployerVakancy, 'blacklisted' | 'employer_rating'> {
     area: IdUrlName
     branding: Branding
+    description: string
+    industries: IdName[]
+    insider_interviews: InsiderInterview[]
+    open_vacancies: number
+    relations: ['blacklisted'] | []
+    site_url: string
+    type: Dictionary['employer_type'][number]['id']
 }
