@@ -28,6 +28,7 @@ import {
     ProfessionalRolesResponse,
     ProfessionalRolesSuggestsResponse,
     ResumeSearchKeywordSuggestsResponse,
+    SalaryStatisticsEmployerLevelsResponse,
     SkillsResponse,
     SkillsSuggestsResponse,
     UserTokenResponse,
@@ -378,4 +379,15 @@ export async function getEmployers(
         method: 'GET',
         queryParams: objectToUrlSearchParams(options),
     })
+}
+
+export async function getSalaryStatisticsEmployerLevels(): Promise<
+    SalaryStatisticsEmployerLevelsResponse[]
+> {
+    return request<SalaryStatisticsEmployerLevelsResponse[]>(
+        `/salary_statistics/dictionaries/employee_levels`,
+        {
+            method: 'GET',
+        }
+    )
 }
