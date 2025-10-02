@@ -68,7 +68,15 @@ interface LogoUrl {
     90: string
 }
 
-export interface Branding extends Constructors {}
+export type Branding = Constructors | CustomPages
+
+interface CustomPages {
+    template_code: string
+    template_version_id: string
+    makeup: MakeUp
+}
+
+interface MakeUp extends Url {}
 
 interface Constructors {
     constructor: Constructor
