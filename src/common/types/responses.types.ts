@@ -1,3 +1,4 @@
+import { EmployerBlacklisted } from '../../applicant/types/types.types.ts'
 import { Dictionary } from '../../types/const.types.ts'
 import {
     Argument,
@@ -152,3 +153,5 @@ export interface EmployerResponse
     site_url: string
     type: Dictionary['employer_type'][number]['id']
 }
+
+export interface EmployersResponse extends Pagination<EmployerBlacklisted> {}

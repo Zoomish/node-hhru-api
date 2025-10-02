@@ -16,7 +16,9 @@ import {
     DistrictsResponse,
     EducationalInstitutionsResponse,
     EmployerResponse,
+    EmployersResponse,
     FieldsOfStudySuggestsResponse,
+    GetEmployersOptions,
     IndustriesResponse,
     LanguagesResponse,
     LocalesResponse,
@@ -366,5 +368,14 @@ export async function getEmployer(
 ): Promise<EmployerResponse> {
     return request<EmployerResponse>(`/employers/${employerId}`, {
         method: 'GET',
+    })
+}
+
+export async function getEmployers(
+    options: Partial<GetEmployersOptions>
+): Promise<EmployersResponse> {
+    return request<EmployersResponse>(`/employers`, {
+        method: 'GET',
+        queryParams: objectToUrlSearchParams(options),
     })
 }
