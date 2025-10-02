@@ -1,17 +1,17 @@
-import { Dictionary } from '../../types/const.ts'
+import { Dictionary } from '../../types/const.types.ts'
 import {
     Id,
     LngLat,
     PaginationRequest,
     VacancySearchParamsOld,
-} from '../../types/shared.js'
+} from '../../types/shared.types.ts'
 import {
     AdditionalProperties,
     Profile,
     ResumeItemMiddle,
     UpdateMeFIO,
     UpdateMeInSearch,
-} from './types.js'
+} from './types.types.ts'
 
 export interface ResumeVisibilitySearchParams extends PaginationRequest {
     text: string

@@ -1,3 +1,3 @@
-export * from './request.js'
-export * from './responses.js'
-export * from './types.js'
+export * from './request.types.ts'
+export * from './responses.types.ts'
+export * from './types.types.ts'

@@ -3,7 +3,7 @@ import {
     Locales,
     NegotiationSource,
     ParticipantType,
-} from '../../types/const.ts'
+} from '../../types/const.types.ts'
 import {
     Address,
     DriverLicenseTypes,
@@ -17,7 +17,7 @@ import {
     MetroLine,
     VacancyShort,
     WorkFormat,
-} from '../../types/shared.js'
+} from '../../types/shared.types.ts'
 
 interface FileUrl {
     url: string

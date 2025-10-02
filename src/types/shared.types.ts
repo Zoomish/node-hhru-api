@@ -1,4 +1,4 @@
-import { Dictionary, PropertyType } from './const.ts'
+import { Dictionary, PropertyType } from './const.types.ts'
 
 export interface Id {
     id: string
@@ -395,8 +395,7 @@ interface SalaryRange {
     mode?: IdName
 }
 
-interface EmployerVakancy extends Omit<Employer, 'accredited_it_employer'> {
-    accredited_it_employer: boolean
+export interface EmployerVakancy extends Employer {
     blacklisted: boolean
     applicant_services: ApplicantServices
 }

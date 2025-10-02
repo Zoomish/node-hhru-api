@@ -5,8 +5,9 @@ import {
     IdName,
     IdText,
     IdTextUrl,
+    Url,
     Vacancy,
-} from '../../types/shared.js'
+} from '../../types/shared.types.ts'
 
 export interface VacancySearchItem
     extends Omit<
@@ -18,7 +19,7 @@ export interface VacancySearchItem
     experience: Experience
 }
 
-export interface ProfessionalRole extends IdName {
+export interface ProfessionalRoleItem extends IdName {
     roles: Role[]
 }
 
@@ -65,4 +66,28 @@ export interface CompaniesSuggest extends IdTextUrl {
 
 interface LogoUrl {
     90: string
+}
+
+export interface Branding extends Constructors {}
+
+interface Constructors {
+    constructor: Constructor
+}
+interface Constructor extends Url {
+    header_picture: HeaderPicture
+    widgets: Widgets
+}
+
+interface HeaderPicture {
+    resized_path: string
+}
+
+interface Widgets {
+    items: Widget[]
+    type: 'gallery'
+}
+
+interface Widget {
+    picture_id: string
+    resized_path: string
 }

@@ -1,6 +1,7 @@
 import {
     Argument,
     Cluster,
+    EmployerVakancy,
     Fixes,
     Id,
     IdName,
@@ -10,15 +11,16 @@ import {
     MetroLineWithStations,
     Pagination,
     Suggests,
-} from '../../types/shared.js'
+} from '../../types/shared.types.ts'
 import {
+    Branding,
     CompaniesSuggest,
     PositionsSuggest,
-    ProfessionalRole,
+    ProfessionalRoleItem,
     ProfessionalRolesSuggest,
     VacancyPositionsSuggest,
     VacancySearchItem,
-} from './types.js'
+} from './types.types.ts'
 
 export interface AppTokenResponse {
     access_token: string
@@ -70,7 +72,7 @@ export interface SkillsResponse {
 }
 
 export interface ProfessionalRolesResponse {
-    categories: ProfessionalRole[]
+    categories: ProfessionalRoleItem[]
 }
 
 export interface IndustriesResponse extends IdName {
@@ -134,4 +136,9 @@ export interface FieldsOfStudySuggestsResponse {
 
 export interface CompaniesSuggestsResponse {
     items: CompaniesSuggest[]
+}
+
+export interface EmployerResponse extends EmployerVakancy {
+    area: IdUrlName
+    branding: Branding
 }

@@ -1,11 +1,11 @@
 import { arrayToUrlSearchParams, objectToUrlSearchParams } from '../helpers.ts'
 import { request } from '../http.ts'
-import { Dictionary } from '../types/const.ts'
+import { Dictionary } from '../types/const.types.ts'
 import {
     IdUrlName,
     VacancySearchParams,
     VacancySearchParamsOld,
-} from '../types/shared.js'
+} from '../types/shared.types.ts'
 import {
     AppTokenResponse,
     AreaLeavesSuggestsResponse,
@@ -15,6 +15,7 @@ import {
     DictResponse,
     DistrictsResponse,
     EducationalInstitutionsResponse,
+    EmployerResponse,
     FieldsOfStudySuggestsResponse,
     IndustriesResponse,
     LanguagesResponse,
@@ -357,5 +358,13 @@ export async function getCompaniesSuggests(
         queryParams: objectToUrlSearchParams({
             text,
         }),
+    })
+}
+
+export async function getEmployer(
+    employerId: string
+): Promise<EmployerResponse> {
+    return request<EmployerResponse>(`/employers/${employerId}`, {
+        method: 'GET',
     })
 }
