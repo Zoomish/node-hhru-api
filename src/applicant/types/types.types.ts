@@ -375,7 +375,7 @@ export interface SavedSearch extends IdName {
     new_items: CountUrl
 }
 
-export interface Me extends Id {
+export interface MeApplicant extends Id {
     auth_type: 'applicant'
     is_admin: boolean
     is_applicant: boolean

@@ -108,3 +108,12 @@ export interface InsiderInterview extends Omit<IdUrlName, 'name'> {
 export interface Specialization extends IdName {
     description: string
 }
+
+export interface MeApplication {
+    auth_type: 'application'
+    is_admin: boolean
+    is_applicant: boolean
+    is_application: boolean
+    is_employer: boolean
+    is_employer_integration: boolean
+}

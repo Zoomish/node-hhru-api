@@ -1,4 +1,11 @@
-import { EmployerBlacklisted, Me } from '../../applicant/types/types.types.ts'
+import {
+    EmployerBlacklisted,
+    MeApplicant,
+} from '../../applicant/types/types.types.ts'
+import {
+    MeEmployer,
+    MeEmployerIntergration,
+} from '../../employer/types/responses.types.ts'
 import { Dictionary } from '../../types/const.types.ts'
 import {
     Argument,
@@ -18,6 +25,7 @@ import {
     Branding,
     CompaniesSuggest,
     InsiderInterview,
+    MeApplication,
     PositionsSuggest,
     ProfessionalRoleItem,
     ProfessionalRolesSuggest,
@@ -173,4 +181,8 @@ export interface SalaryStatisticsIndustriesResponse extends IdName {
     industries: IdName[]
 }
 
-export interface GetMeResponse extends Me {}
+export type GetMeResponse =
+    | MeApplicant
+    | MeApplication
+    | MeEmployer
+    | MeEmployerIntergration
