@@ -3,6 +3,7 @@ import {
     GetEmployerDepartmentsResponse,
     GetEmployerTestsResponse,
     GetEmployerVacancyAreasResponse,
+    GetEmployerVacancyTemplatesResponse,
 } from './types/responses.types.ts'
 
 export async function getEmployerTests(
@@ -34,6 +35,19 @@ export async function getEmployerDepartments(
 ): Promise<GetEmployerDepartmentsResponse> {
     return request<GetEmployerDepartmentsResponse>(
         `/employers/${employerId}/departments`,
+        {
+            method: 'GET',
+            token,
+        }
+    )
+}
+
+export async function getEmployerVacancyTemplates(
+    token: string,
+    employerId: string
+): Promise<GetEmployerVacancyTemplatesResponse> {
+    return request<GetEmployerVacancyTemplatesResponse>(
+        `/employers/${employerId}/vacancy_branded_templates`,
         {
             method: 'GET',
             token,

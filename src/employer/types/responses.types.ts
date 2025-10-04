@@ -40,3 +40,11 @@ export interface GetEmployerVacancyAreasResponse
 export interface GetEmployerDepartmentsResponse {
     items: IdName[]
 }
+
+export interface GetEmployerVacancyTemplatesResponse {
+    items: VacancyTemplate[]
+}
+
+interface VacancyTemplate extends IdName {
+    version_id: string
+}
