@@ -1,4 +1,5 @@
-import { Id, IdName } from '../../types/shared.types.ts'
+import { Id, IdName, IdUrlName, Pagination } from '../../types/shared.types.ts'
+import { Manager, PersonalManager } from './types.types.ts'
 
 export interface MeEmployer extends Id {
     auth_type: 'employer'
@@ -29,28 +30,13 @@ export interface MeEmployerIntergration extends Id {
     personal_manager: PersonalManager
     [key: string]: any
 }
-
-interface PersonalManager extends Id {
-    email: string
-    first_name: string
-    last_name: string
-    is_available: boolean
-    photo_urls: PhotoUrls
-    unavailable: Unavailable
+export interface GetEmployerTestsResponse {
+    items: IdName[]
 }
 
-interface Unavailable {
-    until: string
-}
+export interface GetEmployerVacancyAreasResponse
+    extends Pagination<IdUrlName> {}
 
-interface PhotoUrls {
-    big: string | null
-    small: string | null
-}
-
-interface Manager extends Id {
-    has_admin_rights: boolean
-    has_multiple_manager_accounts: boolean
-    is_main_contact_person: boolean
-    manager_settings_url: string
+export interface GetEmployerDepartmentsResponse {
+    items: IdName[]
 }
