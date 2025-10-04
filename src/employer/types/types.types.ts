@@ -1,5 +1,4 @@
-import { Id } from "../../types/shared.types.ts"
-
+import { Id, IdName, VacancyFull } from '../../types/shared.types.ts'
 
 export interface PersonalManager extends Id {
     email: string
@@ -24,4 +23,48 @@ export interface Manager extends Id {
     has_multiple_manager_accounts: boolean
     is_main_contact_person: boolean
     manager_settings_url: string
+}
+
+export interface VacancyDraft extends VacancyFull {
+    manager: Id
+    response_notifications: boolean
+    assigned_manager: AssignedManager
+    branded_template: IdName
+    custom_employer_name: string | null
+    meta_info: MetaInfo
+    with_zp: boolean
+}
+
+interface MetaInfo {
+    auto_publication: AutoPublication
+    completed_fields_percentage: number
+    draft_id: string
+    insufficient_publications: InsufficientPublication[]
+    insufficient_quotas: InsufficientPublication[]
+    last_change_time: string | null
+    publication_ready: boolean
+    required_publications: InsufficientPublication[]
+    scheduled_at: string | null
+}
+
+interface InsufficientPublication {
+    billing_type: IdName
+    count: number
+    vacancy_type: string
+}
+
+interface AutoPublication {
+    bill_uid: string
+    cart_id: string
+}
+
+interface AssignedManager extends Id {
+    full_name: string
+    auction: Auction
+}
+
+interface Auction {
+    bid_cents: number | null
+    budget_cents: number | null
+    checked: boolean
 }

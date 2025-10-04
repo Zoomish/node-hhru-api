@@ -4,6 +4,7 @@ import {
     GetEmployerTestsResponse,
     GetEmployerVacancyAreasResponse,
     GetEmployerVacancyTemplatesResponse,
+    GetVacanciesDraftsResponse,
 } from './types/responses.types.ts'
 
 export async function getEmployerTests(
@@ -53,4 +54,14 @@ export async function getEmployerVacancyTemplates(
             token,
         }
     )
+}
+
+export async function getVacanciesDrafts(
+    token: string,
+    draftId: string
+): Promise<GetVacanciesDraftsResponse> {
+    return request<GetVacanciesDraftsResponse>(`/vacancies/drafts/${draftId}`, {
+        method: 'GET',
+        token,
+    })
 }

@@ -1,5 +1,10 @@
-import { Id, IdName, IdUrlName, Pagination } from '../../types/shared.types.ts'
-import { Manager, PersonalManager } from './types.types.ts'
+import {
+    Id,
+    IdName,
+    IdUrlName,
+    Pagination
+} from '../../types/shared.types.ts'
+import { Manager, PersonalManager, VacancyDraft } from './types.types.ts'
 
 export interface MeEmployer extends Id {
     auth_type: 'employer'
@@ -48,3 +53,5 @@ export interface GetEmployerVacancyTemplatesResponse {
 interface VacancyTemplate extends IdName {
     version_id: string
 }
+
+export interface GetVacanciesDraftsResponse extends VacancyDraft {}
