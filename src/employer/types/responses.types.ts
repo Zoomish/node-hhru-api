@@ -2,7 +2,8 @@ import {
     Id,
     IdName,
     IdUrlName,
-    Pagination
+    Pagination,
+    ValidationError,
 } from '../../types/shared.types.ts'
 import { Manager, PersonalManager, VacancyDraft } from './types.types.ts'
 
@@ -55,3 +56,9 @@ interface VacancyTemplate extends IdName {
 }
 
 export interface GetVacanciesDraftsResponse extends VacancyDraft {}
+
+export interface UpdateVacanciesDraftsResponse extends IdName {
+    ignored_fields: string[]
+    publication_ready: boolean
+    validation_errors: ValidationError
+}

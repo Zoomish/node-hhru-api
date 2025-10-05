@@ -442,3 +442,8 @@ interface VacancyType {
     id: Dictionary['vacancy_type'][number]['id']
     name: Dictionary['vacancy_type'][number]['name']
 }
+
+export interface ValidationError {
+    reason: string
+    value: string
+}

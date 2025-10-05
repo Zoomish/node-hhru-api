@@ -6,6 +6,7 @@ import {
     GetEmployerVacancyAreasResponse,
     GetEmployerVacancyTemplatesResponse,
     GetVacanciesDraftsResponse,
+    UpdateVacanciesDraftsResponse,
 } from './types/responses.types.ts'
 
 export async function getEmployerTests(
@@ -71,10 +72,13 @@ export async function updateVacanciesDrafts(
     token: string,
     draftId: string,
     body: Partial<UpdateVacanciesDraftsBody>
-): Promise<GetVacanciesDraftsResponse> {
-    return request<GetVacanciesDraftsResponse>(`/vacancies/drafts/${draftId}`, {
-        method: 'PUT',
-        token,
-        body,
-    })
+): Promise<UpdateVacanciesDraftsResponse> {
+    return request<UpdateVacanciesDraftsResponse>(
+        `/vacancies/drafts/${draftId}`,
+        {
+            method: 'PUT',
+            token,
+            body,
+        }
+    )
 }
