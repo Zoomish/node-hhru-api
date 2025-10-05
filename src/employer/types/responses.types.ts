@@ -6,6 +6,7 @@ import {
     ValidationError,
 } from '../../types/shared.types.ts'
 import {
+    EmployerAvailablePublication,
     EmployerMethodAccess,
     EmployerPayableApiAction,
     Manager,
@@ -91,4 +92,8 @@ export interface GetEmployerPayableApiActionsResponse {
 
 export interface GetEmployerMethodAccessResponse {
     items: EmployerMethodAccess[]
+}
+
+export interface GetEmployerAvailablePublicationsResponse {
+    publication_variants: EmployerAvailablePublication[]
 }

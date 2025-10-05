@@ -3,6 +3,7 @@ import { request } from '../http.ts'
 import { UpdateVacanciesDraftsBody } from './types/request.types.ts'
 import {
     CreateVacanciesDraftsResponse,
+    GetEmployerAvailablePublicationsResponse,
     GetEmployerDepartmentsResponse,
     GetEmployerMethodAccessResponse,
     GetEmployerPayableApiActionsResponse,
@@ -183,6 +184,25 @@ export async function getEmployerMethodAccess(
         {
             method: 'GET',
             token,
+        }
+    )
+}
+
+export async function getEmployerAvailablePublications(
+    token: string,
+    employerId: string,
+    areaId?: string,
+    professionalRoleId?: string
+): Promise<GetEmployerAvailablePublicationsResponse> {
+    return request<GetEmployerAvailablePublicationsResponse>(
+        `/employers/${employerId}/services/available_publications`,
+        {
+            method: 'GET',
+            token,
+            queryParams: objectToUrlSearchParams({
+                area_id: areaId,
+                professional_role_id: professionalRoleId,
+            }),
         }
     )
 }

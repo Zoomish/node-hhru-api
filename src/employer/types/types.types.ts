@@ -114,3 +114,34 @@ export interface EmployerMethodAccess extends Id {
 interface Access {
     has_access: boolean
 }
+
+export interface EmployerAvailablePublication {
+    appearance: Appearance
+    available_publications_count: number
+    suitable_packages: SuitablePackage[]
+    vacancy_properties: VacancyProperties
+}
+
+interface VacancyProperties {
+    required: PropertyType[]
+}
+
+interface PropertyType {
+    property_type: string
+}
+
+interface SuitablePackage {
+    count: number
+    invalid: boolean
+    price_regions: PriceRegion[]
+}
+
+interface PriceRegion extends Id {
+    areas_url: string
+    title: string
+}
+
+interface Appearance {
+    title: string
+    description: string
+}
