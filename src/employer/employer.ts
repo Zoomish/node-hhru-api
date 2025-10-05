@@ -1,4 +1,5 @@
 import { request } from '../http.ts'
+import { UpdateVacanciesDraftsBody } from './types/request.types.ts'
 import {
     GetEmployerDepartmentsResponse,
     GetEmployerTestsResponse,
@@ -63,5 +64,17 @@ export async function getVacanciesDrafts(
     return request<GetVacanciesDraftsResponse>(`/vacancies/drafts/${draftId}`, {
         method: 'GET',
         token,
+    })
+}
+
+export async function updateVacanciesDrafts(
+    token: string,
+    draftId: string,
+    body: Partial<UpdateVacanciesDraftsBody>
+): Promise<GetVacanciesDraftsResponse> {
+    return request<GetVacanciesDraftsResponse>(`/vacancies/drafts/${draftId}`, {
+        method: 'PUT',
+        token,
+        body,
     })
 }

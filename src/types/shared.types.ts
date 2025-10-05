@@ -180,6 +180,11 @@ type PartTime =
     | 'project'
     | 'accept_temporary'
 
+export interface WorkHours {
+    id: Dictionary['working_hours'][number]['id']
+    name: Dictionary['working_hours'][number]['name']
+}
+
 export interface Argument {
     argument: string
     cluster_group: IdName
@@ -248,7 +253,7 @@ export interface Vacancy extends VacancyShort {
     schedule?: WorkSchedule | null
     work_format?: WorkFormat[] | null
     work_schedule_by_days?: WorkSchedule[] | null
-    working_hours?: WorkSchedule[] | null
+    working_hours?: WorkHours[] | null
     counters?: VacancyCounters
     snippet?: VacancySnippet
     accept_only_for_part_time?: string[]
@@ -298,12 +303,12 @@ export interface WorkFormat {
     name: Dictionary['work_format'][number]['name']
 }
 
-interface ProfessionalRole {
+export interface ProfessionalRole {
     id: string
     name: string
 }
 
-interface WorkSchedule {
+export interface WorkSchedule {
     id: Dictionary['schedule'][number]['id']
     name: Dictionary['schedule'][number]['name']
 }
@@ -337,7 +342,7 @@ interface CoverPicture {
     resized_width: number
 }
 
-interface VacancyProperties {
+export interface VacancyProperties {
     appearance: Appearance
     properties: Properties
 }
@@ -366,7 +371,7 @@ interface AgeRestriction {
     name: Dictionary['age_restriction'][number]['name']
 }
 
-interface FlyInFlyOutDuration {
+export interface FlyInFlyOutDuration {
     id: Dictionary['fly_in_fly_out_duration'][number]['id']
     name: Dictionary['fly_in_fly_out_duration'][number]['name']
 }
@@ -386,7 +391,7 @@ interface PhoneContacts {
     number: string
 }
 
-interface SalaryRange {
+export interface SalaryRange {
     from?: number | null
     to?: number | null
     currency: string

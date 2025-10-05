@@ -63,7 +63,7 @@ interface AssignedManager extends Id {
     auction: Auction
 }
 
-interface Auction {
+export interface Auction {
     bid_cents: number | null
     budget_cents: number | null
     checked: boolean
