@@ -146,3 +146,14 @@ export async function getVacanciesDrafts(
         queryParams: objectToUrlSearchParams({ page, per_page }),
     })
 }
+
+export async function deleteVacancyAutoPublish(
+    token: string,
+    draftId: string
+): Promise<void> {
+    return request<void>(`/vacancies/auto_publication`, {
+        method: 'DELETE',
+        token,
+        queryParams: objectToUrlSearchParams({ draft_id: draftId }),
+    })
+}
