@@ -17,7 +17,6 @@ import {
     FieldCondition,
     FieldsCondition,
     ListFieldCondition,
-    Me,
     ModerationNote,
     Negotiation,
     NegotiationMessage,
@@ -187,7 +186,6 @@ export interface BlacklistEmployersResponse
 export interface SavedSearchesResponse extends Pagination<SavedSearch> {}
 
 export interface SavedSearchByIdResponse extends SavedSearch {}
-
 
 export interface PortfolioConditionsResponse extends PortfolioConditions {}
 
