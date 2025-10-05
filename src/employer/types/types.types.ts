@@ -105,3 +105,12 @@ interface Balance {
     actual: number
     initial: number
 }
+
+export interface EmployerMethodAccess extends Id {
+    access: Access
+    description: string
+}
+
+interface Access {
+    has_access: boolean
+}

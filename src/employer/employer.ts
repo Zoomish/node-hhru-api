@@ -4,6 +4,7 @@ import { UpdateVacanciesDraftsBody } from './types/request.types.ts'
 import {
     CreateVacanciesDraftsResponse,
     GetEmployerDepartmentsResponse,
+    GetEmployerMethodAccessResponse,
     GetEmployerPayableApiActionsResponse,
     GetEmployerTestsResponse,
     GetEmployerVacancyAreasResponse,
@@ -165,6 +166,20 @@ export async function getEmployerPayableApiActions(
 ): Promise<GetEmployerPayableApiActionsResponse> {
     return request<GetEmployerPayableApiActionsResponse>(
         `/employers/${employerId}/services/payable_api_actions/active`,
+        {
+            method: 'GET',
+            token,
+        }
+    )
+}
+
+export async function getEmployerMethodAccess(
+    token: string,
+    employerId: string,
+    managerId: string
+): Promise<GetEmployerMethodAccessResponse> {
+    return request<GetEmployerMethodAccessResponse>(
+        `/employers/${employerId}/managers/${managerId}/method_access`,
         {
             method: 'GET',
             token,
