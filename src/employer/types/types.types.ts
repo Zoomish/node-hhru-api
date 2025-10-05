@@ -1,4 +1,9 @@
-import { Id, IdName, VacancyFull } from '../../types/shared.types.ts'
+import {
+    Id,
+    IdName,
+    IdUrlName,
+    VacancyFull
+} from '../../types/shared.types.ts'
 
 export interface PersonalManager extends Id {
     email: string
@@ -67,4 +72,29 @@ export interface Auction {
     bid_cents: number | null
     budget_cents: number | null
     checked: boolean
+}
+
+export interface VacancyCreate extends Omit<IdUrlName, 'id'> {
+    auto_publication: AutoPublication
+    completed_fields_percentage: number
+    draft_id: string
+    insufficient_publications: InsufficientPublication[]
+    insufficient_quotas: InsufficientPublication[]
+    last_change_time: string | null
+    publication_ready: boolean
+    required_publications: InsufficientPublication[]
+    scheduled_at: string | null
+    areas: IdName[]
+    assigned_manager: AssignedManagerVacancy
+    closed_for_applicants: boolean
+}
+
+interface AssignedManagerVacancy {
+    id: string
+    full_name: string
+}
+
+interface AutoPublication {
+    bill_uid: string
+    cart_id: string
 }

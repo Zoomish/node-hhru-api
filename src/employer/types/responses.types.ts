@@ -5,7 +5,12 @@ import {
     Pagination,
     ValidationError,
 } from '../../types/shared.types.ts'
-import { Manager, PersonalManager, VacancyDraft } from './types.types.ts'
+import {
+    Manager,
+    PersonalManager,
+    VacancyCreate,
+    VacancyDraft,
+} from './types.types.ts'
 
 export interface MeEmployer extends Id {
     auth_type: 'employer'
@@ -55,7 +60,7 @@ interface VacancyTemplate extends IdName {
     version_id: string
 }
 
-export interface GetVacanciesDraftsResponse extends VacancyDraft {}
+export interface GetVacancyDraftsResponse extends VacancyDraft {}
 
 export interface UpdateVacanciesDraftsResponse extends IdName {
     ignored_fields: string[]
@@ -75,3 +80,5 @@ export interface GetVacanciesDraftsDuplicatesResponse {
 
 export interface CreateVacanciesDraftsResponse
     extends UpdateVacanciesDraftsResponse {}
+
+export interface GetVacanciesDraftsResponse extends Pagination<VacancyCreate> {}

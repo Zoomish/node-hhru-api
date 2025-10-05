@@ -1,3 +1,4 @@
+import { objectToUrlSearchParams } from '../helpers.ts'
 import { request } from '../http.ts'
 import { UpdateVacanciesDraftsBody } from './types/request.types.ts'
 import {
@@ -8,6 +9,7 @@ import {
     GetEmployerVacancyTemplatesResponse,
     GetVacanciesDraftsDuplicatesResponse,
     GetVacanciesDraftsResponse,
+    GetVacancyDraftsResponse,
     PublishVacanciesByDraftsResponse,
     UpdateVacanciesDraftsResponse,
 } from './types/responses.types.ts'
@@ -61,17 +63,17 @@ export async function getEmployerVacancyTemplates(
     )
 }
 
-export async function getVacanciesDrafts(
+export async function getVacancyDrafts(
     token: string,
     draftId: string
-): Promise<GetVacanciesDraftsResponse> {
-    return request<GetVacanciesDraftsResponse>(`/vacancies/drafts/${draftId}`, {
+): Promise<GetVacancyDraftsResponse> {
+    return request<GetVacancyDraftsResponse>(`/vacancies/drafts/${draftId}`, {
         method: 'GET',
         token,
     })
 }
 
-export async function updateVacanciesDrafts(
+export async function updateVacancyDrafts(
     token: string,
     draftId: string,
     body: Partial<UpdateVacanciesDraftsBody>
@@ -86,7 +88,7 @@ export async function updateVacanciesDrafts(
     )
 }
 
-export async function deleteVacanciesDrafts(
+export async function deleteVacancyDrafts(
     token: string,
     draftId: string
 ): Promise<void> {
@@ -96,7 +98,7 @@ export async function deleteVacanciesDrafts(
     })
 }
 
-export async function publishVacanciesByDrafts(
+export async function publishVacancyByDrafts(
     token: string,
     draftId: string
 ): Promise<PublishVacanciesByDraftsResponse> {
@@ -122,7 +124,7 @@ export async function getVacanciesDraftsDuplicates(
     )
 }
 
-export async function createVacanciesDrafts(
+export async function createVacancyDrafts(
     token: string,
     body: Partial<UpdateVacanciesDraftsBody>
 ): Promise<CreateVacanciesDraftsResponse> {
@@ -130,5 +132,17 @@ export async function createVacanciesDrafts(
         method: 'POST',
         token,
         body,
+    })
+}
+
+export async function getVacanciesDrafts(
+    token: string,
+    page: number,
+    per_page: number
+): Promise<GetVacanciesDraftsResponse> {
+    return request<GetVacanciesDraftsResponse>(`/vacancies/drafts`, {
+        method: 'GET',
+        token,
+        queryParams: objectToUrlSearchParams({ page, per_page }),
     })
 }
