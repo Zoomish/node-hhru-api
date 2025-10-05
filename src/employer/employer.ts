@@ -6,6 +6,7 @@ import {
     GetEmployerVacancyAreasResponse,
     GetEmployerVacancyTemplatesResponse,
     GetVacanciesDraftsResponse,
+    PublishVacanciesByDraftsResponse,
     UpdateVacanciesDraftsResponse,
 } from './types/responses.types.ts'
 
@@ -91,4 +92,17 @@ export async function deleteVacanciesDrafts(
         method: 'DELETE',
         token,
     })
+}
+
+export async function publishVacanciesByDrafts(
+    token: string,
+    draftId: string
+): Promise<PublishVacanciesByDraftsResponse> {
+    return request<PublishVacanciesByDraftsResponse>(
+        `/vacancies/drafts/${draftId}/publish`,
+        {
+            method: 'POST',
+            token,
+        }
+    )
 }

@@ -62,3 +62,7 @@ export interface UpdateVacanciesDraftsResponse extends IdName {
     publication_ready: boolean
     validation_errors: ValidationError
 }
+
+export interface PublishVacanciesByDraftsResponse {
+    vacancy_ids: number[]
+}
