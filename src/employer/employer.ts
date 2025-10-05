@@ -1,6 +1,7 @@
 import { request } from '../http.ts'
 import { UpdateVacanciesDraftsBody } from './types/request.types.ts'
 import {
+    CreateVacanciesDraftsResponse,
     GetEmployerDepartmentsResponse,
     GetEmployerTestsResponse,
     GetEmployerVacancyAreasResponse,
@@ -119,4 +120,15 @@ export async function getVacanciesDraftsDuplicates(
             token,
         }
     )
+}
+
+export async function createVacanciesDrafts(
+    token: string,
+    body: Partial<UpdateVacanciesDraftsBody>
+): Promise<CreateVacanciesDraftsResponse> {
+    return request<CreateVacanciesDraftsResponse>(`/vacancies/drafts`, {
+        method: 'POST',
+        token,
+        body,
+    })
 }

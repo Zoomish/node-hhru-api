@@ -72,3 +72,6 @@ export interface GetVacanciesDraftsDuplicatesResponse {
     has_duplicates: boolean
     items: number[]
 }
+
+export interface CreateVacanciesDraftsResponse
+    extends UpdateVacanciesDraftsResponse {}
