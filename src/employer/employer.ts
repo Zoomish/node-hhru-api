@@ -4,6 +4,7 @@ import { UpdateVacanciesDraftsBody } from './types/request.types.ts'
 import {
     CreateVacanciesDraftsResponse,
     GetEmployerDepartmentsResponse,
+    GetEmployerPayableApiActionsResponse,
     GetEmployerTestsResponse,
     GetEmployerVacancyAreasResponse,
     GetEmployerVacancyTemplatesResponse,
@@ -63,7 +64,7 @@ export async function getEmployerVacancyTemplates(
     )
 }
 
-export async function getVacancyDrafts(
+export async function getEmployerVacancyDrafts(
     token: string,
     draftId: string
 ): Promise<GetVacancyDraftsResponse> {
@@ -73,7 +74,7 @@ export async function getVacancyDrafts(
     })
 }
 
-export async function updateVacancyDrafts(
+export async function updateEmployerVacancyDrafts(
     token: string,
     draftId: string,
     body: Partial<UpdateVacanciesDraftsBody>
@@ -88,7 +89,7 @@ export async function updateVacancyDrafts(
     )
 }
 
-export async function deleteVacancyDrafts(
+export async function deleteEmployerVacancyDrafts(
     token: string,
     draftId: string
 ): Promise<void> {
@@ -98,7 +99,7 @@ export async function deleteVacancyDrafts(
     })
 }
 
-export async function publishVacancyByDrafts(
+export async function publishEmployerVacancyByDrafts(
     token: string,
     draftId: string
 ): Promise<PublishVacanciesByDraftsResponse> {
@@ -111,7 +112,7 @@ export async function publishVacancyByDrafts(
     )
 }
 
-export async function getVacanciesDraftsDuplicates(
+export async function getEmployerVacanciesDraftsDuplicates(
     token: string,
     draftId: string
 ): Promise<GetVacanciesDraftsDuplicatesResponse> {
@@ -124,7 +125,7 @@ export async function getVacanciesDraftsDuplicates(
     )
 }
 
-export async function createVacancyDrafts(
+export async function createEmployerVacancyDrafts(
     token: string,
     body: Partial<UpdateVacanciesDraftsBody>
 ): Promise<CreateVacanciesDraftsResponse> {
@@ -135,7 +136,7 @@ export async function createVacancyDrafts(
     })
 }
 
-export async function getVacanciesDrafts(
+export async function getEmployerVacanciesDrafts(
     token: string,
     page: number,
     per_page: number
@@ -147,7 +148,7 @@ export async function getVacanciesDrafts(
     })
 }
 
-export async function deleteVacancyAutoPublish(
+export async function deleteEmployerVacancyAutoPublish(
     token: string,
     draftId: string
 ): Promise<void> {
@@ -156,4 +157,17 @@ export async function deleteVacancyAutoPublish(
         token,
         queryParams: objectToUrlSearchParams({ draft_id: draftId }),
     })
+}
+
+export async function getEmployerPayableApiActions(
+    token: string,
+    employerId: string
+): Promise<GetEmployerPayableApiActionsResponse> {
+    return request<GetEmployerPayableApiActionsResponse>(
+        `/employers/${employerId}/services/payable_api_actions/active`,
+        {
+            method: 'GET',
+            token,
+        }
+    )
 }

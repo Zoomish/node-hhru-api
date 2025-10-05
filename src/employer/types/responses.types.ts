@@ -6,6 +6,7 @@ import {
     ValidationError,
 } from '../../types/shared.types.ts'
 import {
+    EmployerPayableApiAction,
     Manager,
     PersonalManager,
     VacancyCreate,
@@ -82,3 +83,7 @@ export interface CreateVacanciesDraftsResponse
     extends UpdateVacanciesDraftsResponse {}
 
 export interface GetVacanciesDraftsResponse extends Pagination<VacancyCreate> {}
+
+export interface GetEmployerPayableApiActionsResponse {
+    items: EmployerPayableApiAction[]
+}

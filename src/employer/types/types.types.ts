@@ -1,9 +1,4 @@
-import {
-    Id,
-    IdName,
-    IdUrlName,
-    VacancyFull
-} from '../../types/shared.types.ts'
+import { Id, IdName, IdUrlName, VacancyFull } from '../../types/shared.types.ts'
 
 export interface PersonalManager extends Id {
     email: string
@@ -97,4 +92,16 @@ interface AssignedManagerVacancy {
 interface AutoPublication {
     bill_uid: string
     cart_id: string
+}
+
+export interface EmployerPayableApiAction extends Id {
+    activated_at: string
+    balance: Balance
+    expires_at: string
+    service_type: IdName
+}
+
+interface Balance {
+    actual: number
+    initial: number
 }
