@@ -66,3 +66,9 @@ export interface UpdateVacanciesDraftsResponse extends IdName {
 export interface PublishVacanciesByDraftsResponse {
     vacancy_ids: number[]
 }
+
+export interface GetVacanciesDraftsDuplicatesResponse {
+    found: number
+    has_duplicates: boolean
+    items: number[]
+}

@@ -5,6 +5,7 @@ import {
     GetEmployerTestsResponse,
     GetEmployerVacancyAreasResponse,
     GetEmployerVacancyTemplatesResponse,
+    GetVacanciesDraftsDuplicatesResponse,
     GetVacanciesDraftsResponse,
     PublishVacanciesByDraftsResponse,
     UpdateVacanciesDraftsResponse,
@@ -102,6 +103,19 @@ export async function publishVacanciesByDrafts(
         `/vacancies/drafts/${draftId}/publish`,
         {
             method: 'POST',
+            token,
+        }
+    )
+}
+
+export async function getVacanciesDraftsDuplicates(
+    token: string,
+    draftId: string
+): Promise<GetVacanciesDraftsDuplicatesResponse> {
+    return request<GetVacanciesDraftsDuplicatesResponse>(
+        `/vacancies/drafts/${draftId}/duplicates`,
+        {
+            method: 'GET',
             token,
         }
     )
