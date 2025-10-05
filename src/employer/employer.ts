@@ -82,3 +82,13 @@ export async function updateVacanciesDrafts(
         }
     )
 }
+
+export async function deleteVacanciesDrafts(
+    token: string,
+    draftId: string
+): Promise<void> {
+    return request<void>(`/vacancies/drafts/${draftId}`, {
+        method: 'DELETE',
+        token,
+    })
+}
