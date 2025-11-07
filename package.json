@@ -43,23 +43,23 @@
   },
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs",
+      "import": "./dist/index.d.ts",
+      "require": "./dist/index.d.ts",
       "types": "./dist/index.d.ts"
     },
     "./common": {
-      "import": "./dist/common/common.js",
-      "require": "./dist/common/common.cjs",
+      "import": "./dist/common/common.d.ts",
+      "require": "./dist/common/common.d.ts",
       "types": "./dist/common/types.d.ts"
     },
     "./applicant": {
-      "import": "./dist/applicant/applicant.js",
-      "require": "./dist/applicant/applicant.cjs",
+      "import": "./dist/applicant/applicant.d.ts",
+      "require": "./dist/applicant/applicant.d.ts",
       "types": "./dist/applicant/types.d.ts"
     },
     "./employer": {
-      "import": "./dist/employer/employer.js",
-      "require": "./dist/employer/employer.cjs",
+      "import": "./dist/employer/employer.d.ts",
+      "require": "./dist/employer/employer.d.ts",
       "types": "./dist/employer/types.d.ts"
     }
   },
