@@ -1,6 +1,6 @@
 {
   "name": "node-hhru-api",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "type": "module",
   "description": "HeadHunter API wrapper for Node.js",
   "main": "dist/index.js",
@@ -31,7 +31,9 @@
     "url": "https://github.com/Zoomish"
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
   "publishConfig": {
     "access": "public",
