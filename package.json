@@ -1,8 +1,11 @@
 {
   "name": "node-hhru-api",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "type": "module",
   "description": "HeadHunter API wrapper for Node.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/Zoomish/node-hhru-api"
@@ -35,32 +38,34 @@
     "@Zoomish:registry": "https://npm.pkg.github.com"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "prepublishOnly": "npm run build",
+    "build": "esbuild src/index.ts --bundle --outfile=dist/index.js --format=esm --platform=node",
+    "build:cjs": "esbuild src/index.ts --bundle --outfile=dist/index.cjs --format=cjs --platform=node",
+    "build:types": "tsc --emitDeclarationOnly --outDir dist",
+    "prepublishOnly": "npm run build && npm run build:cjs && npm run build:types",
     "test": "vitest run tests/all.test.ts",
     "lint": "prettier --check .",
     "format": "prettier --write ."
   },
   "exports": {
     ".": {
-      "import": "./dist/index.d.ts",
-      "require": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
       "types": "./dist/index.d.ts"
     },
     "./common": {
-      "import": "./dist/common/common.d.ts",
-      "require": "./dist/common/common.d.ts",
-      "types": "./dist/common/common.d.ts"
+      "import": "./dist/common/common.js",
+      "require": "./dist/common/common.cjs",
+      "types": "./dist/common/types.d.ts"
     },
     "./applicant": {
-      "import": "./dist/applicant/applicant.d.ts",
-      "require": "./dist/applicant/applicant.d.ts",
-      "types": "./dist/applicant/applicant.d.ts"
+      "import": "./dist/applicant/applicant.js",
+      "require": "./dist/applicant/applicant.cjs",
+      "types": "./dist/applicant/types.d.ts"
     },
     "./employer": {
-      "import": "./dist/employer/employer.d.ts",
-      "require": "./dist/employer/employer.d.ts",
-      "types": "./dist/employer/employer.d.ts"
+      "import": "./dist/employer/employer.js",
+      "require": "./dist/employer/employer.cjs",
+      "types": "./dist/employer/types.d.ts"
     }
   },
   "devDependencies": {
@@ -73,6 +78,7 @@
     "vitest": "^3.2.4"
   },
   "dependencies": {
+    "esbuild": "^0.25.12",
     "node-fetch": "^3.3.2",
     "ts-node": "^10.9.2"
   }
