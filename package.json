@@ -1,6 +1,6 @@
 {
   "name": "node-hhru-api",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "type": "module",
   "description": "HeadHunter API wrapper for Node.js",
   "repository": {
@@ -50,17 +50,17 @@
     "./common": {
       "import": "./dist/common/common.d.ts",
       "require": "./dist/common/common.d.ts",
-      "types": "./dist/common/types.d.ts"
+      "types": "./dist/common/common.d.ts"
     },
     "./applicant": {
       "import": "./dist/applicant/applicant.d.ts",
       "require": "./dist/applicant/applicant.d.ts",
-      "types": "./dist/applicant/types.d.ts"
+      "types": "./dist/applicant/applicant.d.ts"
     },
     "./employer": {
       "import": "./dist/employer/employer.d.ts",
       "require": "./dist/employer/employer.d.ts",
-      "types": "./dist/employer/types.d.ts"
+      "types": "./dist/employer/employer.d.ts"
     }
   },
   "devDependencies": {
