@@ -3,9 +3,6 @@
   "version": "0.2.1",
   "type": "module",
   "description": "HeadHunter API wrapper for Node.js",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/Zoomish/node-hhru-api"
