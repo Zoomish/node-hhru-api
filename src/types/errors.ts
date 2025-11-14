@@ -11,12 +11,6 @@ export type BadArgumentErrorValue =
     | 'too_many_employers'
     | 'id'
 
-export interface HHApi400Error extends HHApiBaseError {
-    errors: {
-        type: BadArgumentErrorType
-        value: BadArgumentErrorValue
-    }[]
-}
 export type ForbiddenErrorType = 'forbidden' | 'oauth'
 
 export type ForbiddenErrorValue =
@@ -36,7 +30,24 @@ export type OAuthError =
     | 'bad-auth-type'
     | 'client-id-deleted'
 
+export interface HHApi400Error {
+    status: 400
+    data: HHApi400ErrorData
+}
+
+interface HHApi400ErrorData extends HHApiBaseError {
+    errors: {
+        type: BadArgumentErrorType
+        value: BadArgumentErrorValue
+    }[]
+}
+
 export interface HHApi403Error extends HHApiBaseError {
+    status: 403
+    data: HHApi403ErrorData
+}
+
+interface HHApi403ErrorData extends HHApiBaseError {
     description?: string
     errors: {
         type: ForbiddenErrorType
@@ -45,14 +56,16 @@ export interface HHApi403Error extends HHApiBaseError {
     oauth_error?: OAuthError
 }
 
-export interface HHApi404Error extends HHApiBaseError {
+export interface HHApi404Error {
+    status: 404
+    data: HHApi404ErrorData
+}
+
+interface HHApi404ErrorData extends HHApiBaseError {
     description?: string
     errors: {
         type: 'not_found'
     }[]
 }
 
-export type HHApiError = {
-    status: number
-    data: HHApi400Error | HHApi403Error | HHApi404Error
-}
+export type HHApiError = HHApi400Error | HHApi403Error | HHApi404Error
