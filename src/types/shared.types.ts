@@ -118,10 +118,18 @@ export interface VacancySearchParams {
     premium: boolean
     responses_count_enabled: boolean
     accept_temporary: boolean
-    employment_form: Dictionary['employment_form'][number]['id']
-    work_schedule_by_days: Dictionary['work_schedule_by_days'][number]['id']
-    working_hours: Dictionary['working_hours'][number]['id']
-    work_format: Dictionary['work_format'][number]['id']
+    employment_form:
+        | Dictionary['employment_form'][number]['id']
+        | Dictionary['employment_form'][number]['id'][]
+    work_schedule_by_days:
+        | Dictionary['work_schedule_by_days'][number]['id']
+        | Dictionary['work_schedule_by_days'][number]['id'][]
+    working_hours:
+        | Dictionary['working_hours'][number]['id']
+        | Dictionary['working_hours'][number]['id'][]
+    work_format:
+        | Dictionary['work_format'][number]['id']
+        | Dictionary['work_format'][number]['id'][]
     excluded_text: string
     education: 'not_required_or_not_specified' | 'special_secondary' | 'higher'
 }
