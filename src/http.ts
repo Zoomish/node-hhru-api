@@ -41,7 +41,7 @@ export async function request<T>(
         queryParams = '',
     } = options
 
-    const response: Response = await fetch(
+    return fetch(
         `https://${oldAddress ? 'hh.ru' : 'api.hh.ru'}${url}?${queryParams}`,
         {
             method,
@@ -57,11 +57,13 @@ export async function request<T>(
                     : JSON.stringify(body),
         }
     )
-
-    const json = await response.json().catch(() => ({}))
-    if (!response.ok) {
-        throw new HHError<HHApiError>(response.status, json as HHApiError)
-    }
-
-    return json as Promise<T>
+        .then((response: Response) => {
+            return response.json().catch(() => ({})) as T
+        })
+        .catch((error) => {
+            throw new HHError<HHApiError>(
+                error.status,
+                error.json().catch(() => ({})) as HHApiError
+            )
+        })
 }
