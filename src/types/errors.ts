@@ -52,4 +52,7 @@ export interface HHApi404Error extends HHApiBaseError {
     }[]
 }
 
-export type HHApiError = HHApi400Error | HHApi403Error | HHApi404Error
+export type HHApiError = {
+    status: number
+    data: HHApi400Error | HHApi403Error | HHApi404Error
+}
