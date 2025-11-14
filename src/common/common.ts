@@ -53,7 +53,7 @@ export async function getAppToken(
             client_secret: clientSecret,
         }),
         contentType: 'application/x-www-form-urlencoded',
-        oldAddress: true,
+        useOldAddress: true,
     })
 }
 
@@ -73,7 +73,7 @@ export async function getUserToken(
             redirect_uri: redirectUri ?? '',
         }).toString(),
         contentType: 'application/x-www-form-urlencoded',
-        oldAddress: true,
+        useOldAddress: true,
     })
 }
 
@@ -91,7 +91,7 @@ export async function refreshUserToken(
             refresh_token: refreshToken,
         }).toString(),
         contentType: 'application/x-www-form-urlencoded',
-        oldAddress: true,
+        useOldAddress: true,
     })
 }
 
