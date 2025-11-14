@@ -153,6 +153,7 @@ export interface ResumeItem {
     last_name: string | null
     middle_name: string | null
     gender: Gender
+    title: string
     photo: Photo | null
     platform: string
     salary: Salary | null
