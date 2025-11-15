@@ -1,6 +1,6 @@
 {
   "name": "node-hhru-api",
-  "version": "0.2.21",
+  "version": "0.2.25",
   "type": "module",
   "description": "HeadHunter API wrapper for Node.js",
   "main": "dist/index.js",

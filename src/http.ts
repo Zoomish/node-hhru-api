@@ -65,7 +65,7 @@ function buildBody(
 
     return contentType === 'application/json'
         ? JSON.stringify(body)
-        : String(body)
+        : (body as BodyInit)
 }
 
 export async function request<T>(
@@ -93,6 +93,8 @@ export async function request<T>(
     })
 
     const responseData = await response.json().catch(() => ({}))
+
+    console.log(requestHeaders, requestBody)
 
     if (!response.ok) {
         throw new HHError<HHApiError>(
