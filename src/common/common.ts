@@ -78,16 +78,12 @@ export async function getUserToken(
 }
 
 export async function refreshUserToken(
-    clientId: string,
-    clientSecret: string,
     refreshToken: string
 ): Promise<UserTokenResponse> {
     return request<UserTokenResponse>('/oauth/token', {
         method: 'POST',
         body: new URLSearchParams({
             grant_type: 'refresh_token',
-            client_id: clientId,
-            client_secret: clientSecret,
             refresh_token: refreshToken,
         }).toString(),
         contentType: 'application/x-www-form-urlencoded',
