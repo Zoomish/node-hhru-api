@@ -65,7 +65,7 @@ function buildBody(
 
     return contentType === 'application/json'
         ? JSON.stringify(body)
-        : (body as BodyInit)
+        : String(body)
 }
 
 export async function request<T>(
