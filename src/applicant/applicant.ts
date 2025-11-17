@@ -308,8 +308,7 @@ export async function applyVacancy(
     return request<void>(`/negotiations`, {
         method: 'POST',
         token,
-        body: objectToUrlSearchParams(body),
-        contentType: 'multipart/form-data',
+        body: objectToFormData(body),
     })
 }
 

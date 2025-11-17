@@ -40,20 +40,20 @@ function buildUrl(
 }
 
 function buildHeaders(
-    contentType: ContentType,
+    contentType?: ContentType, // Сделали опциональным
     token?: string,
     customHeaders?: Record<string, string>
 ): HeadersInit {
     const headers: HeadersInit = {
-        'Content-Type': contentType,
         'HH-User-Agent': globalConfig.userAgent,
         ...customHeaders,
     }
-
+    if (contentType) {
+        headers['Content-Type'] = contentType
+    }
     if (token) {
         headers.Authorization = `Bearer ${token}`
     }
-
     return headers
 }
 
@@ -83,8 +83,14 @@ export async function request<T>(
     } = options
 
     const targetUrl = buildUrl(url, useOldAddress, queryParams)
-    const requestHeaders = buildHeaders(contentType, token, headers)
-    const requestBody = buildBody(contentType, body)
+
+    const requestHeaders =
+        body instanceof FormData
+            ? buildHeaders(undefined, token, headers)
+            : buildHeaders(contentType, token, headers)
+
+    const requestBody =
+        body instanceof FormData ? body : buildBody(contentType, body)
 
     const response: Response = await fetch(targetUrl, {
         method,
@@ -92,9 +98,7 @@ export async function request<T>(
         body: requestBody,
     })
 
-    const responseData = await response.json().catch(() => ({}))
-
-    console.log(requestHeaders, requestBody)
+    const responseData = await response.json().catch(() => null)
 
     if (!response.ok) {
         throw new HHError<HHApiError>(
