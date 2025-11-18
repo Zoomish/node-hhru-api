@@ -117,7 +117,7 @@ export async function searchSuitableVacancies(
     )
 }
 
-export async function searchSimilarVacancies(
+export async function searchSimilarByVacancyVacancies(
     token: string,
     vacancyId: string,
     query?: Partial<VacancySearchParamsOld>

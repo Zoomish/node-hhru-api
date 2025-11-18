@@ -5,7 +5,7 @@ import {
     objectToUrlSearchParams,
 } from '../helpers.ts'
 import { request } from '../http.ts'
-import { VacancyFull } from '../types/shared.types.ts'
+import { VacancyFull, VacancySearchParamsOld } from '../types/shared.types.ts'
 import {
     AddEmployersToVisibilityListBody,
     ApplyVacancyBody,
@@ -205,6 +205,18 @@ export async function getResumeConditionsById(
     return request<ResumeConditions>(`/resumes/${resumeId}/conditions`, {
         method: 'GET',
         token,
+    })
+}
+
+export async function searchSimilarByResumeVacancies(
+    token: string,
+    resumeId: string,
+    options?: Partial<VacancySearchParamsOld>
+): Promise<ResumeConditions> {
+    return request<ResumeConditions>(`/resumes/${resumeId}/similar_vacancies`, {
+        method: 'GET',
+        token,
+        queryParams: objectToUrlSearchParams(options),
     })
 }
 
