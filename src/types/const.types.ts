@@ -1602,6 +1602,25 @@ export type Locales = [
     },
 ]
 
+export type Hosts = [
+    'hh.ru',
+    'rabota.by',
+    'hh1.az',
+    'hh.uz',
+    'hh.kz',
+    'headhunter.ge',
+    'headhunter.kg',
+]
+export const defaultHosts: Hosts = [
+    'hh.ru',
+    'rabota.by',
+    'hh1.az',
+    'hh.uz',
+    'hh.kz',
+    'headhunter.ge',
+    'headhunter.kg',
+]
+
 export type Methods = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
 
 export type ContentType =

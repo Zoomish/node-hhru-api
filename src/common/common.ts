@@ -1,6 +1,6 @@
 import { arrayToUrlSearchParams, objectToUrlSearchParams } from '../helpers.ts'
 import { request } from '../http.ts'
-import { Dictionary } from '../types/const.types.ts'
+import { defaultHosts, Dictionary, Hosts } from '../types/const.types.ts'
 import {
     IdUrlName,
     VacancySearchParams,
@@ -148,6 +148,10 @@ export async function getDictionaries(): Promise<Dictionary> {
     return request<Dictionary>('/dictionaries', {
         method: 'GET',
     })
+}
+
+export function getHosts(): Hosts {
+    return defaultHosts
 }
 
 export async function getLanguages(): Promise<LanguagesResponse> {
