@@ -93,7 +93,7 @@ export async function refreshUserToken(
 
 export async function searchVacancies(
     token: string,
-    query?: Partial<VacancySearchParams>
+    query?: Partial<VacancySearchParams | VacancySearchParamsOld>
 ): Promise<VacancySearchResponse> {
     return request<VacancySearchResponse>('/vacancies', {
         method: 'GET',
@@ -105,7 +105,7 @@ export async function searchVacancies(
 export async function searchSuitableVacancies(
     token: string,
     vacancyId: string,
-    query?: Partial<VacancySearchParamsOld>
+    query?: Partial<VacancySearchParamsOld | VacancySearchParams>
 ): Promise<VacancySearchResponse> {
     return request<VacancySearchResponse>(
         `/vacancies/${vacancyId}/related_vacancies`,
@@ -120,7 +120,7 @@ export async function searchSuitableVacancies(
 export async function searchSimilarByVacancyVacancies(
     token: string,
     vacancyId: string,
-    query?: Partial<VacancySearchParamsOld>
+    query?: Partial<VacancySearchParamsOld | VacancySearchParams>
 ): Promise<VacancySearchResponse> {
     return request<VacancySearchResponse>(
         `/vacancies/${vacancyId}/similar_vacancies`,
