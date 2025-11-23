@@ -47,6 +47,7 @@ import {
     ResumeVisibilitySearchResponse,
     SavedSearchByIdResponse,
     SavedSearchesResponse,
+    SimilarVacanciesResponse,
     SuitableResumeItemsResponse,
     UpdateMeBody,
     UpdatePortfolioBody,
@@ -216,12 +217,15 @@ export async function searchSimilarByResumeVacancies(
     token: string,
     resumeId: string,
     options?: Partial<VacancySearchParamsOld | VacancySearchParams>
-): Promise<ResumeConditions> {
-    return request<ResumeConditions>(`/resumes/${resumeId}/similar_vacancies`, {
-        method: 'GET',
-        token,
-        queryParams: objectToUrlSearchParams(options),
-    })
+): Promise<SimilarVacanciesResponse> {
+    return request<SimilarVacanciesResponse>(
+        `/resumes/${resumeId}/similar_vacancies`,
+        {
+            method: 'GET',
+            token,
+            queryParams: objectToUrlSearchParams(options),
+        }
+    )
 }
 
 export async function getAccessTypes(
